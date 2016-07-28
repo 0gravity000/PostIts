@@ -17,6 +17,7 @@
 		AAFB09EF1D48F0E500995A10 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAFB09ED1D48F0E500995A10 /* LaunchScreen.storyboard */; };
 		AAFB09FA1D48F0E500995A10 /* PostItsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFB09F91D48F0E500995A10 /* PostItsTests.swift */; };
 		AAFB0A051D48F0E500995A10 /* PostItsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFB0A041D48F0E500995A10 /* PostItsUITests.swift */; };
+		AAFB0A141D48FE4D00995A10 /* IMG_1331.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AAFB0A131D48FE4D00995A10 /* IMG_1331.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		AAFB0A001D48F0E500995A10 /* PostItsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PostItsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAFB0A041D48F0E500995A10 /* PostItsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostItsUITests.swift; sourceTree = "<group>"; };
 		AAFB0A061D48F0E500995A10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AAFB0A131D48FE4D00995A10 /* IMG_1331.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_1331.jpg; sourceTree = "<group>"; };
 		F7D1D6D16C449E368B553D8C /* Pods-PostItsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PostItsUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PostItsUITests/Pods-PostItsUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,6 +104,7 @@
 		AAFB09D81D48F0E500995A10 = {
 			isa = PBXGroup;
 			children = (
+				AAFB0A121D48FE3000995A10 /* img */,
 				AAFB09E31D48F0E500995A10 /* PostIts */,
 				AAFB09F81D48F0E500995A10 /* PostItsTests */,
 				AAFB0A031D48F0E500995A10 /* PostItsUITests */,
@@ -150,6 +153,14 @@
 				AAFB0A061D48F0E500995A10 /* Info.plist */,
 			);
 			path = PostItsUITests;
+			sourceTree = "<group>";
+		};
+		AAFB0A121D48FE3000995A10 /* img */ = {
+			isa = PBXGroup;
+			children = (
+				AAFB0A131D48FE4D00995A10 /* IMG_1331.jpg */,
+			);
+			name = img;
 			sourceTree = "<group>";
 		};
 		DB271BFF5BB48A0B5F7A3F78 /* Pods */ = {
@@ -280,6 +291,7 @@
 				AAFB09EF1D48F0E500995A10 /* LaunchScreen.storyboard in Resources */,
 				AAFB09EC1D48F0E500995A10 /* Assets.xcassets in Resources */,
 				AAFB09EA1D48F0E500995A10 /* Main.storyboard in Resources */,
+				AAFB0A141D48FE4D00995A10 /* IMG_1331.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
