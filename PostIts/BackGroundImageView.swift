@@ -10,7 +10,7 @@ import UIKit
 
 class BackGroundImageView: UIImageView {
 
-    var touchPoint: CGPoint = CGPoint.init()
+    dynamic var touchPoint: CGPoint = CGPoint.init()
     
     /*
     // Only override drawRect: if you perform custom drawing.
@@ -19,6 +19,11 @@ class BackGroundImageView: UIImageView {
         // Drawing code
     }
     */
+
+//    override init() {
+//        super.init()
+//        addObserver(self, forKeyPath: "prop", options: [.New, .Old], context: nil)
+//    }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         print("touch Ended!!! ")    //debug code
