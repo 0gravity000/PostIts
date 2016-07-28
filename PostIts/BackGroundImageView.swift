@@ -10,6 +10,8 @@ import UIKit
 
 class BackGroundImageView: UIImageView {
 
+    var touchPoint: CGPoint = CGPoint.init()
+    
     /*
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
@@ -19,7 +21,11 @@ class BackGroundImageView: UIImageView {
     */
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        print("touch Ended!!! ")
+        print("touch Ended!!! ")    //debug code
+        let touch = touches.first
+        self.touchPoint = touch!.locationInView(self)
+        print("touchPoint = \(self.touchPoint)") //debug code
+        
     }
 
 }
