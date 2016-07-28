@@ -55,8 +55,8 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         // imageViewの大きさからcontentInsetを再計算
         // なお、0を下回らないようにする
         mainScrollView.contentInset = UIEdgeInsetsMake(
-            max((backgroundImageView.frame.height - backgroundImageView.frame.height)/2, 0),
-            max((backgroundImageView.frame.width - backgroundImageView.frame.width)/2, 0),
+            max((mainScrollView.frame.height - backgroundImageView.frame.height)/2, 0),
+            max((mainScrollView.frame.width - backgroundImageView.frame.width)/2, 0),
             0,
             0
         );
