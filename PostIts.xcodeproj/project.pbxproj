@@ -19,6 +19,8 @@
 		AAFB0A051D48F0E500995A10 /* PostItsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFB0A041D48F0E500995A10 /* PostItsUITests.swift */; };
 		AAFB0A141D48FE4D00995A10 /* IMG_1331.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AAFB0A131D48FE4D00995A10 /* IMG_1331.jpg */; };
 		AAFB0A161D4A315700995A10 /* PostItsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFB0A151D4A315700995A10 /* PostItsViewController.swift */; };
+		AAFB0A181D4A376A00995A10 /* PostItsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFB0A171D4A376A00995A10 /* PostItsTableView.swift */; };
+		AAFB0A1A1D4A379100995A10 /* PostItsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFB0A191D4A379100995A10 /* PostItsTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +64,8 @@
 		AAFB0A061D48F0E500995A10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AAFB0A131D48FE4D00995A10 /* IMG_1331.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_1331.jpg; sourceTree = "<group>"; };
 		AAFB0A151D4A315700995A10 /* PostItsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostItsViewController.swift; sourceTree = "<group>"; };
+		AAFB0A171D4A376A00995A10 /* PostItsTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostItsTableView.swift; sourceTree = "<group>"; };
+		AAFB0A191D4A379100995A10 /* PostItsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostItsTableViewCell.swift; sourceTree = "<group>"; };
 		F7D1D6D16C449E368B553D8C /* Pods-PostItsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PostItsUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PostItsUITests/Pods-PostItsUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -132,6 +136,8 @@
 				AAFB09E41D48F0E500995A10 /* AppDelegate.swift */,
 				AAFB09E61D48F0E500995A10 /* MainViewController.swift */,
 				AAFB0A151D4A315700995A10 /* PostItsViewController.swift */,
+				AAFB0A171D4A376A00995A10 /* PostItsTableView.swift */,
+				AAFB0A191D4A379100995A10 /* PostItsTableViewCell.swift */,
 				AAFB09E81D48F0E500995A10 /* Main.storyboard */,
 				AAFB09EB1D48F0E500995A10 /* Assets.xcassets */,
 				AAFB09ED1D48F0E500995A10 /* LaunchScreen.storyboard */,
@@ -444,6 +450,8 @@
 			files = (
 				AAFB09E71D48F0E500995A10 /* MainViewController.swift in Sources */,
 				AAFB09E51D48F0E500995A10 /* AppDelegate.swift in Sources */,
+				AAFB0A181D4A376A00995A10 /* PostItsTableView.swift in Sources */,
+				AAFB0A1A1D4A379100995A10 /* PostItsTableViewCell.swift in Sources */,
 				AAFB0A161D4A315700995A10 /* PostItsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
