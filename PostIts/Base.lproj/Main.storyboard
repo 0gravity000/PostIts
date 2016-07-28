@@ -54,10 +54,10 @@
             </objects>
             <point key="canvasLocation" x="1222" y="428"/>
         </scene>
-        <!--View Controller-->
+        <!--Post Its View Controller-->
         <scene sceneID="fv5-Fv-Hik">
             <objects>
-                <viewController id="wR0-Va-rMp" sceneMemberID="viewController">
+                <viewController id="wR0-Va-rMp" customClass="PostItsViewController" customModule="PostIts" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Cad-yf-XLh"/>
                         <viewControllerLayoutGuide type="bottom" id="dgJ-Fg-rjg"/>
