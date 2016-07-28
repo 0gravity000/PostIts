@@ -11,7 +11,7 @@ import UIKit
 class MainViewController: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet weak var mainScrollView: UIScrollView!
-    var backgroundImageView: UIImageView!
+    var backgroundImageView: BackGroundImageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,13 +20,9 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         mainScrollView.minimumZoomScale = 0.25
         mainScrollView.maximumZoomScale = 2.0
         
-        backgroundImageView = UIImageView(image: UIImage(named: "IMG_1331.jpg"))
+        backgroundImageView = BackGroundImageView(image: UIImage(named: "IMG_1331.jpg"))
+        backgroundImageView.userInteractionEnabled = true
         mainScrollView.addSubview(backgroundImageView)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     override func viewDidLayoutSubviews() {
@@ -64,6 +60,11 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
             0,
             0
         );
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
     
 }
