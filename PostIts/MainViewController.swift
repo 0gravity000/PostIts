@@ -73,6 +73,16 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
         //barItemButtonの初期化
         configureBarItemState()
         
+        //RealmデータからPostItsTextViewを作成 初期化
+        let postIts = realm.objects(PostItsModel) // デフォルトRealmから、すべてのnewPostItsオブジェクトを取得
+        for postIt in postIts {
+            if (postIt.isVisible == true) {
+                //backgroundImageView に postItsTextView を追加する
+                let postItsTextView = PostItsTextView()
+                addPostItsTextViewToBackgroundImageView(postItsTextView, postIts: postIt)
+            }
+        }
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -122,31 +132,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
             
             //backgroundImageView に postItsTextView を追加する
             let postItsTextView = PostItsTextView()
-            postItsTextView.delegate = self
-            postItsTextView.tag = Int(newPostIts.tagNo)
-            postItsTextView.text = newPostIts.tagNo.description + "\n" + newPostIts.content + "\n"
-            postItsTextView.frame = CGRectMake(CGFloat(newPostIts.posX), CGFloat(newPostIts.posY), 100, 100);
-            postItsTextView.userInteractionEnabled = true
-            
-            // 仮のサイズでツールバー生成
-            let kbToolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 40))
-            kbToolBar.barStyle = UIBarStyle.Default  // スタイルを設定
-            kbToolBar.sizeToFit()  // 画面幅に合わせてサイズを変更
-            
-            // スペーサー
-            let spacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: self, action: nil)
-            
-            // 閉じるボタン
-            let commitButton = UIBarButtonItem()
-            commitButton.image = UIImage(named: "keyboard03.png")
-            commitButton.target = self
-            commitButton.action = #selector(MainViewController.commitButtonTapped)
-//            let commitButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self, action: #selector(MainViewController.commitButtonTapped))
-            
-            kbToolBar.items = [spacer, commitButton]
-            postItsTextView.inputAccessoryView = kbToolBar
-
-            backgroundImageView.addSubview(postItsTextView)
+            addPostItsTextViewToBackgroundImageView(postItsTextView, postIts: newPostIts)
             
         } else if self.modeFlag == 3 {  //3:削除モード
             //ここでは特に何もしない
@@ -249,6 +235,36 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
         // 初期表示のためcontentInsetを更新
         updateScrollInset()
         //        }
+    }
+    
+    private func addPostItsTextViewToBackgroundImageView(postItsTextView: PostItsTextView, postIts:PostItsModel) {
+        
+        postItsTextView.delegate = self
+        postItsTextView.tag = Int(postIts.tagNo)
+        postItsTextView.text = postIts.tagNo.description + "\n" + postIts.content + "\n"
+        postItsTextView.frame = CGRectMake(CGFloat(postIts.posX), CGFloat(postIts.posY), 100, 100);
+        postItsTextView.userInteractionEnabled = true
+        
+        // 仮のサイズでツールバー生成
+        let kbToolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 40))
+        kbToolBar.barStyle = UIBarStyle.Default  // スタイルを設定
+        kbToolBar.sizeToFit()  // 画面幅に合わせてサイズを変更
+        
+        // スペーサー
+        let spacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: self, action: nil)
+        
+        // 閉じるボタン
+        let commitButton = UIBarButtonItem()
+        commitButton.image = UIImage(named: "keyboard03.png")
+        commitButton.target = self
+        commitButton.action = #selector(MainViewController.commitButtonTapped)
+        //            let commitButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self, action: #selector(MainViewController.commitButtonTapped))
+        
+        kbToolBar.items = [spacer, commitButton]
+        postItsTextView.inputAccessoryView = kbToolBar
+        
+        backgroundImageView.addSubview(postItsTextView)
+        
     }
     
     private func updateScrollInset() {
