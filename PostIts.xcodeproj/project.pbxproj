@@ -23,6 +23,7 @@
 		AAFB0A1A1D4A379100995A10 /* PostItsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFB0A191D4A379100995A10 /* PostItsTableViewCell.swift */; };
 		AAFB0A1C1D4A464700995A10 /* BackGroundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFB0A1B1D4A464700995A10 /* BackGroundImageView.swift */; };
 		AAFB0A221D4B2E6F00995A10 /* PostItsTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFB0A211D4B2E6F00995A10 /* PostItsTextView.swift */; };
+		AAFB0A241D4B491D00995A10 /* keyboard03.png in Resources */ = {isa = PBXBuildFile; fileRef = AAFB0A231D4B491D00995A10 /* keyboard03.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,7 @@
 		AAFB0A191D4A379100995A10 /* PostItsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostItsTableViewCell.swift; sourceTree = "<group>"; };
 		AAFB0A1B1D4A464700995A10 /* BackGroundImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackGroundImageView.swift; sourceTree = "<group>"; };
 		AAFB0A211D4B2E6F00995A10 /* PostItsTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostItsTextView.swift; sourceTree = "<group>"; };
+		AAFB0A231D4B491D00995A10 /* keyboard03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = keyboard03.png; sourceTree = "<group>"; };
 		F7D1D6D16C449E368B553D8C /* Pods-PostItsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PostItsUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PostItsUITests/Pods-PostItsUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -174,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				AAFB0A131D48FE4D00995A10 /* IMG_1331.jpg */,
+				AAFB0A231D4B491D00995A10 /* keyboard03.png */,
 			);
 			name = img;
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 			files = (
 				AAFB09EF1D48F0E500995A10 /* LaunchScreen.storyboard in Resources */,
 				AAFB09EC1D48F0E500995A10 /* Assets.xcassets in Resources */,
+				AAFB0A241D4B491D00995A10 /* keyboard03.png in Resources */,
 				AAFB09EA1D48F0E500995A10 /* Main.storyboard in Resources */,
 				AAFB0A141D48FE4D00995A10 /* IMG_1331.jpg in Resources */,
 			);

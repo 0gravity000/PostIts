@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 
 class PostItsModel: Object {
-    dynamic var id: Int16 = 0
+    dynamic var id: Int32 = 0
     dynamic var color: Int8 = 0
     dynamic var content: String = ""
     dynamic var creatTime = NSDate()
@@ -21,7 +21,7 @@ class PostItsModel: Object {
     }
 }
 
-class MainViewController: UIViewController, UIScrollViewDelegate {
+class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDelegate {
     
 //    var backgroundImageView: BackGroundImageView!
     var backgroundImageView = BackGroundImageView()
@@ -109,13 +109,29 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
             
             //backgroundImageView に postItsTextView を追加する
             let postItsTextView = PostItsTextView()
+            postItsTextView.delegate = self
             postItsTextView.tag = Int(newPostIts.id)
             postItsTextView.text = newPostIts.content
             postItsTextView.frame = CGRectMake(backgroundImageView.touchPoint.x, backgroundImageView.touchPoint.y, 100, 100);
-
             postItsTextView.userInteractionEnabled = true
             
-            mainScrollView.addSubview(postItsTextView)
+            // 仮のサイズでツールバー生成
+            let kbToolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 40))
+            kbToolBar.barStyle = UIBarStyle.Default  // スタイルを設定
+            kbToolBar.sizeToFit()  // 画面幅に合わせてサイズを変更
+            
+            // スペーサー
+            let spacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: self, action: nil)
+            
+            // 閉じるボタン
+            let commitButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self, action: "commitButtonTapped")
+            
+            kbToolBar.items = [spacer, commitButton]
+            postItsTextView.inputAccessoryView = kbToolBar
+
+            backgroundImageView.addSubview(postItsTextView)
+            
+            
             
         } else if self.modeFlag == 3 {  //3:削除モード
         } else if self.modeFlag == 4 {  //4:移動モード
@@ -139,6 +155,10 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
 //        }
     }
     
+    func commitButtonTapped (){
+        self.view.endEditing(true)
+    }
+    
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
         // ズームのために要指定
         return backgroundImageView
@@ -147,6 +167,26 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
     func scrollViewDidZoom(scrollView: UIScrollView) {
         // ズームのタイミングでcontentInsetを更新
         updateScrollInset()
+    }
+    
+    
+    //テキストビューが変更された
+    func textViewDidChange(textView: UITextView) {
+        print("textViewDidChange : \(textView.text)");
+    }
+    
+    // テキストビューにフォーカスが移った
+    func textViewShouldBeginEditing(textView: UITextView) -> Bool {
+        print("textViewShouldBeginEditing : \(textView.text)");
+        return true
+    }
+    
+    // テキストビューからフォーカスが失われた
+    func textViewShouldEndEditing(textView: UITextView) -> Bool {
+        print("textViewShouldEndEditing : \(textView.text)");
+        //キーボードを閉じる
+        textView.resignFirstResponder()
+        return true
     }
     
     private func updateScrollInset() {
