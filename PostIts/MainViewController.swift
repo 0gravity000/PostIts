@@ -10,11 +10,15 @@ import UIKit
 import RealmSwift
 
 class PostItsModel: Object {
-    dynamic var id: Int32 = 0
+    dynamic var id: String = ""
+    dynamic var tagNo: Int32 = 0
     dynamic var color: Int8 = 0
     dynamic var content: String = ""
     dynamic var creatTime = NSDate()
     dynamic var updateTime = NSDate()
+    dynamic var posX: Float = 0.0
+    dynamic var posY: Float = 0.0
+    dynamic var isVisible: Bool = true
     
     override static func primaryKey() -> String? {
         return "id"
@@ -89,13 +93,22 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
 
         //モードごとの処理
         if self.modeFlag == 1 {         //1:選択モード
+            //特に何もしない
         } else if self.modeFlag == 2 {  //2:追加モード
             //Realmデータ新規作成
             let newPostIts = PostItsModel()
-            newPostIts.id = 0
+            newPostIts.id = NSUUID().UUIDString
+            if let realmLastObject = realm.objects(PostItsModel).last {
+                newPostIts.tagNo = realmLastObject.tagNo + 1
+            } else {
+                newPostIts.tagNo = 0
+            }
             newPostIts.color = 0
             newPostIts.creatTime = NSDate()
             newPostIts.updateTime = newPostIts.creatTime
+            newPostIts.posX = Float(backgroundImageView.touchPoint.x)
+            newPostIts.posY = Float(backgroundImageView.touchPoint.y)
+            newPostIts.isVisible = true
             
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
@@ -110,9 +123,9 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
             //backgroundImageView に postItsTextView を追加する
             let postItsTextView = PostItsTextView()
             postItsTextView.delegate = self
-            postItsTextView.tag = Int(newPostIts.id)
-            postItsTextView.text = newPostIts.content
-            postItsTextView.frame = CGRectMake(backgroundImageView.touchPoint.x, backgroundImageView.touchPoint.y, 100, 100);
+            postItsTextView.tag = Int(newPostIts.tagNo)
+            postItsTextView.text = newPostIts.tagNo.description + "\n" + newPostIts.content + "\n"
+            postItsTextView.frame = CGRectMake(CGFloat(newPostIts.posX), CGFloat(newPostIts.posY), 100, 100);
             postItsTextView.userInteractionEnabled = true
             
             // 仮のサイズでツールバー生成
@@ -135,30 +148,14 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
 
             backgroundImageView.addSubview(postItsTextView)
             
-            
-            
         } else if self.modeFlag == 3 {  //3:削除モード
+            //ここでは特に何もしない
+            //PostItsTextView をタッチした時に処理を行う
         } else if self.modeFlag == 4 {  //4:移動モード
         }
         
     }
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-//        if let size = mainImageView.image?.size {
-//            // imageViewのサイズがscrollView内に収まるように調整
-//            let wrate = mainScrollView.frame.width / size.width
-//            let hrate = mainScrollView.frame.height / size.height
-//            let rate = min(wrate, hrate, 1)
-//            mainImageView.frame.size = CGSizeMake(size.width * rate, size.height * rate)
-            
-            // contentSizeを画像サイズに設定
-            mainScrollView.contentSize = backgroundImageView.frame.size
-            // 初期表示のためcontentInsetを更新
-            updateScrollInset()
-//        }
-    }
-    
     func commitButtonTapped (){
         self.view.endEditing(true)
     }
@@ -191,6 +188,22 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
         //キーボードを閉じる
         textView.resignFirstResponder()
         return true
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        //        if let size = mainImageView.image?.size {
+        //            // imageViewのサイズがscrollView内に収まるように調整
+        //            let wrate = mainScrollView.frame.width / size.width
+        //            let hrate = mainScrollView.frame.height / size.height
+        //            let rate = min(wrate, hrate, 1)
+        //            mainImageView.frame.size = CGSizeMake(size.width * rate, size.height * rate)
+        
+        // contentSizeを画像サイズに設定
+        mainScrollView.contentSize = backgroundImageView.frame.size
+        // 初期表示のためcontentInsetを更新
+        updateScrollInset()
+        //        }
     }
     
     private func updateScrollInset() {
