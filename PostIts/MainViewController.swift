@@ -26,13 +26,13 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var mainScrollView: UIScrollView!
     var backgroundImageView: BackGroundImageView!
 
+    // デフォルトRealmを取得
+    let realm = try! Realm()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
 
-        // デフォルトRealmを取得
-        //let realm = try! Realm()
-        
         // scrollview の設定
         mainScrollView.delegate = self
         mainScrollView.minimumZoomScale = 0.25
@@ -41,10 +41,19 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         // backgroundImageView の設定
         backgroundImageView = BackGroundImageView(image: UIImage(named: "IMG_1331.jpg"))
         backgroundImageView.userInteractionEnabled = true
-        backgroundImageView.addObserver(self, forKeyPath: "touchPoint", options: [.New, .Old], context: nil)
         
         mainScrollView.addSubview(backgroundImageView)
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        //KVO を登録する処理
+        backgroundImageView.addObserver(self, forKeyPath: "touchPoint", options: [.New, .Old], context: nil)
+    }
+    
+    override func viewDidDisappear(animated: Bool){
+        //KVO を削除する処理
+        backgroundImageView.removeObserver(self, forKeyPath: "touchPoint")
     }
     
     //KVO backgroundImageView を touch した時に呼ばれる
@@ -52,6 +61,21 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         print(keyPath)  //debug code
         print(object)   //debug code
         print(change)   //debug code
+
+        let newPostIts = PostItsModel()
+        newPostIts.id = 0
+        newPostIts.color = 0
+        newPostIts.creatTime = NSDate()
+        newPostIts.updateTime = newPostIts.creatTime
+        
+        // Realmにデータを永続化
+        //プライマリーキー id の値がすでに存在するなら、更新、存在しないなら追加
+        try! realm.write {
+            realm.add(newPostIts, update: true)
+        }
+        
+        //backgroundImageView に PostItsImageView を追加する
+        
     }
 
     override func viewDidLayoutSubviews() {
