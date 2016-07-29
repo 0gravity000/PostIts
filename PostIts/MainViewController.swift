@@ -173,18 +173,63 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
     
     //テキストビューが変更された
     func textViewDidChange(textView: UITextView) {
-        print("textViewDidChange : \(textView.text)");
+        print("textViewDidChange : \(textView.text)")   //debug code
     }
     
     // テキストビューにフォーカスが移った
     func textViewShouldBeginEditing(textView: UITextView) -> Bool {
-        print("textViewShouldBeginEditing : \(textView.text)");
-        return true
+        print("textViewShouldBeginEditing : \(textView.text)")   //debug code
+        if self.modeFlag == 3 {
+            //ここで、ViewとRealmデータ削除処理を行う
+            //Alert表示
+            let alert: UIAlertController = UIAlertController(title: "確認", message: "削除してもいいですか？", preferredStyle:  UIAlertControllerStyle.Alert)
+            
+            //Actionの設定
+            // OKボタン
+            let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler:{
+                // ボタンが押された時の処理を書く（クロージャ実装）
+                (action: UIAlertAction!) -> Void in
+                //Realmデータの削除 表示フラグを落とす
+                //let textViewTag = Int32(textView.tag)
+//                let predicate = NSPredicate(format: "tagNo == %ld", textViewTag)
+                let removePostIts = self.realm.objects(PostItsModel).filter("tagNo == \(textView.tag)")
+                for count in removePostIts {
+                    try! self.realm.write {
+                        count.isVisible = false
+                    }
+                }
+                
+                //View削除
+                textView.removeFromSuperview()
+                
+                
+                print("OK")
+            })
+            // キャンセルボタン
+            let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.Cancel, handler:{
+                // ボタンが押された時の処理を書く（クロージャ実装）
+                (action: UIAlertAction!) -> Void in
+                print("Cancel")
+            })
+            
+            //UIAlertControllerにActionを追加
+            alert.addAction(cancelAction)
+            alert.addAction(defaultAction)
+            
+            //Alertを表示
+            presentViewController(alert, animated: true, completion: nil)
+            
+            //以降テキスト編集処理を行わない
+            return false
+        } else {
+            //以降テキスト編集処理を行う
+            return true
+        }
     }
     
     // テキストビューからフォーカスが失われた
     func textViewShouldEndEditing(textView: UITextView) -> Bool {
-        print("textViewShouldEndEditing : \(textView.text)");
+        print("textViewShouldEndEditing : \(textView.text)")   //debug code
         //キーボードを閉じる
         textView.resignFirstResponder()
         return true
