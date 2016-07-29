@@ -24,7 +24,23 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hl2-WA-TPJ">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
-                                    <barButtonItem title="Item" id="rDy-aX-Cii"/>
+                                    <barButtonItem title="select" id="bCk-8L-TGH">
+                                        <connections>
+                                            <action selector="pushSelectPostItBarButton:" destination="BYZ-38-t0r" id="ohS-Vb-Jwb"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="c9M-XS-xHE"/>
+                                    <barButtonItem systemItem="add" id="rDy-aX-Cii">
+                                        <connections>
+                                            <action selector="pushAddPostItBarButton:" destination="BYZ-38-t0r" id="YYh-iu-KEu"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="xvu-Hn-Owh"/>
+                                    <barButtonItem systemItem="trash" id="UBd-Je-vcc">
+                                        <connections>
+                                            <action selector="pushRemovePostItBarButton:" destination="BYZ-38-t0r" id="Cjo-Pt-and"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Zet-g8-Xin"/>
                                     <barButtonItem systemItem="edit" id="2Wg-IB-kNi">
                                         <connections>
@@ -47,7 +63,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="qgZ-qa-Apn"/>
                     <connections>
+                        <outlet property="addPostItBarButton" destination="rDy-aX-Cii" id="T6B-pc-08A"/>
                         <outlet property="mainScrollView" destination="2MX-n0-7YA" id="2c7-ev-PbQ"/>
+                        <outlet property="removePostItBarButton" destination="UBd-Je-vcc" id="yIW-de-Se8"/>
+                        <outlet property="selectPostItBarButton" destination="bCk-8L-TGH" id="uoQ-Zc-647"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

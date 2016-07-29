@@ -23,9 +23,31 @@ class PostItsModel: Object {
 
 class MainViewController: UIViewController, UIScrollViewDelegate {
     
+//    var backgroundImageView: BackGroundImageView!
+    var backgroundImageView = BackGroundImageView()
+    var modeFlag: Int8 = 1  //1:select, 2:add, 3: remove
+    
     @IBOutlet weak var mainScrollView: UIScrollView!
-    var backgroundImageView: BackGroundImageView!
 
+    @IBOutlet weak var selectPostItBarButton: UIBarButtonItem!
+    @IBOutlet weak var addPostItBarButton: UIBarButtonItem!
+    @IBOutlet weak var removePostItBarButton: UIBarButtonItem!
+    
+    @IBAction func pushSelectPostItBarButton(sender: AnyObject) {
+        self.modeFlag = 1
+        configureBarItemState()
+    }
+    @IBAction func pushAddPostItBarButton(sender: AnyObject) {
+        self.modeFlag = 2
+        configureBarItemState()
+    }
+
+    @IBAction func pushRemovePostItBarButton(sender: AnyObject) {
+        self.modeFlag = 3
+        configureBarItemState()
+    }
+    
+    
     // デフォルトRealmを取得
     let realm = try! Realm()
     
@@ -43,6 +65,9 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         backgroundImageView.userInteractionEnabled = true
         
         mainScrollView.addSubview(backgroundImageView)
+        
+        //barItemButtonの初期化
+        configureBarItemState()
         
     }
     
@@ -62,19 +87,39 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         print(object)   //debug code
         print(change)   //debug code
 
-        let newPostIts = PostItsModel()
-        newPostIts.id = 0
-        newPostIts.color = 0
-        newPostIts.creatTime = NSDate()
-        newPostIts.updateTime = newPostIts.creatTime
-        
-        // Realmにデータを永続化
-        //プライマリーキー id の値がすでに存在するなら、更新、存在しないなら追加
-        try! realm.write {
-            realm.add(newPostIts, update: true)
+        //モードごとの処理
+        if self.modeFlag == 1 {         //1:選択モード
+        } else if self.modeFlag == 2 {  //2:追加モード
+            //Realmデータ新規作成
+            let newPostIts = PostItsModel()
+            newPostIts.id = 0
+            newPostIts.color = 0
+            newPostIts.creatTime = NSDate()
+            newPostIts.updateTime = newPostIts.creatTime
+            
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+            newPostIts.content = dateFormatter.stringFromDate(newPostIts.creatTime)
+            
+            // Realmにデータを永続化
+            //プライマリーキー id の値がすでに存在するなら、更新、存在しないなら追加
+            try! realm.write {
+                realm.add(newPostIts, update: true)
+            }
+            
+            //backgroundImageView に postItsTextView を追加する
+            let postItsTextView = PostItsTextView()
+            postItsTextView.tag = Int(newPostIts.id)
+            postItsTextView.text = newPostIts.content
+            postItsTextView.frame = CGRectMake(backgroundImageView.touchPoint.x, backgroundImageView.touchPoint.y, 100, 100);
+
+            postItsTextView.userInteractionEnabled = true
+            
+            mainScrollView.addSubview(postItsTextView)
+            
+        } else if self.modeFlag == 3 {  //3:削除モード
+        } else if self.modeFlag == 4 {  //4:移動モード
         }
-        
-        //backgroundImageView に PostItsImageView を追加する
         
     }
 
@@ -115,6 +160,29 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         );
     }
 
+    private func configureBarItemState() {
+        if self.modeFlag == 1 {
+            print("mode:select")    //debug code
+//            self.selectPostItBarButton.enabled = true
+//            self.addPostItBarButton.enabled = false
+//            self.removePostItBarButton.enabled = false
+        } else if self.modeFlag == 2 {
+            print("mode:add")    //debug code
+//            self.selectPostItBarButton.enabled = false
+//            self.addPostItBarButton.enabled = true
+//            self.removePostItBarButton.enabled = false
+        } else if self.modeFlag == 3 {
+            print("mode:remove")    //debug code
+//            self.selectPostItBarButton.enabled = false
+//            self.addPostItBarButton.enabled = false
+//            self.removePostItBarButton.enabled = true
+        } else if self.modeFlag == 4 {  //4:移動モード
+            print("mode:move")    //debug code
+        }
+    
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
