@@ -124,7 +124,11 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
             let spacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: self, action: nil)
             
             // 閉じるボタン
-            let commitButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self, action: "commitButtonTapped")
+            let commitButton = UIBarButtonItem()
+            commitButton.image = UIImage(named: "keyboard03.png")
+            commitButton.target = self
+            commitButton.action = #selector(MainViewController.commitButtonTapped)
+//            let commitButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self, action: #selector(MainViewController.commitButtonTapped))
             
             kbToolBar.items = [spacer, commitButton]
             postItsTextView.inputAccessoryView = kbToolBar

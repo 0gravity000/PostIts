@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PostIts/MainViewController.swift"
-            timestampString = "491475443.080506"
+            timestampString = "491477193.997559"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "180"
-            endingLineNumber = "180"
+            startingLineNumber = "184"
+            endingLineNumber = "184"
             landmarkName = "textViewShouldBeginEditing(_:)"
             landmarkType = "5">
          </BreakpointContent>
