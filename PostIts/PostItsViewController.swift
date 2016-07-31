@@ -7,13 +7,15 @@
 //
 
 import UIKit
+import RealmSwift
 
-class PostItsViewController: UIViewController {
+class PostItsViewController: UIViewController, UITableViewDataSource, UITextViewDelegate {
 
+    var realmObj: Realm? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -22,6 +24,24 @@ class PostItsViewController: UIViewController {
     }
     
 
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let postIts = self.realmObj!.objects(PostItsModel) // デフォルトRealmから、すべてのPostItsオブジェクトを取得
+        return postIts.count
+    }
+    
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("PostItsCell", forIndexPath: indexPath)
+        let postIts = self.realmObj!.objects(PostItsModel).filter("tagNo == \(indexPath.row)")
+        for postIt in postIts {
+            cell.textLabel?.text = String(postIt.tagNo)
+            cell.detailTextLabel?.text = String(postIt.content)
+            //複数存在したらループを抜ける
+            break
+        }
+        return cell
+    }
+    
     /*
     // MARK: - Navigation
 

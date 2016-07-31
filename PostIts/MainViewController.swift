@@ -74,7 +74,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
         configureBarItemState()
         
         //RealmデータからPostItsTextViewを作成 初期化
-        let postIts = realm.objects(PostItsModel) // デフォルトRealmから、すべてのnewPostItsオブジェクトを取得
+        let postIts = realm.objects(PostItsModel) // デフォルトRealmから、すべてのPostItsオブジェクトを取得
         for postIt in postIts {
             if (postIt.isVisible == true) {
                 //backgroundImageView に postItsTextView を追加する
@@ -146,6 +146,12 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
         self.view.endEditing(true)
     }
     
+    //PostItsViewController へ画面遷移
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
+        let postItsViewController:PostItsViewController = segue.destinationViewController as! PostItsViewController
+        postItsViewController.realmObj = self.realm
+    }
+    
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
         // ズームのために要指定
         return backgroundImageView
@@ -179,9 +185,9 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
                 //let textViewTag = Int32(textView.tag)
 //                let predicate = NSPredicate(format: "tagNo == %ld", textViewTag)
                 let removePostIts = self.realm.objects(PostItsModel).filter("tagNo == \(textView.tag)")
-                for count in removePostIts {
+                for postIts in removePostIts {
                     try! self.realm.write {
-                        count.isVisible = false
+                        postIts.isVisible = false
                     }
                 }
                 

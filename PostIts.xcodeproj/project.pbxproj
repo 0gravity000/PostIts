@@ -141,11 +141,11 @@
 			children = (
 				AAFB09E41D48F0E500995A10 /* AppDelegate.swift */,
 				AAFB09E61D48F0E500995A10 /* MainViewController.swift */,
-				AAFB0A1B1D4A464700995A10 /* BackGroundImageView.swift */,
-				AAFB0A211D4B2E6F00995A10 /* PostItsTextView.swift */,
 				AAFB0A151D4A315700995A10 /* PostItsViewController.swift */,
 				AAFB0A171D4A376A00995A10 /* PostItsTableView.swift */,
 				AAFB0A191D4A379100995A10 /* PostItsTableViewCell.swift */,
+				AAFB0A1B1D4A464700995A10 /* BackGroundImageView.swift */,
+				AAFB0A211D4B2E6F00995A10 /* PostItsTextView.swift */,
 				AAFB09E81D48F0E500995A10 /* Main.storyboard */,
 				AAFB09EB1D48F0E500995A10 /* Assets.xcassets */,
 				AAFB09ED1D48F0E500995A10 /* LaunchScreen.storyboard */,
