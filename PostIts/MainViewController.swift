@@ -30,13 +30,22 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
 //    var backgroundImageView: BackGroundImageView!
     var backgroundImageView = BackGroundImageView()
     var modeFlag: Int8 = 1  //1:select, 2:add, 3: remove
+    var postItColor = postItBackgroundColor.yellow
     
     @IBOutlet weak var mainScrollView: UIScrollView!
 
+    @IBOutlet weak var colorPostItBarButton: UIBarButtonItem!
     @IBOutlet weak var selectPostItBarButton: UIBarButtonItem!
     @IBOutlet weak var addPostItBarButton: UIBarButtonItem!
     @IBOutlet weak var removePostItBarButton: UIBarButtonItem!
-    
+    @IBOutlet weak var movePostItBarButton: UIBarButtonItem!
+    @IBOutlet weak var configPostItBarButton: UIBarButtonItem!
+    @IBOutlet weak var showListBarButton: UIBarButtonItem!
+
+    @IBAction func pushColorPostItBarButton(sender: AnyObject) {
+        configurePostItBackgroundColor()
+    }
+
     @IBAction func pushSelectPostItBarButton(sender: AnyObject) {
         self.modeFlag = 1
         configureBarItemState()
@@ -51,9 +60,27 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
         configureBarItemState()
     }
     
+    @IBAction func pushMovePostItBarButton(sender: AnyObject) {
+        self.modeFlag = 4
+        configureBarItemState()
+    }
+    
+    @IBAction func pushConfigPostItBarButton(sender: AnyObject) {
+        self.modeFlag = 5
+        configureBarItemState()
+    }
     
     // デフォルトRealmを取得
     let realm = try! Realm()
+    
+    enum postItBackgroundColor: Int {
+        case yellow = 1
+        case blue = 2
+        case green = 3
+        case orange = 4
+        case pink = 5
+        case purple = 6
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,11 +94,12 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
         // backgroundImageView の設定
         backgroundImageView = BackGroundImageView(image: UIImage(named: "IMG_1331.jpg"))
         backgroundImageView.userInteractionEnabled = true
-        
         mainScrollView.addSubview(backgroundImageView)
         
         //barItemButtonの初期化
         configureBarItemState()
+        self.colorPostItBarButton.tintColor = UIColor.yellowColor()
+        self.showListBarButton.tintColor = UIColor.blueColor()
         
         //RealmデータからPostItsTextViewを作成 初期化
         let postIts = realm.objects(PostItsModel) // デフォルトRealmから、すべてのPostItsオブジェクトを取得
@@ -314,22 +342,69 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
             self.selectPostItBarButton.tintColor = UIColor.redColor()
             self.addPostItBarButton.tintColor = UIColor.blueColor()
             self.removePostItBarButton.tintColor = UIColor.blueColor()
+            self.movePostItBarButton.tintColor = UIColor.blueColor()
+            self.configPostItBarButton.tintColor = UIColor.blueColor()
         } else if self.modeFlag == 2 {
             print("mode:add")    //debug code
             self.selectPostItBarButton.tintColor = UIColor.blueColor()
             self.addPostItBarButton.tintColor = UIColor.redColor()
             self.removePostItBarButton.tintColor = UIColor.blueColor()
+            self.movePostItBarButton.tintColor = UIColor.blueColor()
+            self.configPostItBarButton.tintColor = UIColor.blueColor()
         } else if self.modeFlag == 3 {
             print("mode:remove")    //debug code
             self.selectPostItBarButton.tintColor = UIColor.blueColor()
             self.addPostItBarButton.tintColor = UIColor.blueColor()
             self.removePostItBarButton.tintColor = UIColor.redColor()
+            self.movePostItBarButton.tintColor = UIColor.blueColor()
+            self.configPostItBarButton.tintColor = UIColor.blueColor()
         } else if self.modeFlag == 4 {  //4:移動モード
             print("mode:move")    //debug code
+            self.selectPostItBarButton.tintColor = UIColor.blueColor()
+            self.addPostItBarButton.tintColor = UIColor.blueColor()
+            self.removePostItBarButton.tintColor = UIColor.blueColor()
+            self.movePostItBarButton.tintColor = UIColor.redColor()
+            self.configPostItBarButton.tintColor = UIColor.blueColor()
+        } else if self.modeFlag == 5 {  //5:設定モード
+            print("mode:config")    //debug code
+            self.selectPostItBarButton.tintColor = UIColor.blueColor()
+            self.addPostItBarButton.tintColor = UIColor.blueColor()
+            self.removePostItBarButton.tintColor = UIColor.blueColor()
+            self.movePostItBarButton.tintColor = UIColor.blueColor()
+            self.configPostItBarButton.tintColor = UIColor.redColor()
         }
-    
     }
-    
+
+    private func configurePostItBackgroundColor() {
+        //PostItのbackgroundColorを次の色へ遷移する
+        var postItRawValue: Int = self.postItColor.rawValue
+        if (postItRawValue == postItBackgroundColor.purple.rawValue) {
+            postItRawValue = postItBackgroundColor.yellow.rawValue
+        } else {
+            postItRawValue += 1
+        }
+
+        //色設定
+        if (postItRawValue == postItBackgroundColor.yellow.rawValue) {
+            self.colorPostItBarButton.tintColor = UIColor.init(red: 1.0, green: 1.0, blue: 0, alpha: 1.0)
+            self.postItColor = postItBackgroundColor.yellow
+        } else if (postItRawValue == postItBackgroundColor.blue.rawValue) {
+            self.colorPostItBarButton.tintColor = UIColor.init(red: 0.529, green: 0.809, blue: 0.98, alpha: 1.0)
+            self.postItColor = postItBackgroundColor.blue
+        } else if (postItRawValue == postItBackgroundColor.green.rawValue) {
+            self.colorPostItBarButton.tintColor = UIColor.init(red: 0.678, green: 1.0, blue: 0.184, alpha: 1.0)
+            self.postItColor = postItBackgroundColor.green
+        } else if (postItRawValue == postItBackgroundColor.orange.rawValue) {
+            self.colorPostItBarButton.tintColor = UIColor.init(red: 1.0, green: 0.647, blue: 0, alpha: 1.0)
+            self.postItColor = postItBackgroundColor.orange
+        } else if (postItRawValue == postItBackgroundColor.pink.rawValue) {
+            self.colorPostItBarButton.tintColor = UIColor.init(red: 1.0, green: 0.753, blue: 0.798, alpha: 1.0)
+            self.postItColor = postItBackgroundColor.pink
+        } else if (postItRawValue == postItBackgroundColor.purple.rawValue) {
+            self.colorPostItBarButton.tintColor = UIColor.init(red: 0.759, green: 0.302, blue: 1.0, alpha: 1.0)
+            self.postItColor = postItBackgroundColor.purple
+        }
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

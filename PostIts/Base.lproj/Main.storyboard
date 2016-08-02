@@ -24,6 +24,12 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hl2-WA-TPJ">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
+                                    <barButtonItem image="color01_01.png" id="C7y-Y6-THS">
+                                        <connections>
+                                            <action selector="pushColorPostItBarButton:" destination="BYZ-38-t0r" id="0qb-dv-4mM"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="nS7-Dv-Bbj"/>
                                     <barButtonItem image="edit01_01.png" id="bCk-8L-TGH">
                                         <connections>
                                             <action selector="pushSelectPostItBarButton:" destination="BYZ-38-t0r" id="ohS-Vb-Jwb"/>
@@ -42,11 +48,15 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Zet-g8-Xin"/>
-                                    <barButtonItem image="move01_01.png" id="aay-QO-Jej"/>
+                                    <barButtonItem image="move01_01.png" id="aay-QO-Jej">
+                                        <connections>
+                                            <action selector="pushMovePostItBarButton:" destination="BYZ-38-t0r" id="3VM-E5-IHK"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="OPT-va-BgI"/>
                                     <barButtonItem image="config01_01.png" id="2Wg-IB-kNi">
                                         <connections>
-                                            <segue destination="wR0-Va-rMp" kind="show" identifier="showPostItsList" id="xI3-SN-wWC"/>
+                                            <action selector="pushConfigPostItBarButton:" destination="BYZ-38-t0r" id="8pm-ao-8eP"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -63,12 +73,22 @@
                             <constraint firstItem="2MX-n0-7YA" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="zbi-ah-DGv"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="qgZ-qa-Apn"/>
+                    <navigationItem key="navigationItem" id="qgZ-qa-Apn">
+                        <barButtonItem key="rightBarButtonItem" image="list01_01.png" id="8lC-qU-gNn">
+                            <connections>
+                                <segue destination="wR0-Va-rMp" kind="show" identifier="showPostItsList" id="Hqz-KX-2bW"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="addPostItBarButton" destination="rDy-aX-Cii" id="T6B-pc-08A"/>
+                        <outlet property="colorPostItBarButton" destination="C7y-Y6-THS" id="Hoj-uy-CCN"/>
+                        <outlet property="configPostItBarButton" destination="2Wg-IB-kNi" id="2bY-2C-7SK"/>
                         <outlet property="mainScrollView" destination="2MX-n0-7YA" id="2c7-ev-PbQ"/>
+                        <outlet property="movePostItBarButton" destination="aay-QO-Jej" id="ePO-VS-RNb"/>
                         <outlet property="removePostItBarButton" destination="UBd-Je-vcc" id="yIW-de-Se8"/>
                         <outlet property="selectPostItBarButton" destination="bCk-8L-TGH" id="uoQ-Zc-647"/>
+                        <outlet property="showListBarButton" destination="8lC-qU-gNn" id="aNH-lJ-SKS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -133,7 +153,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kyc-fO-5Ql" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1222" y="1202"/>
+            <point key="canvasLocation" x="1928" y="428"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="4h1-3J-I15">
@@ -155,8 +175,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="color01_01.png" width="30" height="30"/>
         <image name="config01_01.png" width="30" height="30"/>
         <image name="edit01_01.png" width="30" height="30"/>
+        <image name="list01_01.png" width="30" height="30"/>
         <image name="move01_01.png" width="30" height="30"/>
         <image name="plus01_02.png" width="30" height="30"/>
         <image name="trash01_01.png" width="30" height="30"/>
