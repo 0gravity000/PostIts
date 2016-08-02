@@ -24,25 +24,27 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hl2-WA-TPJ">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
-                                    <barButtonItem title="select" id="bCk-8L-TGH">
+                                    <barButtonItem image="edit01_01.png" id="bCk-8L-TGH">
                                         <connections>
                                             <action selector="pushSelectPostItBarButton:" destination="BYZ-38-t0r" id="ohS-Vb-Jwb"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="c9M-XS-xHE"/>
-                                    <barButtonItem systemItem="add" id="rDy-aX-Cii">
+                                    <barButtonItem image="plus01_02.png" id="rDy-aX-Cii">
                                         <connections>
                                             <action selector="pushAddPostItBarButton:" destination="BYZ-38-t0r" id="YYh-iu-KEu"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="xvu-Hn-Owh"/>
-                                    <barButtonItem systemItem="trash" id="UBd-Je-vcc">
+                                    <barButtonItem image="trash01_01.png" id="UBd-Je-vcc">
                                         <connections>
                                             <action selector="pushRemovePostItBarButton:" destination="BYZ-38-t0r" id="Cjo-Pt-and"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Zet-g8-Xin"/>
-                                    <barButtonItem systemItem="edit" id="2Wg-IB-kNi">
+                                    <barButtonItem image="move01_01.png" id="aay-QO-Jej"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="OPT-va-BgI"/>
+                                    <barButtonItem image="config01_01.png" id="2Wg-IB-kNi">
                                         <connections>
                                             <segue destination="wR0-Va-rMp" kind="show" identifier="showPostItsList" id="xI3-SN-wWC"/>
                                         </connections>
@@ -152,4 +154,11 @@
             <point key="canvasLocation" x="410" y="428"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="config01_01.png" width="30" height="30"/>
+        <image name="edit01_01.png" width="30" height="30"/>
+        <image name="move01_01.png" width="30" height="30"/>
+        <image name="plus01_02.png" width="30" height="30"/>
+        <image name="trash01_01.png" width="30" height="30"/>
+    </resources>
 </document>

@@ -11,7 +11,7 @@ import RealmSwift
 
 class PostItsModel: Object {
     dynamic var id: String = ""
-    dynamic var tagNo: Int32 = 0
+    dynamic var tagNo: Int16 = 0
     dynamic var color: Int8 = 0
     dynamic var content: String = ""
     dynamic var creatTime = NSDate()
@@ -124,11 +124,13 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
             dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
             newPostIts.content = dateFormatter.stringFromDate(newPostIts.creatTime)
             
-            // Realmにデータを永続化
+            //Realmにデータを永続化
             //プライマリーキー id の値がすでに存在するなら、更新、存在しないなら追加
             try! realm.write {
                 realm.add(newPostIts, update: true)
             }
+            //Realmデータのソート tagNo 降順
+            realm.objects(PostItsModel).sorted("tagNo", ascending: true)
             
             //backgroundImageView に postItsTextView を追加する
             let postItsTextView = PostItsTextView()
@@ -179,27 +181,49 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
             //Actionの設定
             // OKボタン
             let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler:{
-                // ボタンが押された時の処理を書く（クロージャ実装）
+                // ボタンが押された時の処理
                 (action: UIAlertAction!) -> Void in
                 //Realmデータの削除 表示フラグを落とす
-                //let textViewTag = Int32(textView.tag)
-//                let predicate = NSPredicate(format: "tagNo == %ld", textViewTag)
+//                let removePostIts = self.realm.objects(PostItsModel).filter("tagNo == \(textView.tag)")
+//                for postIts in removePostIts {
+//                    try! self.realm.write {
+//                        postIts.isVisible = false
+//                    }
+//                }
+                
+                let thisTextViewTag = textView.tag
+                //Realmデータの削除
                 let removePostIts = self.realm.objects(PostItsModel).filter("tagNo == \(textView.tag)")
                 for postIts in removePostIts {
                     try! self.realm.write {
-                        postIts.isVisible = false
+                        self.realm.delete(postIts)
                     }
                 }
-                
                 //View削除
                 textView.removeFromSuperview()
                 
+                //全てのRealmの TagNoを振り直す
+                let allPostIts = self.realm.objects(PostItsModel)
+                var counter: Int16 = 0
+                for postIts in allPostIts {
+                    try! self.realm.write {
+                        postIts.tagNo = counter
+                    }
+                    counter += 1
+                }
                 
+                //全てのPostItsTextViewの TagNoを振り直す
+                for targetTextView in self.backgroundImageView.subviews {
+                    if targetTextView.tag > thisTextViewTag {
+                       targetTextView.tag -= 1
+                    }
+                }
                 print("OK")
+                
             })
             // キャンセルボタン
             let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.Cancel, handler:{
-                // ボタンが押された時の処理を書く（クロージャ実装）
+                // ボタンが押された時の処理
                 (action: UIAlertAction!) -> Void in
                 print("Cancel")
             })
@@ -287,19 +311,19 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
     private func configureBarItemState() {
         if self.modeFlag == 1 {
             print("mode:select")    //debug code
-//            self.selectPostItBarButton.enabled = true
-//            self.addPostItBarButton.enabled = false
-//            self.removePostItBarButton.enabled = false
+            self.selectPostItBarButton.tintColor = UIColor.redColor()
+            self.addPostItBarButton.tintColor = UIColor.blueColor()
+            self.removePostItBarButton.tintColor = UIColor.blueColor()
         } else if self.modeFlag == 2 {
             print("mode:add")    //debug code
-//            self.selectPostItBarButton.enabled = false
-//            self.addPostItBarButton.enabled = true
-//            self.removePostItBarButton.enabled = false
+            self.selectPostItBarButton.tintColor = UIColor.blueColor()
+            self.addPostItBarButton.tintColor = UIColor.redColor()
+            self.removePostItBarButton.tintColor = UIColor.blueColor()
         } else if self.modeFlag == 3 {
             print("mode:remove")    //debug code
-//            self.selectPostItBarButton.enabled = false
-//            self.addPostItBarButton.enabled = false
-//            self.removePostItBarButton.enabled = true
+            self.selectPostItBarButton.tintColor = UIColor.blueColor()
+            self.addPostItBarButton.tintColor = UIColor.blueColor()
+            self.removePostItBarButton.tintColor = UIColor.redColor()
         } else if self.modeFlag == 4 {  //4:移動モード
             print("mode:move")    //debug code
         }
