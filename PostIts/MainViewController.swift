@@ -26,7 +26,7 @@ class PostItsModel: Object {
     }
 }
 
-class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDelegate, PostItsPurchaseManagerDelegate {
+class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDelegate {
     
 //    var backgroundImageView: BackGroundImageView!
     var backgroundImageView = BackGroundImageView()
@@ -111,26 +111,6 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
                 addPostItsTextViewToBackgroundImageView(postItsTextView, postIts: postIt)
             }
         }
-        
-        /*
-        //アプリ内課金処理
-        //プロダクトID達
-        let productIdentifiers = ["jp.ne.0gravity000.PostIts.productID_LM01"]
-//        let productIdentifiers = ["productIdentifier1","productIdentifier2"]
-        
-        //プロダクト情報取得
-        PostItsProductManager.productsWithProductIdentifiers(productIdentifiers,
-                                                             completion: { (products : [SKProduct]!, error : NSError?) -> Void in
-                                                                for product in products {
-                                                                    print(product)
-//                                                                    //価格を抽出
-//                                                                    let priceString = PostItsProductManager.priceStringFromProduct(product)
-//                                                                    //価格情報を使って表示を更新したり。
-                                                                }
-        })
-        
-        //self.startPurchase("yourProductIdentifier")
- */
         
     }
     
@@ -437,86 +417,6 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
     }
     
 
-    //アプリ内課金処理 -----------------------------------
-    //アプリ内課金が使えるかチェック
-    func checkInAppPurchaseIsAvailable() {
-        if (!SKPaymentQueue.canMakePayments()) {
-            //UIAlertController使用
-            let ac = UIAlertController(title: "エラー", message: "アプリ内課金が制限されています。", preferredStyle: .Alert)
-            let okAction = UIAlertAction(title: "OK", style: .Default) { (action) -> Void in
-                print("OK button tapped.")
-            }
-            ac.addAction(okAction)
-            presentViewController(ac, animated: true, completion: nil)
-            
-        }
-    }
-    
-    /// 課金開始
-    func startPurchase(productIdentifier : String) {
-        //デリゲード設定
-        PostItsPurchaseManager.sharedManager().delegate = self
-        
-        //プロダクト情報を取得
-        PostItsProductManager.productsWithProductIdentifiers([productIdentifier], completion: { (products, error) -> Void in
-            if products.count > 0 {
-                //課金処理開始
-                PostItsPurchaseManager.sharedManager().startWithProduct(products[0])
-                
-            }
-        })
-    }
-    
-    /// リストア開始
-    func startRestore() {
-        //デリゲード設定
-        PostItsPurchaseManager.sharedManager().delegate = self
-        //リストア開始
-        PostItsPurchaseManager.sharedManager().startRestore()
-    }
-    
-    
-    // MARK: - PostItsPurchaseManager Delegate
-    func purchaseManager(purchaseManager: PostItsPurchaseManager!, didFinishPurchaseWithTransaction transaction: SKPaymentTransaction!, decisionHandler: ((complete: Bool) -> Void)!) {
-        //課金終了時に呼び出される
-        /*
-         コンテンツ解放処理
-         */
-        //コンテンツ解放が終了したら、この処理を実行(true: 課金処理全部完了, false 課金処理中断)
-        decisionHandler(complete: true)
-    }
-    
-    func purchaseManager(purchaseManager: PostItsPurchaseManager!, didFinishUntreatedPurchaseWithTransaction transaction: SKPaymentTransaction!, decisionHandler: ((complete: Bool) -> Void)!) {
-        //課金終了時に呼び出される(startPurchaseで指定したプロダクトID以外のものが課金された時。)
-        /*
-         コンテンツ解放処理
-         */
-        //コンテンツ解放が終了したら、この処理を実行(true: 課金処理全部完了, false 課金処理中断)
-        decisionHandler(complete: true)
-    }
-    
-    func purchaseManager(purchaseManager: PostItsPurchaseManager!, didFailWithError error: NSError!) {
-        //課金失敗時に呼び出される
-        /*
-         errorを使ってアラート表示
-         */
-    }
-    
-    func purchaseManagerDidFinishRestore(purchaseManager: PostItsPurchaseManager!) {
-        //リストア終了時に呼び出される(個々のトランザクションは”課金終了”で処理)
-        /*
-         インジケータなどを表示していたら非表示に
-         */
-    }
-    
-    func purchaseManagerDidDeferred(purchaseManager: PostItsPurchaseManager!) {
-        //承認待ち状態時に呼び出される(ファミリー共有)
-        /* 
-         インジケータなどを表示していたら非表示に
-         */
-    }
-    
-}
     
     //アプリ内課金処理 -----------------------------------
 //    アイテム購入の流れ
@@ -612,5 +512,5 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
 //        }
 //    }
 
-//}
+}
 
