@@ -21,6 +21,10 @@
 		AA10A7151D50CB83003DBAC9 /* trash01_01.png in Resources */ = {isa = PBXBuildFile; fileRef = AA10A7141D50CB83003DBAC9 /* trash01_01.png */; };
 		AA10A7171D50CC6C003DBAC9 /* edit01_01.png in Resources */ = {isa = PBXBuildFile; fileRef = AA10A7161D50CC6C003DBAC9 /* edit01_01.png */; };
 		AA10A7191D50D855003DBAC9 /* color01_01.png in Resources */ = {isa = PBXBuildFile; fileRef = AA10A7181D50D855003DBAC9 /* color01_01.png */; };
+		AA98E6D91D52095800981901 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA98E6D81D52095800981901 /* StoreKit.framework */; };
+		AA98E6DB1D5228F500981901 /* PostItsPurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA98E6DA1D5228F500981901 /* PostItsPurchaseManager.swift */; };
+		AA98E6DD1D522C2C00981901 /* PostItsProductManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA98E6DC1D522C2C00981901 /* PostItsProductManager.swift */; };
+		AA98E6DF1D5253EC00981901 /* ConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA98E6DE1D5253EC00981901 /* ConfigurationViewController.swift */; };
 		AAFB09E51D48F0E500995A10 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFB09E41D48F0E500995A10 /* AppDelegate.swift */; };
 		AAFB09E71D48F0E500995A10 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFB09E61D48F0E500995A10 /* MainViewController.swift */; };
 		AAFB09EA1D48F0E500995A10 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAFB09E81D48F0E500995A10 /* Main.storyboard */; };
@@ -74,6 +78,10 @@
 		AA10A7141D50CB83003DBAC9 /* trash01_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trash01_01.png; sourceTree = "<group>"; };
 		AA10A7161D50CC6C003DBAC9 /* edit01_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = edit01_01.png; sourceTree = "<group>"; };
 		AA10A7181D50D855003DBAC9 /* color01_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = color01_01.png; sourceTree = "<group>"; };
+		AA98E6D81D52095800981901 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		AA98E6DA1D5228F500981901 /* PostItsPurchaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostItsPurchaseManager.swift; sourceTree = "<group>"; };
+		AA98E6DC1D522C2C00981901 /* PostItsProductManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostItsProductManager.swift; sourceTree = "<group>"; };
+		AA98E6DE1D5253EC00981901 /* ConfigurationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationViewController.swift; sourceTree = "<group>"; };
 		AAFB09E11D48F0E500995A10 /* PostIts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PostIts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAFB09E41D48F0E500995A10 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AAFB09E61D48F0E500995A10 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -103,6 +111,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				556C28F21370026CB1AEF3CE /* Pods_PostIts.framework in Frameworks */,
+				AA98E6D91D52095800981901 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,6 +137,7 @@
 		029BD00A15A92BA0515D3BD1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AA98E6D81D52095800981901 /* StoreKit.framework */,
 				A53C11C78725B0B25EBB29C9 /* Pods_PostIts.framework */,
 				8810EC380E279B4C450A631F /* Pods_PostItsTests.framework */,
 				268A050C4708365938C20BD2 /* Pods_PostItsUITests.framework */,
@@ -163,11 +173,14 @@
 			children = (
 				AAFB09E41D48F0E500995A10 /* AppDelegate.swift */,
 				AAFB09E61D48F0E500995A10 /* MainViewController.swift */,
+				AA98E6DE1D5253EC00981901 /* ConfigurationViewController.swift */,
 				AAFB0A151D4A315700995A10 /* PostItsViewController.swift */,
 				AAFB0A171D4A376A00995A10 /* PostItsTableView.swift */,
 				AAFB0A191D4A379100995A10 /* PostItsTableViewCell.swift */,
 				AAFB0A1B1D4A464700995A10 /* BackGroundImageView.swift */,
 				AAFB0A211D4B2E6F00995A10 /* PostItsTextView.swift */,
+				AA98E6DA1D5228F500981901 /* PostItsPurchaseManager.swift */,
+				AA98E6DC1D522C2C00981901 /* PostItsProductManager.swift */,
 				AAFB09E81D48F0E500995A10 /* Main.storyboard */,
 				AAFB09EB1D48F0E500995A10 /* Assets.xcassets */,
 				AAFB09ED1D48F0E500995A10 /* LaunchScreen.storyboard */,
@@ -303,6 +316,12 @@
 				TargetAttributes = {
 					AAFB09E01D48F0E500995A10 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = 664E54HMS7;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+						};
 					};
 					AAFB09F41D48F0E500995A10 = {
 						CreatedOnToolsVersion = 7.3;
@@ -505,6 +524,9 @@
 				AAFB09E71D48F0E500995A10 /* MainViewController.swift in Sources */,
 				AAFB09E51D48F0E500995A10 /* AppDelegate.swift in Sources */,
 				AAFB0A1C1D4A464700995A10 /* BackGroundImageView.swift in Sources */,
+				AA98E6DF1D5253EC00981901 /* ConfigurationViewController.swift in Sources */,
+				AA98E6DB1D5228F500981901 /* PostItsPurchaseManager.swift in Sources */,
+				AA98E6DD1D522C2C00981901 /* PostItsProductManager.swift in Sources */,
 				AAFB0A181D4A376A00995A10 /* PostItsTableView.swift in Sources */,
 				AAFB0A1A1D4A379100995A10 /* PostItsTableViewCell.swift in Sources */,
 				AAFB0A221D4B2E6F00995A10 /* PostItsTextView.swift in Sources */,

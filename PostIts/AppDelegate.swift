@@ -7,15 +7,22 @@
 //
 
 import UIKit
+import StoreKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, PostItsPurchaseManagerDelegate {
 
     var window: UIWindow?
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        //アプリ内課金処理
+        // デリゲート設定
+        PostItsPurchaseManager.sharedManager().delegate = self
+        // オブザーバー登録
+        SKPaymentQueue.defaultQueue().addTransactionObserver(PostItsPurchaseManager.sharedManager())
+        //リストア処理必要？
         return true
     }
 

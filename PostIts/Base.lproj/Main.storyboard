@@ -57,6 +57,7 @@
                                     <barButtonItem image="config01_01.png" id="2Wg-IB-kNi">
                                         <connections>
                                             <action selector="pushConfigPostItBarButton:" destination="BYZ-38-t0r" id="8pm-ao-8eP"/>
+                                            <segue destination="FDG-H7-DOx" kind="presentation" identifier="showCongiguration" id="MQP-Ak-8H8"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -94,6 +95,61 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1222" y="428"/>
+        </scene>
+        <!--Configuration View Controller-->
+        <scene sceneID="QCE-Ir-pcJ">
+            <objects>
+                <viewController id="FDG-H7-DOx" customClass="ConfigurationViewController" customModule="PostIts" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="J2g-3v-viu"/>
+                        <viewControllerLayoutGuide type="bottom" id="cBQ-Yj-OKc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="XNI-OJ-17i">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="2d8-Lv-Hbi">
+                                <rect key="frame" x="501" y="70" width="51" height="31"/>
+                                <connections>
+                                    <action selector="changeProductPurchaseSwitch:" destination="FDG-H7-DOx" eventType="valueChanged" id="w9l-1n-G8l"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="制限解除キーを購入する" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mka-v3-72c">
+                                <rect key="frame" x="40" y="70" width="187" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lBR-Gu-zia">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <items>
+                                    <barButtonItem systemItem="done" id="I9y-8K-Fm1">
+                                        <connections>
+                                            <action selector="pushDoneBarButton:" destination="FDG-H7-DOx" id="l4H-l4-5yG"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2d8-Lv-Hbi" firstAttribute="top" secondItem="J2g-3v-viu" secondAttribute="bottom" constant="50" id="78F-ig-VcT"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="lBR-Gu-zia" secondAttribute="trailing" constant="-20" id="CJw-Bf-lgD"/>
+                            <constraint firstItem="mka-v3-72c" firstAttribute="top" secondItem="J2g-3v-viu" secondAttribute="bottom" constant="50" id="EjN-bP-kkj"/>
+                            <constraint firstItem="mka-v3-72c" firstAttribute="leading" secondItem="XNI-OJ-17i" secondAttribute="leadingMargin" constant="20" id="HIv-Y1-E8o"/>
+                            <constraint firstItem="lBR-Gu-zia" firstAttribute="leading" secondItem="XNI-OJ-17i" secondAttribute="leadingMargin" constant="-20" id="bHz-KM-Vxj"/>
+                            <constraint firstItem="cBQ-Yj-OKc" firstAttribute="top" secondItem="lBR-Gu-zia" secondAttribute="bottom" id="f3Q-nU-2ca"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="2d8-Lv-Hbi" secondAttribute="trailing" constant="30" id="sMc-hd-kHP"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="doneBarButton" destination="I9y-8K-Fm1" id="jgd-I2-Nj3"/>
+                        <outlet property="productPurchaseSwitch" destination="2d8-Lv-Hbi" id="jdU-vD-cc3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rp9-Ua-vpo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1222" y="1239"/>
         </scene>
         <!--Post Its View Controller-->
         <scene sceneID="fv5-Fv-Hik">

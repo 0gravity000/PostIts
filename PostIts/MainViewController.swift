@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import StoreKit
 
 class PostItsModel: Object {
     dynamic var id: String = ""
@@ -25,7 +26,7 @@ class PostItsModel: Object {
     }
 }
 
-class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDelegate {
+class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDelegate, PostItsPurchaseManagerDelegate {
     
 //    var backgroundImageView: BackGroundImageView!
     var backgroundImageView = BackGroundImageView()
@@ -111,6 +112,26 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
             }
         }
         
+        /*
+        //アプリ内課金処理
+        //プロダクトID達
+        let productIdentifiers = ["jp.ne.0gravity000.PostIts.productID_LM01"]
+//        let productIdentifiers = ["productIdentifier1","productIdentifier2"]
+        
+        //プロダクト情報取得
+        PostItsProductManager.productsWithProductIdentifiers(productIdentifiers,
+                                                             completion: { (products : [SKProduct]!, error : NSError?) -> Void in
+                                                                for product in products {
+                                                                    print(product)
+//                                                                    //価格を抽出
+//                                                                    let priceString = PostItsProductManager.priceStringFromProduct(product)
+//                                                                    //価格情報を使って表示を更新したり。
+                                                                }
+        })
+        
+        //self.startPurchase("yourProductIdentifier")
+ */
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -178,8 +199,12 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
     
     //PostItsViewController へ画面遷移
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
-        let postItsViewController:PostItsViewController = segue.destinationViewController as! PostItsViewController
-        postItsViewController.realmObj = self.realm
+        if (segue.identifier == "showPostItsList") {
+            let postItsViewController:PostItsViewController = segue.destinationViewController as! PostItsViewController
+            postItsViewController.realmObj = self.realm
+        } else if (segue.identifier == "showCongiguration") {
+            
+        }
     }
     
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
@@ -411,5 +436,181 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
         // Dispose of any resources that can be recreated.
     }
     
+
+    //アプリ内課金処理 -----------------------------------
+    //アプリ内課金が使えるかチェック
+    func checkInAppPurchaseIsAvailable() {
+        if (!SKPaymentQueue.canMakePayments()) {
+            //UIAlertController使用
+            let ac = UIAlertController(title: "エラー", message: "アプリ内課金が制限されています。", preferredStyle: .Alert)
+            let okAction = UIAlertAction(title: "OK", style: .Default) { (action) -> Void in
+                print("OK button tapped.")
+            }
+            ac.addAction(okAction)
+            presentViewController(ac, animated: true, completion: nil)
+            
+        }
+    }
+    
+    /// 課金開始
+    func startPurchase(productIdentifier : String) {
+        //デリゲード設定
+        PostItsPurchaseManager.sharedManager().delegate = self
+        
+        //プロダクト情報を取得
+        PostItsProductManager.productsWithProductIdentifiers([productIdentifier], completion: { (products, error) -> Void in
+            if products.count > 0 {
+                //課金処理開始
+                PostItsPurchaseManager.sharedManager().startWithProduct(products[0])
+                
+            }
+        })
+    }
+    
+    /// リストア開始
+    func startRestore() {
+        //デリゲード設定
+        PostItsPurchaseManager.sharedManager().delegate = self
+        //リストア開始
+        PostItsPurchaseManager.sharedManager().startRestore()
+    }
+    
+    
+    // MARK: - PostItsPurchaseManager Delegate
+    func purchaseManager(purchaseManager: PostItsPurchaseManager!, didFinishPurchaseWithTransaction transaction: SKPaymentTransaction!, decisionHandler: ((complete: Bool) -> Void)!) {
+        //課金終了時に呼び出される
+        /*
+         コンテンツ解放処理
+         */
+        //コンテンツ解放が終了したら、この処理を実行(true: 課金処理全部完了, false 課金処理中断)
+        decisionHandler(complete: true)
+    }
+    
+    func purchaseManager(purchaseManager: PostItsPurchaseManager!, didFinishUntreatedPurchaseWithTransaction transaction: SKPaymentTransaction!, decisionHandler: ((complete: Bool) -> Void)!) {
+        //課金終了時に呼び出される(startPurchaseで指定したプロダクトID以外のものが課金された時。)
+        /*
+         コンテンツ解放処理
+         */
+        //コンテンツ解放が終了したら、この処理を実行(true: 課金処理全部完了, false 課金処理中断)
+        decisionHandler(complete: true)
+    }
+    
+    func purchaseManager(purchaseManager: PostItsPurchaseManager!, didFailWithError error: NSError!) {
+        //課金失敗時に呼び出される
+        /*
+         errorを使ってアラート表示
+         */
+    }
+    
+    func purchaseManagerDidFinishRestore(purchaseManager: PostItsPurchaseManager!) {
+        //リストア終了時に呼び出される(個々のトランザクションは”課金終了”で処理)
+        /*
+         インジケータなどを表示していたら非表示に
+         */
+    }
+    
+    func purchaseManagerDidDeferred(purchaseManager: PostItsPurchaseManager!) {
+        //承認待ち状態時に呼び出される(ファミリー共有)
+        /* 
+         インジケータなどを表示していたら非表示に
+         */
+    }
+    
 }
+    
+    //アプリ内課金処理 -----------------------------------
+//    アイテム購入の流れ
+//    
+//    アプリ内課金が使えるかチェック
+//    アイテム情報の取得と購入処理の開始
+//    アイテム購入中の処理
+//    レシートの確認とアイテムの付与
+//    購入処理の終了
+    
+//    //アプリ内課金が使えるかチェック
+//    private func checkInAppPurchaseIsAvailable() {
+//        if (!SKPaymentQueue.canMakePayments()) {
+//            //UIAlertController使用
+//            let ac = UIAlertController(title: "エラー", message: "アプリ内課金が制限されています。", preferredStyle: .Alert)
+//            let okAction = UIAlertAction(title: "OK", style: .Default) { (action) -> Void in
+//                print("OK button tapped.")
+//            }
+//            ac.addAction(okAction)
+//            presentViewController(ac, animated: true, completion: nil)
+//            
+//        }
+//    }
+
+    //アイテム情報を取得する。
+//    private func getInAppPurchaseItemInfomation() {
+
+//        NSSet *set = [NSSet setWithObjects:@"com.commonsense.removeads", nil];
+//        SKProductsRequest *productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:set];
+//        productsRequest.delegate = self;
+//        [productsRequest start];
+//    }
+
+    //購入処理を開始する。
+    //アイテム情報の取得が完了すると呼ばれる。
+//    func productsRequest(request: SKProductsRequest, didReceiveResponse response: SKProductsResponse) {
+//        // 無効なアイテムがないかチェック
+//        if (response.invalidProductIdentifiers.count > 0) {
+//            //UIAlertController使用
+//            var ac = UIAlertController(title: "エラー", message: "アイテムIDが不正です。", preferredStyle: .Alert)
+//            let okAction = UIAlertAction(title: "OK", style: .Default) { (action) -> Void in
+//                print("OK button tapped.")
+//            }
+//            ac.addAction(okAction)
+//            presentViewController(ac, animated: true, completion: nil)
+//        }
+    
+        // 購入処理開始
+//        [SKPaymentQueue.defaultQueue() addTransactionObserver:self];
+//        for (SKProduct *product in response.products) {
+//            SKPayment *payment = [SKPayment paymentWithProduct:product];
+//            [[SKPaymentQueue defaultQueue] addPayment:payment];
+//        }
+//    }
+
+//    //アイテム購入処理
+//    //アイテム購入処理中は処理の状態が変わるごとに随時、呼ばれる。
+//    //トランザクションの状態ごとに処理を分岐して状態にあった対応を行います。
+//    func paymentQueue(queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+//        for (SKPaymentTransaction *transaction in transactions) {
+//            if (transaction.transactionState == SKPaymentTransactionStatePurchasing) {
+//                // 購入処理中
+//                /*
+//                 * 基本何もしなくてよい。処理中であることがわかるようにインジケータをだすなど。
+//                 */
+//                
+//            } else if (transaction.transactionState == SKPaymentTransactionStatePurchased) {
+//                // 購入処理成功
+//                /*
+//                 * ここでレシートの確認やアイテムの付与を行う。
+//                 */
+//                queue.finishTransaction(transaction)
+//                
+//            } else if (transaction.transactionState == SKPaymentTransactionStateFailed) {
+//                // 購入処理エラー。ユーザが購入処理をキャンセルした場合もここにくる
+//                queue.finishTransaction(transaction)
+//
+//                // エラーが発生したことをユーザに知らせる
+//                var ac = UIAlertController(title: "エラー", message: transaction.error.localizedDescription, preferredStyle: .Alert)
+//                let okAction = UIAlertAction(title: "OK", style: .Default) { (action) -> Void in
+//                    print("OK button tapped.")
+//                }
+//                ac.addAction(okAction)
+//                presentViewController(ac, animated: true, completion: nil)
+//
+//            } else {
+//                // リストア処理完了
+//                /*
+//                 * アイテムの再付与を行う
+//                 */
+//                queue.finishTransaction(transaction)
+//            }
+//        }
+//    }
+
+//}
 
