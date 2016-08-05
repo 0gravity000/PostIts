@@ -125,25 +125,57 @@
                                 </items>
                             </toolbar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6jg-re-aF9">
-                                <rect key="frame" x="490" y="70" width="60" height="30"/>
+                                <rect key="frame" x="490" y="66" width="60" height="30"/>
                                 <state key="normal" title="購入する"/>
                                 <connections>
                                     <action selector="pushProductPurchaseButton:" destination="FDG-H7-DOx" eventType="touchUpInside" id="jhZ-L4-dAX"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="背景イメージ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g3H-xH-7J1">
+                                <rect key="frame" x="40" y="192" width="102" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="使用可能な付箋紙の数" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GDt-bn-BKN">
+                                <rect key="frame" x="40" y="131" width="170" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dK0-w9-f3t">
+                                <rect key="frame" x="520" y="126" width="30" height="30"/>
+                                <state key="normal" title="10"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="twD-2p-1yd">
+                                <rect key="frame" x="445" y="188" width="105" height="30"/>
+                                <state key="normal" title="ホワイトボード"/>
+                                <connections>
+                                    <action selector="pushBackgroundImageButton:" destination="FDG-H7-DOx" eventType="touchUpInside" id="MeF-53-RZO"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="twD-2p-1yd" secondAttribute="trailing" constant="30" id="9WR-XF-yZM"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="dK0-w9-f3t" secondAttribute="trailing" constant="30" id="Bd8-5X-IMs"/>
                             <constraint firstAttribute="trailingMargin" secondItem="lBR-Gu-zia" secondAttribute="trailing" constant="-20" id="CJw-Bf-lgD"/>
                             <constraint firstItem="mka-v3-72c" firstAttribute="top" secondItem="J2g-3v-viu" secondAttribute="bottom" constant="50" id="EjN-bP-kkj"/>
+                            <constraint firstItem="g3H-xH-7J1" firstAttribute="top" secondItem="GDt-bn-BKN" secondAttribute="bottom" constant="40" id="Gyi-75-8dq"/>
                             <constraint firstItem="mka-v3-72c" firstAttribute="leading" secondItem="XNI-OJ-17i" secondAttribute="leadingMargin" constant="20" id="HIv-Y1-E8o"/>
+                            <constraint firstItem="g3H-xH-7J1" firstAttribute="leading" secondItem="XNI-OJ-17i" secondAttribute="leadingMargin" constant="20" id="N9p-ag-Aa7"/>
+                            <constraint firstItem="GDt-bn-BKN" firstAttribute="top" secondItem="mka-v3-72c" secondAttribute="bottom" constant="40" id="PcC-iB-E0x"/>
                             <constraint firstItem="lBR-Gu-zia" firstAttribute="leading" secondItem="XNI-OJ-17i" secondAttribute="leadingMargin" constant="-20" id="bHz-KM-Vxj"/>
                             <constraint firstItem="cBQ-Yj-OKc" firstAttribute="top" secondItem="lBR-Gu-zia" secondAttribute="bottom" id="f3Q-nU-2ca"/>
-                            <constraint firstItem="6jg-re-aF9" firstAttribute="top" secondItem="J2g-3v-viu" secondAttribute="bottom" constant="50" id="jNW-0T-sqG"/>
+                            <constraint firstItem="6jg-re-aF9" firstAttribute="top" secondItem="J2g-3v-viu" secondAttribute="bottom" constant="46" id="jNW-0T-sqG"/>
+                            <constraint firstItem="twD-2p-1yd" firstAttribute="top" secondItem="dK0-w9-f3t" secondAttribute="bottom" constant="32" id="l3Y-ev-RQn"/>
+                            <constraint firstItem="GDt-bn-BKN" firstAttribute="leading" secondItem="XNI-OJ-17i" secondAttribute="leadingMargin" constant="20" id="lXW-l2-gv1"/>
+                            <constraint firstItem="dK0-w9-f3t" firstAttribute="top" secondItem="6jg-re-aF9" secondAttribute="bottom" constant="30" id="u5d-sK-Y7H"/>
                             <constraint firstAttribute="trailingMargin" secondItem="6jg-re-aF9" secondAttribute="trailing" constant="30" id="u7T-Am-5zU"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backgroundImageButton" destination="twD-2p-1yd" id="bEe-4D-ei6"/>
                         <outlet property="doneBarButton" destination="I9y-8K-Fm1" id="jgd-I2-Nj3"/>
                         <outlet property="productPurchaseButton" destination="6jg-re-aF9" id="1sa-vn-z5a"/>
                     </connections>

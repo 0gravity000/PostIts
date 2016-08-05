@@ -13,7 +13,7 @@ import StoreKit
 class PostItsModel: Object {
     dynamic var id: String = ""
     dynamic var tagNo: Int16 = 0
-    dynamic var color: Int8 = 0
+    dynamic var color: Int = 0
     dynamic var content: String = ""
     dynamic var creatTime = NSDate()
     dynamic var updateTime = NSDate()
@@ -30,8 +30,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
     
 //    var backgroundImageView: BackGroundImageView!
     var backgroundImageView = BackGroundImageView()
-    var modeFlag: Int8 = 1  //1:select, 2:add, 3: remove
-    var postItColor = postItBackgroundColor.yellow
+    var modeFlag: Int = 1  //1:select, 2:add, 3: remove 4:move 5:config
     
     @IBOutlet weak var mainScrollView: UIScrollView!
 
@@ -74,15 +73,6 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
     // デフォルトRealmを取得
     let realm = try! Realm()
     
-    enum postItBackgroundColor: Int {
-        case yellow = 1
-        case blue = 2
-        case green = 3
-        case orange = 4
-        case pink = 5
-        case purple = 6
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -93,7 +83,9 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
         mainScrollView.maximumZoomScale = 2.0
         
         // backgroundImageView の設定
-        backgroundImageView = BackGroundImageView(image: UIImage(named: "IMG_1331.jpg"))
+        let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate //AppDelegateのインスタンスを取得
+        backgroundImageView = BackGroundImageView(image: configureBackgroungImg(appDelegate.selectedBackgroundImg))
+        backgroundImageView.tag = 1
         backgroundImageView.userInteractionEnabled = true
         mainScrollView.addSubview(backgroundImageView)
         
@@ -115,6 +107,9 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
     }
     
     override func viewWillAppear(animated: Bool) {
+        // backgroundImageView の設定 再表示時のため
+        let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate //AppDelegateのインスタンスを取得
+        backgroundImageView.image = configureBackgroungImg(appDelegate.selectedBackgroundImg)
         //KVO を登録する処理
         backgroundImageView.addObserver(self, forKeyPath: "touchPoint", options: [.New, .Old], context: nil)
     }
@@ -130,6 +125,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
         print(object)   //debug code
         print(change)   //debug code
 
+        let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate //AppDelegateのインスタンスを取得
         //モードごとの処理
         if self.modeFlag == 1 {         //1:選択モード
             //特に何もしない
@@ -142,7 +138,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
             } else {
                 newPostIts.tagNo = 0
             }
-            newPostIts.color = 0
+            newPostIts.color = appDelegate.selectedPostItColor.rawValue
             newPostIts.creatTime = NSDate()
             newPostIts.updateTime = newPostIts.creatTime
             newPostIts.posX = Float(backgroundImageView.touchPoint.x)
@@ -307,6 +303,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
         postItsTextView.text = postIts.tagNo.description + "\n" + postIts.content + "\n"
         postItsTextView.frame = CGRectMake(CGFloat(postIts.posX), CGFloat(postIts.posY), 100, 100);
         postItsTextView.userInteractionEnabled = true
+        postItsTextView.backgroundColor = configureUIColor(postIts.color)
         
         // 仮のサイズでツールバー生成
         let kbToolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 40))
@@ -381,8 +378,9 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
     }
 
     private func configurePostItBackgroundColor() {
+        let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate //AppDelegateのインスタンスを取得
         //PostItのbackgroundColorを次の色へ遷移する
-        var postItRawValue: Int = self.postItColor.rawValue
+        var postItRawValue: Int = appDelegate.selectedPostItColor.rawValue
         if (postItRawValue == postItBackgroundColor.purple.rawValue) {
             postItRawValue = postItBackgroundColor.yellow.rawValue
         } else {
@@ -390,25 +388,55 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
         }
 
         //色設定
+        self.colorPostItBarButton.tintColor = configureUIColor(postItRawValue)
+
         if (postItRawValue == postItBackgroundColor.yellow.rawValue) {
-            self.colorPostItBarButton.tintColor = UIColor.init(red: 1.0, green: 1.0, blue: 0, alpha: 1.0)
-            self.postItColor = postItBackgroundColor.yellow
+            appDelegate.selectedPostItColor = postItBackgroundColor.yellow
         } else if (postItRawValue == postItBackgroundColor.blue.rawValue) {
-            self.colorPostItBarButton.tintColor = UIColor.init(red: 0.529, green: 0.809, blue: 0.98, alpha: 1.0)
-            self.postItColor = postItBackgroundColor.blue
+            appDelegate.selectedPostItColor = postItBackgroundColor.blue
         } else if (postItRawValue == postItBackgroundColor.green.rawValue) {
-            self.colorPostItBarButton.tintColor = UIColor.init(red: 0.678, green: 1.0, blue: 0.184, alpha: 1.0)
-            self.postItColor = postItBackgroundColor.green
+            appDelegate.selectedPostItColor = postItBackgroundColor.green
         } else if (postItRawValue == postItBackgroundColor.orange.rawValue) {
-            self.colorPostItBarButton.tintColor = UIColor.init(red: 1.0, green: 0.647, blue: 0, alpha: 1.0)
-            self.postItColor = postItBackgroundColor.orange
+            appDelegate.selectedPostItColor = postItBackgroundColor.orange
         } else if (postItRawValue == postItBackgroundColor.pink.rawValue) {
-            self.colorPostItBarButton.tintColor = UIColor.init(red: 1.0, green: 0.753, blue: 0.798, alpha: 1.0)
-            self.postItColor = postItBackgroundColor.pink
+            appDelegate.selectedPostItColor = postItBackgroundColor.pink
         } else if (postItRawValue == postItBackgroundColor.purple.rawValue) {
-            self.colorPostItBarButton.tintColor = UIColor.init(red: 0.759, green: 0.302, blue: 1.0, alpha: 1.0)
-            self.postItColor = postItBackgroundColor.purple
+            appDelegate.selectedPostItColor = postItBackgroundColor.purple
         }
+    }
+    
+    func configureUIColor(color: Int) -> UIColor {
+        var uiColor: UIColor = UIColor.init(red: 1.0, green: 1.0, blue: 0, alpha: 1.0)
+        
+        if (color == postItBackgroundColor.yellow.rawValue) {
+            uiColor = UIColor.init(red: 1.0, green: 1.0, blue: 0, alpha: 1.0)
+        } else if (color == postItBackgroundColor.blue.rawValue) {
+            uiColor = UIColor.init(red: 0.529, green: 0.809, blue: 0.98, alpha: 1.0)
+        } else if (color == postItBackgroundColor.green.rawValue) {
+            uiColor = UIColor.init(red: 0.678, green: 1.0, blue: 0.184, alpha: 1.0)
+        } else if (color == postItBackgroundColor.orange.rawValue) {
+            uiColor = UIColor.init(red: 1.0, green: 0.647, blue: 0, alpha: 1.0)
+        } else if (color == postItBackgroundColor.pink.rawValue) {
+            uiColor = UIColor.init(red: 1.0, green: 0.753, blue: 0.798, alpha: 1.0)
+        } else if (color == postItBackgroundColor.purple.rawValue) {
+            uiColor = UIColor.init(red: 0.759, green: 0.302, blue: 1.0, alpha: 1.0)
+        }
+        return uiColor
+    }
+
+    func configureBackgroungImg(imageNo: Int) -> UIImage {
+        var uiImage: UIImage = UIImage(named: "whiteboard01.png")!
+        
+        if (imageNo == 1) {
+            uiImage = UIImage(named: "whiteboard01.png")!
+        } else if (imageNo == 2) {
+            uiImage = UIImage(named: "blackboard01.png")!
+        } else if (imageNo == 3) {
+            uiImage = UIImage(named: "corkboard01.png")!
+        } else if (imageNo == 4) {
+            uiImage = UIImage(named: "gridsheet01.png")!
+        }
+        return uiImage
     }
     
     override func didReceiveMemoryWarning() {

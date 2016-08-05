@@ -17,6 +17,20 @@ class ConfigurationViewController: UIViewController, PostItsPurchaseManagerDeleg
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 
+    @IBOutlet weak var backgroundImageButton: UIButton!
+    @IBAction func pushBackgroundImageButton(sender: AnyObject) {
+        let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate //AppDelegateのインスタンスを取得
+        if (appDelegate.selectedBackgroundImg == 4) {
+            appDelegate.selectedBackgroundImg = 1
+        } else {
+            appDelegate.selectedBackgroundImg += 1
+        }
+        //backgroundImageボタンのテキストを設定
+        configureBackgroundImageButtonText()
+    }
+    
+    
+    
     @IBOutlet weak var productPurchaseButton: UIButton!
     @IBAction func pushProductPurchaseButton(sender: AnyObject) {
         //UIAlertController使用
@@ -63,7 +77,8 @@ class ConfigurationViewController: UIViewController, PostItsPurchaseManagerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        //backgroundImageボタンのテキストを設定
+        configureBackgroundImageButtonText()
     }
 
     override func didReceiveMemoryWarning() {
@@ -71,17 +86,19 @@ class ConfigurationViewController: UIViewController, PostItsPurchaseManagerDeleg
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    private func configureBackgroundImageButtonText() {
+        let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate //AppDelegateのインスタンスを取得
+        if (appDelegate.selectedBackgroundImg == 1) {
+            self.backgroundImageButton.setTitle("whiteboad", forState: UIControlState.Normal)
+        } else if (appDelegate.selectedBackgroundImg == 2) {
+            self.backgroundImageButton.setTitle("blackboard", forState: UIControlState.Normal)
+        } else if (appDelegate.selectedBackgroundImg == 3) {
+            self.backgroundImageButton.setTitle("corkboard", forState: UIControlState.Normal)
+        } else if (appDelegate.selectedBackgroundImg == 4) {
+            self.backgroundImageButton.setTitle("gridsheet", forState: UIControlState.Normal)
+        }
     }
-    */
-    
+   
     //アプリ内課金処理 -----------------------------------
     //アプリ内課金が使えるかチェック
     func checkInAppPurchaseIsAvailable() {

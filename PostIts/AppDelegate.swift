@@ -9,12 +9,24 @@
 import UIKit
 import StoreKit
 
+//postItsの色定義
+enum postItBackgroundColor: Int {
+    case yellow = 1
+    case blue = 2
+    case green = 3
+    case orange = 4
+    case pink = 5
+    case purple = 6
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, PostItsPurchaseManagerDelegate {
 
     var window: UIWindow?
 
-
+    var selectedPostItColor = postItBackgroundColor.yellow
+    var selectedBackgroundImg = 1
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         //アプリ内課金処理

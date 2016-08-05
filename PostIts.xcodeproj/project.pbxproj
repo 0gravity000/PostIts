@@ -25,6 +25,10 @@
 		AA98E6DB1D5228F500981901 /* PostItsPurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA98E6DA1D5228F500981901 /* PostItsPurchaseManager.swift */; };
 		AA98E6DD1D522C2C00981901 /* PostItsProductManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA98E6DC1D522C2C00981901 /* PostItsProductManager.swift */; };
 		AA98E6DF1D5253EC00981901 /* ConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA98E6DE1D5253EC00981901 /* ConfigurationViewController.swift */; };
+		AA98E6EF1D534B1F00981901 /* gridsheet01.png in Resources */ = {isa = PBXBuildFile; fileRef = AA98E6EE1D534B1F00981901 /* gridsheet01.png */; };
+		AA98E6F11D534B9600981901 /* whiteboard01.png in Resources */ = {isa = PBXBuildFile; fileRef = AA98E6F01D534B9600981901 /* whiteboard01.png */; };
+		AA98E6F31D53559600981901 /* corkboard01.png in Resources */ = {isa = PBXBuildFile; fileRef = AA98E6F21D53559600981901 /* corkboard01.png */; };
+		AAF91CBD1D549AEE0016E084 /* blackboard01.png in Resources */ = {isa = PBXBuildFile; fileRef = AAF91CBC1D549AEE0016E084 /* blackboard01.png */; };
 		AAFB09E51D48F0E500995A10 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFB09E41D48F0E500995A10 /* AppDelegate.swift */; };
 		AAFB09E71D48F0E500995A10 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFB09E61D48F0E500995A10 /* MainViewController.swift */; };
 		AAFB09EA1D48F0E500995A10 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAFB09E81D48F0E500995A10 /* Main.storyboard */; };
@@ -32,7 +36,6 @@
 		AAFB09EF1D48F0E500995A10 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAFB09ED1D48F0E500995A10 /* LaunchScreen.storyboard */; };
 		AAFB09FA1D48F0E500995A10 /* PostItsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFB09F91D48F0E500995A10 /* PostItsTests.swift */; };
 		AAFB0A051D48F0E500995A10 /* PostItsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFB0A041D48F0E500995A10 /* PostItsUITests.swift */; };
-		AAFB0A141D48FE4D00995A10 /* IMG_1331.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AAFB0A131D48FE4D00995A10 /* IMG_1331.jpg */; };
 		AAFB0A161D4A315700995A10 /* PostItsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFB0A151D4A315700995A10 /* PostItsViewController.swift */; };
 		AAFB0A181D4A376A00995A10 /* PostItsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFB0A171D4A376A00995A10 /* PostItsTableView.swift */; };
 		AAFB0A1A1D4A379100995A10 /* PostItsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFB0A191D4A379100995A10 /* PostItsTableViewCell.swift */; };
@@ -82,6 +85,10 @@
 		AA98E6DA1D5228F500981901 /* PostItsPurchaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostItsPurchaseManager.swift; sourceTree = "<group>"; };
 		AA98E6DC1D522C2C00981901 /* PostItsProductManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostItsProductManager.swift; sourceTree = "<group>"; };
 		AA98E6DE1D5253EC00981901 /* ConfigurationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationViewController.swift; sourceTree = "<group>"; };
+		AA98E6EE1D534B1F00981901 /* gridsheet01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gridsheet01.png; sourceTree = "<group>"; };
+		AA98E6F01D534B9600981901 /* whiteboard01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteboard01.png; sourceTree = "<group>"; };
+		AA98E6F21D53559600981901 /* corkboard01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = corkboard01.png; sourceTree = "<group>"; };
+		AAF91CBC1D549AEE0016E084 /* blackboard01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackboard01.png; sourceTree = "<group>"; };
 		AAFB09E11D48F0E500995A10 /* PostIts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PostIts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAFB09E41D48F0E500995A10 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AAFB09E61D48F0E500995A10 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -95,7 +102,6 @@
 		AAFB0A001D48F0E500995A10 /* PostItsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PostItsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAFB0A041D48F0E500995A10 /* PostItsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostItsUITests.swift; sourceTree = "<group>"; };
 		AAFB0A061D48F0E500995A10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AAFB0A131D48FE4D00995A10 /* IMG_1331.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_1331.jpg; sourceTree = "<group>"; };
 		AAFB0A151D4A315700995A10 /* PostItsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostItsViewController.swift; sourceTree = "<group>"; };
 		AAFB0A171D4A376A00995A10 /* PostItsTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostItsTableView.swift; sourceTree = "<group>"; };
 		AAFB0A191D4A379100995A10 /* PostItsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostItsTableViewCell.swift; sourceTree = "<group>"; };
@@ -210,7 +216,10 @@
 		AAFB0A121D48FE3000995A10 /* img */ = {
 			isa = PBXGroup;
 			children = (
-				AAFB0A131D48FE4D00995A10 /* IMG_1331.jpg */,
+				AA98E6F01D534B9600981901 /* whiteboard01.png */,
+				AAF91CBC1D549AEE0016E084 /* blackboard01.png */,
+				AA98E6F21D53559600981901 /* corkboard01.png */,
+				AA98E6EE1D534B1F00981901 /* gridsheet01.png */,
 				AA10A7181D50D855003DBAC9 /* color01_01.png */,
 				AA10A7021D50B436003DBAC9 /* arrow01_01.png */,
 				AA10A7161D50CC6C003DBAC9 /* edit01_01.png */,
@@ -365,15 +374,18 @@
 				AA10A70F1D50C40E003DBAC9 /* minus01_01.png in Resources */,
 				AAFB0A241D4B491D00995A10 /* keyboard03.png in Resources */,
 				AA10A7171D50CC6C003DBAC9 /* edit01_01.png in Resources */,
+				AA98E6F11D534B9600981901 /* whiteboard01.png in Resources */,
 				AA10A7131D50CA11003DBAC9 /* minus01_02.png in Resources */,
 				AA10A70C1D50C244003DBAC9 /* move01_01.png in Resources */,
+				AAF91CBD1D549AEE0016E084 /* blackboard01.png in Resources */,
 				AA10A70D1D50C244003DBAC9 /* plus01_01.png in Resources */,
 				AA10A7151D50CB83003DBAC9 /* trash01_01.png in Resources */,
 				AA10A7051D50C23B003DBAC9 /* config01_01.png in Resources */,
+				AA98E6F31D53559600981901 /* corkboard01.png in Resources */,
 				AA10A7031D50B436003DBAC9 /* arrow01_01.png in Resources */,
 				AA10A70A1D50C244003DBAC9 /* list01_01.png in Resources */,
 				AAFB09EA1D48F0E500995A10 /* Main.storyboard in Resources */,
-				AAFB0A141D48FE4D00995A10 /* IMG_1331.jpg in Resources */,
+				AA98E6EF1D534B1F00981901 /* gridsheet01.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
