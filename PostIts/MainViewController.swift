@@ -72,7 +72,8 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
     
     // デフォルトRealmを取得
     let realm = try! Realm()
-    
+    var sortedRealm: Results<PostItsModel>? = nil
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -103,13 +104,13 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
                 addPostItsTextViewToBackgroundImageView(postItsTextView, postIts: postIt)
             }
         }
-        
     }
     
     override func viewWillAppear(animated: Bool) {
         // backgroundImageView の設定 再表示時のため
         let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate //AppDelegateのインスタンスを取得
         backgroundImageView.image = configureBackgroungImg(appDelegate.selectedBackgroundImg)
+        
         //KVO を登録する処理
         backgroundImageView.addObserver(self, forKeyPath: "touchPoint", options: [.New, .Old], context: nil)
     }
@@ -130,14 +131,20 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
         if self.modeFlag == 1 {         //1:選択モード
             //特に何もしない
         } else if self.modeFlag == 2 {  //2:追加モード
+            //Realmデータのソート creatTime 昇順 小さいものから大きいものへ 0,1,2,...
+            self.sortedRealm = self.realm.objects(PostItsModel).sorted("creatTime", ascending: true)
+            print(self.sortedRealm) //debug code
+
             //Realmデータ新規作成
             let newPostIts = PostItsModel()
-            newPostIts.id = NSUUID().UUIDString
-            if let realmLastObject = realm.objects(PostItsModel).last {
+            //tagNo算出 sortedRealm の順に割り振る
+            if let realmLastObject = self.sortedRealm!.last {
                 newPostIts.tagNo = realmLastObject.tagNo + 1
             } else {
                 newPostIts.tagNo = 0
             }
+
+            newPostIts.id = NSUUID().UUIDString
             newPostIts.color = appDelegate.selectedPostItColor.rawValue
             newPostIts.creatTime = NSDate()
             newPostIts.updateTime = newPostIts.creatTime
@@ -148,14 +155,12 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
             newPostIts.content = dateFormatter.stringFromDate(newPostIts.creatTime)
-            
+
             //Realmにデータを永続化
             //プライマリーキー id の値がすでに存在するなら、更新、存在しないなら追加
             try! realm.write {
                 realm.add(newPostIts, update: true)
             }
-            //Realmデータのソート tagNo 降順
-            realm.objects(PostItsModel).sorted("tagNo", ascending: true)
             
             //backgroundImageView に postItsTextView を追加する
             let postItsTextView = PostItsTextView()
@@ -231,12 +236,21 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
                 //View削除
                 textView.removeFromSuperview()
                 
+                //Realmデータのソート creatTime 昇順 小さいものから大きいものへ 0,1,2,...
+                self.sortedRealm = self.realm.objects(PostItsModel).sorted("creatTime", ascending: true)
+                print(self.sortedRealm) //debug code
+
                 //全てのRealmの TagNoを振り直す
-                let allPostIts = self.realm.objects(PostItsModel)
+                let sortedPostIts = self.sortedRealm!
                 var counter: Int16 = 0
-                for postIts in allPostIts {
-                    try! self.realm.write {
-                        postIts.tagNo = counter
+                for sortedPostIt in sortedPostIts {
+                    //Realmデータを creatTime 順に TagNo を降り直す
+                    let postIts = self.realm.objects(PostItsModel).filter("creatTime == %@", sortedPostIt.creatTime)
+                    print(postIts) //debug code
+                    for postIt in postIts {
+                        try! self.realm.write {
+                            postIt.tagNo = counter
+                        }
                     }
                     counter += 1
                 }
