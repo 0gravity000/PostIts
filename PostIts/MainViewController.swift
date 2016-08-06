@@ -31,9 +31,12 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
     
 //    var backgroundImageView: BackGroundImageView!
     var backgroundImageView = BackGroundImageView()
-    var modeFlag: Int = 1  //1:select, 2:add, 3: remove 4:move 5:config
+    var modeFlag: Int = 1  //1:edit, 2:add, 3: remove 4:move 5:config
     var isMovingFlag: Bool = false
     var movingTextView: UITextView! = nil
+    let POSTIT_WIDTH: CGFloat = 300.0
+    let POSTIT_HIGHT: CGFloat = 200.0
+    let POSTIT_FONT: UIFont = UIFont(name:"HelveticaNeue-Bold",size:24)!
     
     @IBOutlet weak var mainScrollView: UIScrollView!
 
@@ -131,7 +134,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
 
         let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate //AppDelegateのインスタンスを取得
         //モードごとの処理
-        if (self.modeFlag == 1) {         //1:選択モード
+        if (self.modeFlag == 1) {         //1:編集モード
             //特に何もしない
         } else if (self.modeFlag == 2) {  //2:追加モード
             //Realmデータのソート creatTime 昇順 小さいものから大きいものへ 0,1,2,...
@@ -190,7 +193,10 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
                 //TexvViewの移動
                 for targetTextView in self.backgroundImageView.subviews {
                     if targetTextView.tag == self.movingTextView.tag {
-                        targetTextView.frame = CGRectMake(CGFloat(backgroundImageView.touchPoint.x), CGFloat(backgroundImageView.touchPoint.y), 100, 100);
+                        targetTextView.frame = CGRectMake(CGFloat(backgroundImageView.touchPoint.x),
+                                                          CGFloat(backgroundImageView.touchPoint.y),
+                                                          POSTIT_WIDTH,
+                                                          POSTIT_HIGHT);
                         targetTextView.alpha = 1.0
                         //タッチイベントを無視する
                         targetTextView.userInteractionEnabled = true
@@ -229,11 +235,6 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
         updateScrollInset()
     }
     
-    
-    //テキストビューが変更された
-    func textViewDidChange(textView: UITextView) {
-        print("textViewDidChange : \(textView.text)")   //debug code
-    }
     
     // テキストビューにフォーカスが移った
     func textViewShouldBeginEditing(textView: UITextView) -> Bool {
@@ -326,15 +327,33 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
         } else if (self.modeFlag == 2) {    //追加モードの時
             //以降テキスト編集処理を行わない
             return false
-        } else {     //選択モードの時
+        } else {     //編集モードの時
             //以降テキスト編集処理を行う
             return true
         }
+    }
+
+    //テキストビューが変更された
+    func textViewDidChange(textView: UITextView) {
+        print("textViewDidChange : \(textView.text)")   //debug code
     }
     
     // テキストビューからフォーカスが失われた
     func textViewShouldEndEditing(textView: UITextView) -> Bool {
         print("textViewShouldEndEditing : \(textView.text)")   //debug code
+
+        if (self.modeFlag == 1) {   //編集モードの時
+            //RealmデータのcontentとupdateTimeを更新
+            let editPostIts = self.realm.objects(PostItsModel).filter("tagNo == \(textView.tag)")
+            for postIt in editPostIts {
+                try! self.realm.write {
+                    postIt.content = textView.text
+                    postIt.updateTime = NSDate()
+                }
+                print(postIt)   //debug code
+            }
+        }
+        
         //キーボードを閉じる
         textView.resignFirstResponder()
         return true
@@ -360,10 +379,12 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
         
         postItsTextView.delegate = self
         postItsTextView.tag = Int(targetPostIt.tagNo)
-        postItsTextView.text = targetPostIt.tagNo.description + "\n" + targetPostIt.content + "\n"
-        postItsTextView.frame = CGRectMake(CGFloat(targetPostIt.posX), CGFloat(targetPostIt.posY), 100, 100);
+        postItsTextView.text = targetPostIt.content + "\n"
+//        postItsTextView.text = targetPostIt.tagNo.description + "\n" + targetPostIt.content + "\n"
+        postItsTextView.frame = CGRectMake(CGFloat(targetPostIt.posX), CGFloat(targetPostIt.posY), POSTIT_WIDTH, POSTIT_HIGHT);
         postItsTextView.userInteractionEnabled = true
         postItsTextView.backgroundColor = configureUIColor(targetPostIt.color)
+        postItsTextView.font = POSTIT_FONT
         
         // 仮のサイズでツールバー生成
         let kbToolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 40))

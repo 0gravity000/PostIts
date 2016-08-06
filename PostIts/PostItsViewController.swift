@@ -14,8 +14,13 @@ class PostItsViewController: UIViewController, UITableViewDataSource, UITextView
     var realmObj: Realm? = nil
    // var sortedRealmObj: Results<PostItsModel>? = nil
     
+    @IBOutlet weak var postItsTableview: PostItsTableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.postItsTableview.estimatedRowHeight = 100
+        self.postItsTableview.rowHeight = UITableViewAutomaticDimension
     }
 
     override func didReceiveMemoryWarning() {
@@ -44,7 +49,13 @@ class PostItsViewController: UIViewController, UITableViewDataSource, UITextView
         dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
         for count in indexPath.row...indexPath.row {
             cell.updatetimeLabel.text = dateFormatter.stringFromDate(postIts[count].updateTime)
-            cell.contentLabel.text = postIts[count].content
+            if (postIts[count].content == "") {
+                //contentが空の場合、スペースを入れて1行分表示させる
+                cell.contentLabel.text = " "
+            } else {
+                cell.contentLabel.text = postIts[count].content
+            }
+            cell.contentLabel.text = cell.contentLabel.text! + " " + String(postIts[count].tagNo) //degug code
             cell.contentLabel.backgroundColor = configureUIColor(postIts[count].color)
 //            cell.textLabel?.text = String(postIts[count].tagNo)
 //            cell.detailTextLabel?.text = String(postIts[count].content)

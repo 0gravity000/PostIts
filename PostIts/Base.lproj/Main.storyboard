@@ -200,11 +200,11 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="PostItsCell" rowHeight="106" id="r9H-Aa-lHi" customClass="PostItsTableViewCell" customModule="PostIts" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="106"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="PostItsCell" rowHeight="120" id="r9H-Aa-lHi" customClass="PostItsTableViewCell" customModule="PostIts" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="r9H-Aa-lHi" id="Xqd-gF-6eg">
-                                            <rect key="frame" x="0.0" y="0.0" width="567" height="105"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="567" height="119"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="更新日：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="imc-E5-oM5">
@@ -220,18 +220,20 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="内容" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AyX-do-rY6">
-                                                    <rect key="frame" x="43" y="42" width="516" height="21"/>
+                                                    <rect key="frame" x="43" y="42" width="505" height="63"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="AyX-do-rY6" firstAttribute="top" secondItem="imc-E5-oM5" secondAttribute="bottom" constant="8" id="4W1-ZQ-HtT"/>
                                                 <constraint firstItem="eJE-pc-kRO" firstAttribute="leading" secondItem="imc-E5-oM5" secondAttribute="trailing" constant="10" id="Dlv-FP-DNt"/>
-                                                <constraint firstItem="AyX-do-rY6" firstAttribute="leading" secondItem="Xqd-gF-6eg" secondAttribute="leadingMargin" constant="35" id="F2A-y6-GN7"/>
-                                                <constraint firstItem="AyX-do-rY6" firstAttribute="trailing" secondItem="Xqd-gF-6eg" secondAttribute="trailingMargin" id="clR-aR-lKp"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="AyX-do-rY6" secondAttribute="trailing" constant="11" id="Jty-xp-vnI"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="AyX-do-rY6" secondAttribute="bottom" constant="6" id="N8p-Js-Q0P"/>
+                                                <constraint firstItem="AyX-do-rY6" firstAttribute="leading" secondItem="Xqd-gF-6eg" secondAttribute="leadingMargin" constant="35" id="Ww5-7z-0uV"/>
+                                                <constraint firstItem="AyX-do-rY6" firstAttribute="top" secondItem="eJE-pc-kRO" secondAttribute="bottom" constant="8" id="fjo-cQ-PMT"/>
                                                 <constraint firstItem="imc-E5-oM5" firstAttribute="top" secondItem="Xqd-gF-6eg" secondAttribute="topMargin" constant="5" id="idk-va-70V"/>
-                                                <constraint firstItem="AyX-do-rY6" firstAttribute="top" secondItem="eJE-pc-kRO" secondAttribute="bottom" constant="8" id="tGi-cB-F5i"/>
                                                 <constraint firstItem="imc-E5-oM5" firstAttribute="leading" secondItem="Xqd-gF-6eg" secondAttribute="leadingMargin" constant="10" id="xni-hl-nOq"/>
                                                 <constraint firstItem="eJE-pc-kRO" firstAttribute="top" secondItem="Xqd-gF-6eg" secondAttribute="topMargin" constant="5" id="yte-dw-zUg"/>
                                             </constraints>
@@ -256,6 +258,9 @@
                             <constraint firstItem="dgJ-Fg-rjg" firstAttribute="top" secondItem="yWe-kn-Nt3" secondAttribute="bottom" id="agZ-13-VHA"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="postItsTableview" destination="yWe-kn-Nt3" id="TPP-hS-Vak"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kyc-fO-5Ql" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
