@@ -31,6 +31,8 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
 //    var backgroundImageView: BackGroundImageView!
     var backgroundImageView = BackGroundImageView()
     var modeFlag: Int = 1  //1:select, 2:add, 3: remove 4:move 5:config
+    var isMovingFlag: Bool = false
+    var movingTextView: UITextView! = nil
     
     @IBOutlet weak var mainScrollView: UIScrollView!
 
@@ -101,7 +103,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
             if (postIt.isVisible == true) {
                 //backgroundImageView に postItsTextView を追加する
                 let postItsTextView = PostItsTextView()
-                addPostItsTextViewToBackgroundImageView(postItsTextView, postIts: postIt)
+                addPostItsTextViewToBackgroundImageView(postItsTextView, targetPostIt: postIt)
             }
         }
     }
@@ -128,50 +130,78 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
 
         let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate //AppDelegateのインスタンスを取得
         //モードごとの処理
-        if self.modeFlag == 1 {         //1:選択モード
+        if (self.modeFlag == 1) {         //1:選択モード
             //特に何もしない
-        } else if self.modeFlag == 2 {  //2:追加モード
+        } else if (self.modeFlag == 2) {  //2:追加モード
             //Realmデータのソート creatTime 昇順 小さいものから大きいものへ 0,1,2,...
             self.sortedRealm = self.realm.objects(PostItsModel).sorted("creatTime", ascending: true)
             print(self.sortedRealm) //debug code
 
             //Realmデータ新規作成
-            let newPostIts = PostItsModel()
+            let newPostIt = PostItsModel()
+            
             //tagNo算出 sortedRealm の順に割り振る
             if let realmLastObject = self.sortedRealm!.last {
-                newPostIts.tagNo = realmLastObject.tagNo + 1
+                newPostIt.tagNo = realmLastObject.tagNo + 1
             } else {
-                newPostIts.tagNo = 0
+                newPostIt.tagNo = 0
             }
 
-            newPostIts.id = NSUUID().UUIDString
-            newPostIts.color = appDelegate.selectedPostItColor.rawValue
-            newPostIts.creatTime = NSDate()
-            newPostIts.updateTime = newPostIts.creatTime
-            newPostIts.posX = Float(backgroundImageView.touchPoint.x)
-            newPostIts.posY = Float(backgroundImageView.touchPoint.y)
-            newPostIts.isVisible = true
+            newPostIt.id = NSUUID().UUIDString
+            newPostIt.color = appDelegate.selectedPostItColor.rawValue
+            newPostIt.creatTime = NSDate()
+            newPostIt.updateTime = newPostIt.creatTime
+            newPostIt.posX = Float(backgroundImageView.touchPoint.x)
+            newPostIt.posY = Float(backgroundImageView.touchPoint.y)
+            newPostIt.isVisible = true
             
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
-            newPostIts.content = dateFormatter.stringFromDate(newPostIts.creatTime)
+            newPostIt.content = dateFormatter.stringFromDate(newPostIt.creatTime)
 
             //Realmにデータを永続化
             //プライマリーキー id の値がすでに存在するなら、更新、存在しないなら追加
             try! realm.write {
-                realm.add(newPostIts, update: true)
+                realm.add(newPostIt, update: true)
             }
             
             //backgroundImageView に postItsTextView を追加する
             let postItsTextView = PostItsTextView()
-            addPostItsTextViewToBackgroundImageView(postItsTextView, postIts: newPostIts)
+            addPostItsTextViewToBackgroundImageView(postItsTextView, targetPostIt: newPostIt)
             
-        } else if self.modeFlag == 3 {  //3:削除モード
+        } else if (self.modeFlag == 3) {  //3:削除モード
             //ここでは特に何もしない
-            //PostItsTextView をタッチした時に処理を行う
-        } else if self.modeFlag == 4 {  //4:移動モード
+            
+        } else if (self.modeFlag == 4) {  //4:移動モード
+            //移動中か判定 移動中にタッチされた時の処理
+            if (self.isMovingFlag == true) {
+                //移動中の場合、タッチした座標へPostItを移動する
+                //Realmデータの座標を更新
+                let movedPostIts = self.realm.objects(PostItsModel).filter("tagNo == \(self.movingTextView.tag)")
+                for postIt in movedPostIts {
+                    try! self.realm.write {
+                        postIt.posX = Float(backgroundImageView.touchPoint.x)
+                        postIt.posY = Float(backgroundImageView.touchPoint.y)
+                    }
+                    print(postIt)   //debug code
+                }
+                
+                //TexvViewの移動
+                for targetTextView in self.backgroundImageView.subviews {
+                    if targetTextView.tag == self.movingTextView.tag {
+                        targetTextView.frame = CGRectMake(CGFloat(backgroundImageView.touchPoint.x), CGFloat(backgroundImageView.touchPoint.y), 100, 100);
+                        targetTextView.alpha = 1.0
+                        //タッチイベントを無視する
+                        targetTextView.userInteractionEnabled = true
+                    }
+                }
+                
+                //後処理 移動中フラグを落とし、textviewバッファをクリア
+                self.isMovingFlag = false
+                self.movingTextView = nil
+                
+            }
         }
-        
     }
 
     func commitButtonTapped (){
@@ -207,7 +237,8 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
     // テキストビューにフォーカスが移った
     func textViewShouldBeginEditing(textView: UITextView) -> Bool {
         print("textViewShouldBeginEditing : \(textView.text)")   //debug code
-        if self.modeFlag == 3 {
+        
+        if (self.modeFlag == 3) { //削除モードの時
             //ここで、ViewとRealmデータ削除処理を行う
             //Alert表示
             let alert: UIAlertController = UIAlertController(title: "確認", message: "削除してもいいですか？", preferredStyle:  UIAlertControllerStyle.Alert)
@@ -228,9 +259,9 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
                 let thisTextViewTag = textView.tag
                 //Realmデータの削除
                 let removePostIts = self.realm.objects(PostItsModel).filter("tagNo == \(textView.tag)")
-                for postIts in removePostIts {
+                for postIt in removePostIts {
                     try! self.realm.write {
-                        self.realm.delete(postIts)
+                        self.realm.delete(postIt)
                     }
                 }
                 //View削除
@@ -280,7 +311,21 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
             
             //以降テキスト編集処理を行わない
             return false
-        } else {
+        } else if (self.modeFlag == 4) {    //移動モードの時
+            self.isMovingFlag = true
+            self.movingTextView = textView
+            
+            //textViewを半透明にする
+            textView.alpha = 0.3
+            //タッチイベントを無視する
+            textView.userInteractionEnabled = false
+            
+            //以降テキスト編集処理を行わない
+            return false
+        } else if (self.modeFlag == 2) {    //追加モードの時
+            //以降テキスト編集処理を行わない
+            return false
+        } else {     //選択モードの時
             //以降テキスト編集処理を行う
             return true
         }
@@ -310,14 +355,14 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
         //        }
     }
     
-    private func addPostItsTextViewToBackgroundImageView(postItsTextView: PostItsTextView, postIts:PostItsModel) {
+    private func addPostItsTextViewToBackgroundImageView(postItsTextView: PostItsTextView, targetPostIt:PostItsModel) {
         
         postItsTextView.delegate = self
-        postItsTextView.tag = Int(postIts.tagNo)
-        postItsTextView.text = postIts.tagNo.description + "\n" + postIts.content + "\n"
-        postItsTextView.frame = CGRectMake(CGFloat(postIts.posX), CGFloat(postIts.posY), 100, 100);
+        postItsTextView.tag = Int(targetPostIt.tagNo)
+        postItsTextView.text = targetPostIt.tagNo.description + "\n" + targetPostIt.content + "\n"
+        postItsTextView.frame = CGRectMake(CGFloat(targetPostIt.posX), CGFloat(targetPostIt.posY), 100, 100);
         postItsTextView.userInteractionEnabled = true
-        postItsTextView.backgroundColor = configureUIColor(postIts.color)
+        postItsTextView.backgroundColor = configureUIColor(targetPostIt.color)
         
         // 仮のサイズでツールバー生成
         let kbToolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 40))
