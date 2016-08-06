@@ -26,6 +26,7 @@ class PostItsModel: Object {
     }
 }
 
+
 class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDelegate {
     
 //    var backgroundImageView: BackGroundImageView!

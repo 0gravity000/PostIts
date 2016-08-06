@@ -10,6 +10,9 @@ import UIKit
 
 class PostItsTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var updatetimeLabel: UILabel!
+    @IBOutlet weak var contentLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

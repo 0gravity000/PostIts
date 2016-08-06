@@ -31,7 +31,7 @@ class PostItsViewController: UIViewController, UITableViewDataSource, UITextView
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("PostItsCell", forIndexPath: indexPath)
+        let cell: PostItsTableViewCell = tableView.dequeueReusableCellWithIdentifier("PostItsCell", forIndexPath: indexPath) as! PostItsTableViewCell
         print(indexPath.row)    //degug code
         //Realmデータのソート updateTime 降順 大きいものから小さいものへ ...2,1,0
         let sortedRealmObj = self.realmObj!.objects(PostItsModel).sorted("updateTime", ascending: false)
@@ -39,29 +39,36 @@ class PostItsViewController: UIViewController, UITableViewDataSource, UITextView
         //Realmデータの格納順にTableViewに表示する
         let postIts = sortedRealmObj
         //let postIts = self.realmObj!.objects(PostItsModel)
+
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
         for count in indexPath.row...indexPath.row {
-            cell.textLabel?.text = String(postIts[count].tagNo)
-            cell.detailTextLabel?.text = String(postIts[count].content)
+            cell.updatetimeLabel.text = dateFormatter.stringFromDate(postIts[count].updateTime)
+            cell.contentLabel.text = postIts[count].content
+            cell.contentLabel.backgroundColor = configureUIColor(postIts[count].color)
+//            cell.textLabel?.text = String(postIts[count].tagNo)
+//            cell.detailTextLabel?.text = String(postIts[count].content)
         }
-// Old01
-//        let postIts = self.realmObj!.objects(PostItsModel).filter("tagNo == \(indexPath.row)")
-//        for postIt in postIts {
-//            cell.textLabel?.text = String(postIt.tagNo)
-//            cell.detailTextLabel?.text = String(postIt.content)
-//            //複数存在したらループを抜ける
-//            break
-//        }
         return cell
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func configureUIColor(color: Int) -> UIColor {
+        var uiColor: UIColor = UIColor.init(red: 1.0, green: 1.0, blue: 0, alpha: 1.0)
+        
+        if (color == postItBackgroundColor.yellow.rawValue) {
+            uiColor = UIColor.init(red: 1.0, green: 1.0, blue: 0, alpha: 1.0)
+        } else if (color == postItBackgroundColor.blue.rawValue) {
+            uiColor = UIColor.init(red: 0.529, green: 0.809, blue: 0.98, alpha: 1.0)
+        } else if (color == postItBackgroundColor.green.rawValue) {
+            uiColor = UIColor.init(red: 0.678, green: 1.0, blue: 0.184, alpha: 1.0)
+        } else if (color == postItBackgroundColor.orange.rawValue) {
+            uiColor = UIColor.init(red: 1.0, green: 0.647, blue: 0, alpha: 1.0)
+        } else if (color == postItBackgroundColor.pink.rawValue) {
+            uiColor = UIColor.init(red: 1.0, green: 0.753, blue: 0.798, alpha: 1.0)
+        } else if (color == postItBackgroundColor.purple.rawValue) {
+            uiColor = UIColor.init(red: 0.759, green: 0.302, blue: 1.0, alpha: 1.0)
+        }
+        return uiColor
     }
-    */
 
 }
