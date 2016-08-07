@@ -15,6 +15,11 @@ class PostItsViewController: UIViewController, UITableViewDataSource, UITextView
    // var sortedRealmObj: Results<PostItsModel>? = nil
     
     @IBOutlet weak var postItsTableview: PostItsTableView!
+    @IBOutlet weak var doneBarButton: UIBarButtonItem!
+    @IBAction func pushDoneBarButton(sender: AnyObject) {
+        //画面を閉じる
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +45,6 @@ class PostItsViewController: UIViewController, UITableViewDataSource, UITextView
         print(indexPath.row)    //degug code
         //Realmデータのソート updateTime 降順 大きいものから小さいものへ ...2,1,0
         let sortedRealmObj = self.realmObj!.objects(PostItsModel).sorted("updateTime", ascending: false)
-
         //Realmデータの格納順にTableViewに表示する
         let postIts = sortedRealmObj
         //let postIts = self.realmObj!.objects(PostItsModel)
@@ -55,12 +59,31 @@ class PostItsViewController: UIViewController, UITableViewDataSource, UITextView
             } else {
                 cell.contentLabel.text = postIts[count].content
             }
-            cell.contentLabel.text = cell.contentLabel.text! + " " + String(postIts[count].tagNo) //degug code
+            cell.contentLabel.text = cell.contentLabel.text! + " " + String(postIts[count].tagNo) //degug code 後から削除すること!
             cell.contentLabel.backgroundColor = configureUIColor(postIts[count].color)
 //            cell.textLabel?.text = String(postIts[count].tagNo)
 //            cell.detailTextLabel?.text = String(postIts[count].content)
         }
         return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+
+        let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate //AppDelegateのインスタンスを取得
+        //Realmデータのソート updateTime 降順 大きいものから小さいものへ ...2,1,0
+        let sortedRealmObj = self.realmObj!.objects(PostItsModel).sorted("updateTime", ascending: false)
+        //Realmデータの格納順にTableViewに表示する
+        let postIts = sortedRealmObj
+        for count in indexPath.row...indexPath.row {
+            //MainViewControllerで表示する座標をセット
+            appDelegate.viewPosX = postIts[count].posX
+            appDelegate.viewPosY = postIts[count].posY
+            print(postIts[count])   //debug code
+        }
+        
+        //画面を閉じる
+        self.dismissViewControllerAnimated(true, completion: nil)
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
     func configureUIColor(color: Int) -> UIColor {

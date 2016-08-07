@@ -26,6 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PostItsPurchaseManagerDel
 
     var selectedPostItColor = postItBackgroundColor.yellow
     var selectedBackgroundImg = 1
+    var viewPosX: Float? = nil
+    var viewPosY: Float? = nil
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.

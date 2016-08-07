@@ -102,20 +102,32 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
         self.showListBarButton.tintColor = UIColor.blueColor()
         
         //RealmデータからPostItsTextViewを作成 初期化
-        let postIts = realm.objects(PostItsModel) // デフォルトRealmから、すべてのPostItsオブジェクトを取得
-        for postIt in postIts {
-            if (postIt.isVisible == true) {
-                //backgroundImageView に postItsTextView を追加する
-                let postItsTextView = PostItsTextView()
-                addPostItsTextViewToBackgroundImageView(postItsTextView, targetPostIt: postIt)
-            }
+        //Realmデータのソート creatTime 昇順 小さいものから大きいものへ 0,1,2,...
+        self.sortedRealm = self.realm.objects(PostItsModel).sorted("creatTime", ascending: true)
+        for postIt in self.sortedRealm! {
+            //backgroundImageView に postItsTextView を追加する
+            let postItsTextView = PostItsTextView()
+            addPostItsTextViewToBackgroundImageView(postItsTextView, targetPostIt: postIt)
         }
+//        //Realmデータの creatTime が一番大きい（最新）の座標をセットする。
+//        //Realmデータが0件の場合は？
+//        let realmLastObject = self.sortedRealm!.last
+//        appDelegate.viewPosX = (realmLastObject?.posX)!
+//        appDelegate.viewPosY = (realmLastObject?.posY)!
     }
     
     override func viewWillAppear(animated: Bool) {
         // backgroundImageView の設定 再表示時のため
         let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate //AppDelegateのインスタンスを取得
         backgroundImageView.image = configureBackgroungImg(appDelegate.selectedBackgroundImg)
+        //指定の座標を表示 再表示時のため
+        if (appDelegate.viewPosX != nil && appDelegate.viewPosY != nil) {
+            mainScrollView.contentOffset = CGPointMake(CGFloat(appDelegate.viewPosX!) * mainScrollView.zoomScale,
+                                                       CGFloat(appDelegate.viewPosY!) * mainScrollView.zoomScale)
+            //座標をクリア
+            appDelegate.viewPosX = nil
+            appDelegate.viewPosY = nil
+        }
         
         //KVO を登録する処理
         backgroundImageView.addObserver(self, forKeyPath: "touchPoint", options: [.New, .Old], context: nil)
