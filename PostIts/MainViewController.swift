@@ -145,6 +145,30 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
         print(change)   //debug code
 
         let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate //AppDelegateのインスタンスを取得
+        //右下隅の補正処理
+        var amendedBackgroundImageViewTouchPointX: CGFloat = 0.0
+        var amendedBackgroundImageViewTouchPointY: CGFloat = 0.0
+        //x補正
+        print(backgroundImageView.touchPoint.x) //debug code
+        print(POSTIT_WIDTH) //debug code
+        print(backgroundImageView.frame.size.width / mainScrollView.zoomScale)  //debug code
+        if (backgroundImageView.touchPoint.x + POSTIT_WIDTH >
+            (backgroundImageView.frame.size.width / mainScrollView.zoomScale)) {
+            amendedBackgroundImageViewTouchPointX = (backgroundImageView.frame.size.width / mainScrollView.zoomScale) - POSTIT_WIDTH
+        } else {
+            amendedBackgroundImageViewTouchPointX = backgroundImageView.touchPoint.x
+        }
+        //y補正
+        print(backgroundImageView.touchPoint.y) //debug code
+        print(POSTIT_HIGHT) //debug code
+        print(backgroundImageView.frame.size.height / mainScrollView.zoomScale) //debug code
+        if (backgroundImageView.touchPoint.y + POSTIT_HIGHT >
+            (backgroundImageView.frame.size.height / mainScrollView.zoomScale)) {
+            amendedBackgroundImageViewTouchPointY = (backgroundImageView.frame.size.height / mainScrollView.zoomScale) - POSTIT_HIGHT
+        } else {
+            amendedBackgroundImageViewTouchPointY = backgroundImageView.touchPoint.y
+        }
+        
         //モードごとの処理
         if (self.modeFlag == 1) {         //1:編集モード
             //特に何もしない
@@ -167,8 +191,8 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
             newPostIt.color = appDelegate.selectedPostItColor.rawValue
             newPostIt.creatTime = NSDate()
             newPostIt.updateTime = newPostIt.creatTime
-            newPostIt.posX = Float(backgroundImageView.touchPoint.x)
-            newPostIt.posY = Float(backgroundImageView.touchPoint.y)
+            newPostIt.posX = Float(amendedBackgroundImageViewTouchPointX)
+            newPostIt.posY = Float(amendedBackgroundImageViewTouchPointY)
             newPostIt.isVisible = true
             
             let dateFormatter = NSDateFormatter()
@@ -196,8 +220,8 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
                 let movedPostIts = self.realm.objects(PostItsModel).filter("tagNo == \(self.movingTextView.tag)")
                 for postIt in movedPostIts {
                     try! self.realm.write {
-                        postIt.posX = Float(backgroundImageView.touchPoint.x)
-                        postIt.posY = Float(backgroundImageView.touchPoint.y)
+                        postIt.posX = Float(amendedBackgroundImageViewTouchPointX)
+                        postIt.posY = Float(amendedBackgroundImageViewTouchPointY)
                     }
                     print(postIt)   //debug code
                 }
@@ -205,8 +229,8 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
                 //TexvViewの移動
                 for targetTextView in self.backgroundImageView.subviews {
                     if targetTextView.tag == self.movingTextView.tag {
-                        targetTextView.frame = CGRectMake(CGFloat(backgroundImageView.touchPoint.x),
-                                                          CGFloat(backgroundImageView.touchPoint.y),
+                        targetTextView.frame = CGRectMake(CGFloat(amendedBackgroundImageViewTouchPointX),
+                                                          CGFloat(amendedBackgroundImageViewTouchPointY),
                                                           POSTIT_WIDTH,
                                                           POSTIT_HIGHT);
                         targetTextView.alpha = 1.0
