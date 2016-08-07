@@ -279,7 +279,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
         if (self.modeFlag == 3) { //削除モードの時
             //ここで、ViewとRealmデータ削除処理を行う
             //Alert表示
-            let alert: UIAlertController = UIAlertController(title: "確認", message: "削除してもいいですか？", preferredStyle:  UIAlertControllerStyle.Alert)
+            let alert: UIAlertController = UIAlertController(title: "確認", message: "削除してもよろしいですか？", preferredStyle:  UIAlertControllerStyle.Alert)
             
             //Actionの設定
             // OKボタン

@@ -24,13 +24,10 @@
 		AA98E6D91D52095800981901 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA98E6D81D52095800981901 /* StoreKit.framework */; };
 		AA98E6DB1D5228F500981901 /* PostItsPurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA98E6DA1D5228F500981901 /* PostItsPurchaseManager.swift */; };
 		AA98E6DD1D522C2C00981901 /* PostItsProductManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA98E6DC1D522C2C00981901 /* PostItsProductManager.swift */; };
-		AA98E6DF1D5253EC00981901 /* ConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA98E6DE1D5253EC00981901 /* ConfigurationViewController.swift */; };
 		AA98E6EF1D534B1F00981901 /* gridsheet01.png in Resources */ = {isa = PBXBuildFile; fileRef = AA98E6EE1D534B1F00981901 /* gridsheet01.png */; };
 		AA98E6F11D534B9600981901 /* whiteboard01.png in Resources */ = {isa = PBXBuildFile; fileRef = AA98E6F01D534B9600981901 /* whiteboard01.png */; };
 		AA98E6F31D53559600981901 /* corkboard01.png in Resources */ = {isa = PBXBuildFile; fileRef = AA98E6F21D53559600981901 /* corkboard01.png */; };
 		AAF91CBD1D549AEE0016E084 /* blackboard01.png in Resources */ = {isa = PBXBuildFile; fileRef = AAF91CBC1D549AEE0016E084 /* blackboard01.png */; };
-		AAF91CC11D570EDA0016E084 /* ConfigurationTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF91CC01D570EDA0016E084 /* ConfigurationTableView.swift */; };
-		AAF91CC31D570F030016E084 /* ConfigurationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF91CC21D570F030016E084 /* ConfigurationTableViewCell.swift */; };
 		AAF91CC51D571BEC0016E084 /* ConfigurationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF91CC41D571BEC0016E084 /* ConfigurationTableViewController.swift */; };
 		AAF91CC71D575F770016E084 /* SelectBackgroundImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF91CC61D575F770016E084 /* SelectBackgroundImageViewController.swift */; };
 		AAFB09E51D48F0E500995A10 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFB09E41D48F0E500995A10 /* AppDelegate.swift */; };
@@ -88,13 +85,10 @@
 		AA98E6D81D52095800981901 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		AA98E6DA1D5228F500981901 /* PostItsPurchaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostItsPurchaseManager.swift; sourceTree = "<group>"; };
 		AA98E6DC1D522C2C00981901 /* PostItsProductManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostItsProductManager.swift; sourceTree = "<group>"; };
-		AA98E6DE1D5253EC00981901 /* ConfigurationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationViewController.swift; sourceTree = "<group>"; };
 		AA98E6EE1D534B1F00981901 /* gridsheet01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gridsheet01.png; sourceTree = "<group>"; };
 		AA98E6F01D534B9600981901 /* whiteboard01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteboard01.png; sourceTree = "<group>"; };
 		AA98E6F21D53559600981901 /* corkboard01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = corkboard01.png; sourceTree = "<group>"; };
 		AAF91CBC1D549AEE0016E084 /* blackboard01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackboard01.png; sourceTree = "<group>"; };
-		AAF91CC01D570EDA0016E084 /* ConfigurationTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationTableView.swift; sourceTree = "<group>"; };
-		AAF91CC21D570F030016E084 /* ConfigurationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationTableViewCell.swift; sourceTree = "<group>"; };
 		AAF91CC41D571BEC0016E084 /* ConfigurationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationTableViewController.swift; sourceTree = "<group>"; };
 		AAF91CC61D575F770016E084 /* SelectBackgroundImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectBackgroundImageViewController.swift; sourceTree = "<group>"; };
 		AAFB09E11D48F0E500995A10 /* PostIts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PostIts.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -189,9 +183,6 @@
 				AAFB09E61D48F0E500995A10 /* MainViewController.swift */,
 				AAF91CC41D571BEC0016E084 /* ConfigurationTableViewController.swift */,
 				AAF91CC61D575F770016E084 /* SelectBackgroundImageViewController.swift */,
-				AAF91CC21D570F030016E084 /* ConfigurationTableViewCell.swift */,
-				AA98E6DE1D5253EC00981901 /* ConfigurationViewController.swift */,
-				AAF91CC01D570EDA0016E084 /* ConfigurationTableView.swift */,
 				AAFB0A151D4A315700995A10 /* PostItsViewController.swift */,
 				AAFB0A171D4A376A00995A10 /* PostItsTableView.swift */,
 				AAFB0A191D4A379100995A10 /* PostItsTableViewCell.swift */,
@@ -548,14 +539,11 @@
 				AAFB09E71D48F0E500995A10 /* MainViewController.swift in Sources */,
 				AAFB09E51D48F0E500995A10 /* AppDelegate.swift in Sources */,
 				AAFB0A1C1D4A464700995A10 /* BackGroundImageView.swift in Sources */,
-				AA98E6DF1D5253EC00981901 /* ConfigurationViewController.swift in Sources */,
 				AA98E6DB1D5228F500981901 /* PostItsPurchaseManager.swift in Sources */,
 				AA98E6DD1D522C2C00981901 /* PostItsProductManager.swift in Sources */,
 				AAF91CC71D575F770016E084 /* SelectBackgroundImageViewController.swift in Sources */,
-				AAF91CC11D570EDA0016E084 /* ConfigurationTableView.swift in Sources */,
 				AAFB0A181D4A376A00995A10 /* PostItsTableView.swift in Sources */,
 				AAF91CC51D571BEC0016E084 /* ConfigurationTableViewController.swift in Sources */,
-				AAF91CC31D570F030016E084 /* ConfigurationTableViewCell.swift in Sources */,
 				AAFB0A1A1D4A379100995A10 /* PostItsTableViewCell.swift in Sources */,
 				AAFB0A221D4B2E6F00995A10 /* PostItsTextView.swift in Sources */,
 				AAFB0A161D4A315700995A10 /* PostItsViewController.swift in Sources */,

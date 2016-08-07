@@ -224,6 +224,9 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hFg-mg-p4Y">
                                                     <rect key="frame" x="522" y="8" width="60" height="27"/>
                                                     <state key="normal" title="購入する"/>
+                                                    <connections>
+                                                        <action selector="pushProductPurchaseButton:" destination="ayI-xY-fAh" eventType="touchUpInside" id="NoM-ds-Mwv"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -247,6 +250,7 @@
                     <connections>
                         <outlet property="backgroundImageLabel" destination="hfb-Yd-Qtv" id="aVb-AY-l5L"/>
                         <outlet property="doneBarButton" destination="x7r-Rb-bh3" id="eAi-7H-8CZ"/>
+                        <outlet property="productPurchaseButton" destination="hFg-mg-p4Y" id="7HF-gp-kV6"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkY-en-0Mg" userLabel="First Responder" sceneMemberID="firstResponder"/>
