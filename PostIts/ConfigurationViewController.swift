@@ -9,8 +9,10 @@
 import UIKit
 import StoreKit
 
-class ConfigurationViewController: UIViewController, PostItsPurchaseManagerDelegate {
+class ConfigurationViewController: UIViewController, UITableViewDataSource, UITextViewDelegate, PostItsPurchaseManagerDelegate {
 
+    @IBOutlet weak var configureTableView: ConfigurationTableView!
+    
     @IBOutlet weak var doneBarButton: UIBarButtonItem!
     @IBAction func pushDoneBarButton(sender: AnyObject) {
         //画面を閉じる
@@ -20,8 +22,8 @@ class ConfigurationViewController: UIViewController, PostItsPurchaseManagerDeleg
     @IBOutlet weak var backgroundImageButton: UIButton!
     @IBAction func pushBackgroundImageButton(sender: AnyObject) {
         let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate //AppDelegateのインスタンスを取得
-        if (appDelegate.selectedBackgroundImg == 4) {
-            appDelegate.selectedBackgroundImg = 1
+        if (appDelegate.selectedBackgroundImg == 3) {
+            appDelegate.selectedBackgroundImg = 0
         } else {
             appDelegate.selectedBackgroundImg += 1
         }
@@ -86,15 +88,24 @@ class ConfigurationViewController: UIViewController, PostItsPurchaseManagerDeleg
         // Dispose of any resources that can be recreated.
     }
     
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell: ConfigurationTableViewCell = tableView.dequeueReusableCellWithIdentifier("PostItsCell", forIndexPath: indexPath) as! ConfigurationTableViewCell
+        return cell
+    }
+    
     private func configureBackgroundImageButtonText() {
         let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate //AppDelegateのインスタンスを取得
-        if (appDelegate.selectedBackgroundImg == 1) {
+        if (appDelegate.selectedBackgroundImg == 0) {
             self.backgroundImageButton.setTitle("whiteboad", forState: UIControlState.Normal)
-        } else if (appDelegate.selectedBackgroundImg == 2) {
+        } else if (appDelegate.selectedBackgroundImg == 1) {
             self.backgroundImageButton.setTitle("blackboard", forState: UIControlState.Normal)
-        } else if (appDelegate.selectedBackgroundImg == 3) {
+        } else if (appDelegate.selectedBackgroundImg == 2) {
             self.backgroundImageButton.setTitle("corkboard", forState: UIControlState.Normal)
-        } else if (appDelegate.selectedBackgroundImg == 4) {
+        } else if (appDelegate.selectedBackgroundImg == 3) {
             self.backgroundImageButton.setTitle("gridsheet", forState: UIControlState.Normal)
         }
     }

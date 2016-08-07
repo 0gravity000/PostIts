@@ -544,13 +544,13 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
     func configureBackgroungImg(imageNo: Int) -> UIImage {
         var uiImage: UIImage = UIImage(named: "whiteboard01.png")!
         
-        if (imageNo == 1) {
+        if (imageNo == 0) {
             uiImage = UIImage(named: "whiteboard01.png")!
-        } else if (imageNo == 2) {
+        } else if (imageNo == 1) {
             uiImage = UIImage(named: "blackboard01.png")!
-        } else if (imageNo == 3) {
+        } else if (imageNo == 2) {
             uiImage = UIImage(named: "corkboard01.png")!
-        } else if (imageNo == 4) {
+        } else if (imageNo == 3) {
             uiImage = UIImage(named: "gridsheet01.png")!
         }
         return uiImage

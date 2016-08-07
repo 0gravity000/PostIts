@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PostItsPurchaseManagerDel
     var window: UIWindow?
 
     var selectedPostItColor = postItBackgroundColor.yellow
-    var selectedBackgroundImg = 1
+    var selectedBackgroundImg = 0
     var viewPosX: Float? = nil
     var viewPosY: Float? = nil
     
