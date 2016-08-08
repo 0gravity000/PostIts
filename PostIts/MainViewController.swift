@@ -125,11 +125,6 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
             let postItsTextView = PostItsTextView()
             addPostItsTextViewToBackgroundImageView(postItsTextView, targetPostIt: postIt)
         }
-//        //Realmデータの creatTime が一番大きい（最新）の座標をセットする。
-//        //Realmデータが0件の場合は？
-//        let realmLastObject = self.sortedRealm!.last
-//        appDelegate.viewPosX = (realmLastObject?.posX)!
-//        appDelegate.viewPosY = (realmLastObject?.posY)!
         
     }
     
@@ -194,37 +189,60 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
             self.sortedRealm = self.realm.objects(PostItsModel).sorted("creatTime", ascending: true)
             print(self.sortedRealm) //debug code
 
-            //Realmデータ新規作成
-            let newPostIt = PostItsModel()
-            
-            //tagNo算出 sortedRealm の順に割り振る
-            if let realmLastObject = self.sortedRealm!.last {
-                newPostIt.tagNo = realmLastObject.tagNo + 1
-            } else {
-                newPostIt.tagNo = 0
-            }
+            var executableFlag = true
+            //制限チェック処理
+            //制限解除キーは購入済みか
+            if (appDelegate.isPurchasedLimitationReleaseKey == false) {
+                //PostItsの数が10個か
+                if (self.sortedRealm?.count >= 10) {
+                    executableFlag = false
+                    //alert表示
+                    let ac = UIAlertController(title: "確認", message: "付箋紙の数は、10個までは無料で使用できます。\n制限解除キーを購入すると、無制限に使用できます。", preferredStyle: .Alert)
+                    //OK
+                    let okAction = UIAlertAction(title: "OK", style: .Default, handler:{
+                        // ボタンが押された時の処理
+                        (action: UIAlertAction!) -> Void in
+                    })
+                    ac.addAction(okAction)
+                    presentViewController(ac, animated: true, completion: nil)
 
-            newPostIt.id = NSUUID().UUIDString
-            newPostIt.color = appDelegate.selectedPostItColor.rawValue
-            newPostIt.creatTime = NSDate()
-            newPostIt.updateTime = newPostIt.creatTime
-            newPostIt.posX = Float(amendedBackgroundImageViewTouchPointX)
-            newPostIt.posY = Float(amendedBackgroundImageViewTouchPointY)
-            newPostIt.isVisible = true
-            
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
-            newPostIt.content = dateFormatter.stringFromDate(newPostIt.creatTime)
-
-            //Realmにデータを永続化
-            //プライマリーキー id の値がすでに存在するなら、更新、存在しないなら追加
-            try! realm.write {
-                realm.add(newPostIt, update: true)
+                }
             }
             
-            //backgroundImageView に postItsTextView を追加する
-            let postItsTextView = PostItsTextView()
-            addPostItsTextViewToBackgroundImageView(postItsTextView, targetPostIt: newPostIt)
+            //制限解除キーは購入済み または、制限解除キー未購入だが10個以下の場合
+            if (executableFlag == true) {
+                //Realmデータ新規作成
+                let newPostIt = PostItsModel()
+                
+                //tagNo算出 sortedRealm の順に割り振る
+                if let realmLastObject = self.sortedRealm!.last {
+                    newPostIt.tagNo = realmLastObject.tagNo + 1
+                } else {
+                    newPostIt.tagNo = 0
+                }
+                
+                newPostIt.id = NSUUID().UUIDString
+                newPostIt.color = appDelegate.selectedPostItColor.rawValue
+                newPostIt.creatTime = NSDate()
+                newPostIt.updateTime = newPostIt.creatTime
+                newPostIt.posX = Float(amendedBackgroundImageViewTouchPointX)
+                newPostIt.posY = Float(amendedBackgroundImageViewTouchPointY)
+                newPostIt.isVisible = true
+                
+                let dateFormatter = NSDateFormatter()
+                dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+                newPostIt.content = dateFormatter.stringFromDate(newPostIt.creatTime)
+                
+                //Realmにデータを永続化
+                //プライマリーキー id の値がすでに存在するなら、更新、存在しないなら追加
+                try! realm.write {
+                    realm.add(newPostIt, update: true)
+                }
+                
+                //backgroundImageView に postItsTextView を追加する
+                let postItsTextView = PostItsTextView()
+                addPostItsTextViewToBackgroundImageView(postItsTextView, targetPostIt: newPostIt)
+            }
             
         } else if (self.modeFlag == 3) {  //3:削除モード
             //ここでは特に何もしない
