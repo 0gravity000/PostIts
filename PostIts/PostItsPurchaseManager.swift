@@ -76,7 +76,7 @@ class PostItsPurchaseManager: NSObject,SKPaymentTransactionObserver {
             }
         }
         
-        //課金処理開始 この場所はいいの？先に productsRequest didReceiveResponseのエラーチェックしないと
+        //課金処理開始 先に productsRequest didReceiveResponseのエラーチェックを行っている
         let payment = SKMutablePayment(product: product)
         SKPaymentQueue.defaultQueue().addPayment(payment)
         self.productIdentifier = product.productIdentifier
@@ -134,7 +134,6 @@ class PostItsPurchaseManager: NSObject,SKPaymentTransactionObserver {
     }
     
     
-    
     // MARK: - SKPaymentTransaction process
     private func completeTransaction(transaction : SKPaymentTransaction) {
         if transaction.payment.productIdentifier == self.productIdentifier {
@@ -174,6 +173,7 @@ class PostItsPurchaseManager: NSObject,SKPaymentTransactionObserver {
         })
     }
     
+    //これはいつ呼ばれる、何の処理???
     private func deferredTransaction(transaction : SKPaymentTransaction) {
         //承認待ち
         self.delegate?.purchaseManagerDidDeferred?(self)

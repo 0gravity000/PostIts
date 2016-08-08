@@ -28,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PostItsPurchaseManagerDel
     var selectedBackgroundImg = 0
     var viewPosX: Float? = nil
     var viewPosY: Float? = nil
+    var isPurchasedLimitationReleaseKey: Bool = false
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
@@ -36,13 +37,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PostItsPurchaseManagerDel
         PostItsPurchaseManager.sharedManager().delegate = self
         // オブザーバー登録
         SKPaymentQueue.defaultQueue().addTransactionObserver(PostItsPurchaseManager.sharedManager())
-        //リストア処理必要???
-        
+
         //NSUserdefaultsからデータを取得
         let defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        //選択中のBackgroundImg
         let storedBackgroundImg: Int = defaults.integerForKey("selectedBackgroundImg")
         selectedBackgroundImg = storedBackgroundImg
-        
+
+        //選択中のPostItColor
         let storedPostItColor: Int = defaults.integerForKey("selectedPostItColor")
         if (storedPostItColor == postItBackgroundColor.yellow.rawValue) {
             selectedPostItColor = postItBackgroundColor.yellow
@@ -57,6 +59,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PostItsPurchaseManagerDel
         } else if (storedPostItColor == postItBackgroundColor.purple.rawValue) {
             selectedPostItColor = postItBackgroundColor.purple
         }
+        
+        //制限解除キーの購入状態
+        let storedLimitationReleaseKeyState: Bool = defaults.boolForKey("isPurchasedLimitationReleaseKey")
+        isPurchasedLimitationReleaseKey = storedLimitationReleaseKeyState
         
         return true
     }

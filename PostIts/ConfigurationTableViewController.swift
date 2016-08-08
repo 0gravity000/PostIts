@@ -22,7 +22,7 @@ class ConfigurationTableViewController: UITableViewController, PostItsPurchaseMa
     
     @IBOutlet weak var productPurchaseButton: UIButton!
     @IBAction func pushProductPurchaseButton(sender: AnyObject) {
-        //UIAlertController使用
+        //制限解除キーを購入
         let ac = UIAlertController(title: "確認", message: "制限解除キーを購入しますか？", preferredStyle: .Alert)
         //OK
         let okAction = UIAlertAction(title: "OK", style: .Default, handler:{
@@ -65,6 +65,12 @@ class ConfigurationTableViewController: UITableViewController, PostItsPurchaseMa
         presentViewController(ac, animated: true, completion: nil)
     }
     
+    @IBOutlet weak var restoreProductButton: UIButton!
+    
+    @IBAction func pushRestoreProductButton(sender: AnyObject) {
+        //リストア処理 ここでするのはいいか???
+        self.startRestore()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,6 +89,9 @@ class ConfigurationTableViewController: UITableViewController, PostItsPurchaseMa
     override func viewWillAppear(animated: Bool) {
         //backgroundImageラベルのテキストを設定
         configureBackgroundImageLabelText()
+        //制限解除キーの状態をチェックし、表示を変える
+        //このタイミングでNSUserdefaultsを使ってデータを保存する
+        checkLimitationReleaseKeyStatus()
     }
     
     private func configureBackgroundImageLabelText() {
@@ -98,6 +107,26 @@ class ConfigurationTableViewController: UITableViewController, PostItsPurchaseMa
         }
     }
     
+    //制限解除キーの状態をチェックし、表示を変える
+    //このタイミングでNSUserdefaultsを使ってデータを保存する
+    private func checkLimitationReleaseKeyStatus() {
+        let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate //AppDelegateのインスタンスを取得
+        if (appDelegate.isPurchasedLimitationReleaseKey == true) {
+            self.productPurchaseButton.setTitle("購入済", forState: UIControlState.Normal)
+            self.productPurchaseButton.enabled = false
+            self.numberOfPostItsLabel.text = ("無制限")
+        } else {
+            self.productPurchaseButton.setTitle("購入する", forState: UIControlState.Normal)
+            self.productPurchaseButton.enabled = true
+            self.numberOfPostItsLabel.text = ("10")
+        }
+
+        //このタイミングでNSUserdefaultsを使ってデータを保存する
+        let defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        defaults.setBool(appDelegate.isPurchasedLimitationReleaseKey, forKey: "isPurchasedLimitationReleaseKey")
+
+    }
+
     
 //     MARK: - Table view data source
 
@@ -114,7 +143,7 @@ class ConfigurationTableViewController: UITableViewController, PostItsPurchaseMa
         } else if section == 2 {
             return 1
         } else if section == 3 {
-            return 1
+            return 2
         } else {
             //ありえない
             return 1
@@ -191,7 +220,7 @@ class ConfigurationTableViewController: UITableViewController, PostItsPurchaseMa
                 
             } else {
                 //プロダクト取得失敗
-                self.productManagerDidFailWithError(error!) //これ大丈夫？
+                self.productManagerDidFailWithError(error!) //これ大丈夫か???
                 //print("プロダクト取得失敗: \(products), \(error?.localizedDescription)")
             }
         })
@@ -201,19 +230,26 @@ class ConfigurationTableViewController: UITableViewController, PostItsPurchaseMa
     func startRestore() {
         //デリゲード設定
         PostItsPurchaseManager.sharedManager().delegate = self
+
+        //制限解除フラグを落とす
+        let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate //AppDelegateのインスタンスを取得
+        appDelegate.isPurchasedLimitationReleaseKey = false
         //リストア開始
         PostItsPurchaseManager.sharedManager().startRestore()
     }
     
-    
     // MARK: - PostItsPurchaseManager Delegate
     func purchaseManager(purchaseManager: PostItsPurchaseManager!, didFinishPurchaseWithTransaction transaction: SKPaymentTransaction!, decisionHandler: ((complete: Bool) -> Void)!) {
-        //課金終了時に呼び出される
+        //課金終了、リストア時に呼び出される
         /*
          コンテンツ解放処理
          */
-        self.productPurchaseButton.setTitle("購入済", forState: UIControlState.Normal)
-        self.numberOfPostItsLabel.text = ("無制限")
+        //制限解除フラグを立てる
+        let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate //AppDelegateのインスタンスを取得
+        appDelegate.isPurchasedLimitationReleaseKey = true
+        //制限解除キーの状態をチェックし、表示を変える
+        //このタイミングでNSUserdefaultsを使ってデータを保存する
+        checkLimitationReleaseKeyStatus()
         
         //コンテンツ解放が終了したら、この処理を実行(true: 課金処理全部完了, false 課金処理中断)
         decisionHandler(complete: true)
@@ -260,29 +296,29 @@ class ConfigurationTableViewController: UITableViewController, PostItsPurchaseMa
         ac.addAction(okAction)
         presentViewController(ac, animated: true, completion: nil)
     }
-//    func productManager(productManager: PostItsProductManager!, didFailWithError error: NSError!) {
-//        /*
-//         errorを使ってアラート表示
-//         */
-//        //プロダクト取得失敗
-//        print("productManager didFailWithError = \(error)")
-//        let ac = UIAlertController(title: "エラー", message: error.localizedDescription, preferredStyle: .Alert)
-//        //OK
-//        let okAction = UIAlertAction(title: "OK", style: .Default, handler:{
-//            // ボタンが押された時の処理
-//            (action: UIAlertAction!) -> Void in
-//        })
-//        ac.addAction(okAction)
-//        presentViewController(ac, animated: true, completion: nil)
-//    }
     
     
     func purchaseManagerDidFinishRestore(purchaseManager: PostItsPurchaseManager!) {
         //リストア終了時に呼び出される(個々のトランザクションは”課金終了”で処理)
         /*
          インジケータなどを表示していたら非表示に
+         なお、プロダクト未購入時は、
+         purchaseManager didFinishPurchaseWithTransaction が呼ばれず、ここに来るので注意
          */
-        print("purchaseManagerDidFinishRestore")
+        //制限解除キーの状態をチェックし、表示を変える
+        //このタイミングでNSUserdefaultsを使ってデータを保存する
+        checkLimitationReleaseKeyStatus()
+        
+        let ac = UIAlertController(title: "確認", message: "復元が完了しました。", preferredStyle: .Alert)
+        //OK
+        let okAction = UIAlertAction(title: "OK", style: .Default, handler:{
+            // ボタンが押された時の処理
+            (action: UIAlertAction!) -> Void in
+        })
+        ac.addAction(okAction)
+        presentViewController(ac, animated: true, completion: nil)
+
+        print("purchaseManagerDidFinishRestore")    //debug code
     }
     
     func purchaseManagerDidDeferred(purchaseManager: PostItsPurchaseManager!) {

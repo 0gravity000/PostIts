@@ -26,8 +26,7 @@ class PostItsModel: Object {
     }
 }
 
-
-class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDelegate {
+class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDelegate, PostItsPurchaseManagerDelegate {
     
 //    var backgroundImageView: BackGroundImageView!
     var backgroundImageView = BackGroundImageView()
@@ -131,6 +130,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
 //        let realmLastObject = self.sortedRealm!.last
 //        appDelegate.viewPosX = (realmLastObject?.posX)!
 //        appDelegate.viewPosY = (realmLastObject?.posY)!
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -579,7 +579,6 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
     }
     
 
-    
     //アプリ内課金処理 -----------------------------------
 //    アイテム購入の流れ
 //    

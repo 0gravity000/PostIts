@@ -240,6 +240,29 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Ab0-mb-tsE">
+                                        <rect key="frame" x="0.0" y="328" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ab0-mb-tsE" id="RTd-kI-d5z">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Akx-NH-rPl">
+                                                    <rect key="frame" x="384" y="8" width="198" height="27"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                    <state key="normal" title="購入状態を復元する"/>
+                                                    <connections>
+                                                        <action selector="pushRestoreProductButton:" destination="ayI-xY-fAh" eventType="touchUpInside" id="uaO-wj-V2L"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Akx-NH-rPl" secondAttribute="bottom" id="7HO-df-LA7"/>
+                                                <constraint firstItem="Akx-NH-rPl" firstAttribute="top" secondItem="RTd-kI-d5z" secondAttribute="topMargin" id="CcD-4a-YkJ"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Akx-NH-rPl" secondAttribute="trailing" constant="10" id="ebE-p4-lOC"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -253,6 +276,7 @@
                         <outlet property="doneBarButton" destination="x7r-Rb-bh3" id="eAi-7H-8CZ"/>
                         <outlet property="numberOfPostItsLabel" destination="hdg-Xa-j5m" id="sV3-PZ-TYU"/>
                         <outlet property="productPurchaseButton" destination="hFg-mg-p4Y" id="7HF-gp-kV6"/>
+                        <outlet property="restoreProductButton" destination="Akx-NH-rPl" id="evJ-8p-VVu"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkY-en-0Mg" userLabel="First Responder" sceneMemberID="firstResponder"/>
