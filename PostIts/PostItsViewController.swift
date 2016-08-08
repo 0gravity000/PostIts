@@ -50,7 +50,9 @@ class PostItsViewController: UIViewController, UITableViewDataSource, UITextView
         //let postIts = self.realmObj!.objects(PostItsModel)
 
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+        dateFormatter.dateStyle = .MediumStyle
+        dateFormatter.timeStyle = .MediumStyle
+        //dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
         for count in indexPath.row...indexPath.row {
             cell.updatetimeLabel.text = dateFormatter.stringFromDate(postIts[count].updateTime)
             if (postIts[count].content == "") {
@@ -59,7 +61,7 @@ class PostItsViewController: UIViewController, UITableViewDataSource, UITextView
             } else {
                 cell.contentLabel.text = postIts[count].content
             }
-            cell.contentLabel.text = cell.contentLabel.text! + " " + String(postIts[count].tagNo) //degug code 後から削除すること!
+            //cell.contentLabel.text = cell.contentLabel.text! + " " + String(postIts[count].tagNo) //degug code 後から削除すること!
             cell.contentLabel.backgroundColor = configureUIColor(postIts[count].color)
 //            cell.textLabel?.text = String(postIts[count].tagNo)
 //            cell.detailTextLabel?.text = String(postIts[count].content)

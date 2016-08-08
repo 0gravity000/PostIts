@@ -240,7 +240,9 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
                 newPostIt.isVisible = true
                 
                 let dateFormatter = NSDateFormatter()
-                dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+                dateFormatter.dateStyle = .MediumStyle
+                dateFormatter.timeStyle = .MediumStyle
+                //dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
                 newPostIt.content = dateFormatter.stringFromDate(newPostIt.creatTime)
                 
                 //Realmにデータを永続化

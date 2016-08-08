@@ -24,7 +24,7 @@ class SelectBackgroundImageViewController: UIViewController {
 
     @IBOutlet weak var backgroundImgPicker: UIPickerView!
     
-    var backgroundImgArray: NSArray = ["whiteboard","blackboard","corkboard","gridsheet"]
+    var backgroundImgArray: NSArray = ["ホワイトボード","黒板","コルクボード","方眼紙"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
