@@ -11,8 +11,11 @@ import StoreKit
 
 private var productManagers : Set<PostItsProductManager> = Set()
 
+//アイテムの情報の取得処理
 class PostItsProductManager: NSObject, SKProductsRequestDelegate {
     
+    //var delegate : PostItsProductManagerDelegate?  //不要
+
     private var completionForProductidentifiers : (([SKProduct]!,NSError?) -> Void)?
     
     /// 課金アイテム情報を取得
@@ -31,9 +34,18 @@ class PostItsProductManager: NSObject, SKProductsRequestDelegate {
         if response.products.count == 0 {
             error = NSError(domain: "ProductsRequestErrorDomain", code: 0, userInfo: [NSLocalizedDescriptionKey:"プロダクトを取得できませんでした。"])
         }
+        //completionForProductidentifiers?(response.products, error)  //1回だけ
+        
+        // 無効なアイテムがないかチェック アイテム ID を間違えて指定した場合など
+        if response.invalidProductIdentifiers.count > 0 {
+            //無効なアイテムがあった場合の処理
+            error = NSError(domain: "ProductsRequestErrorDomain", code: 1, userInfo: [NSLocalizedDescriptionKey:"無効なプロダクトIDです。"])
+        }
         completionForProductidentifiers?(response.products, error)
+        
     }
     
+    //これはいつ呼ばれる？??
     func request(request: SKRequest, didFailWithError error: NSError) {
         let error = NSError(domain: "ProductsRequestErrorDomain", code: 0, userInfo: [NSLocalizedDescriptionKey:"プロダクトを取得できませんでした。"])
         completionForProductidentifiers?(nil,error)
@@ -44,6 +56,8 @@ class PostItsProductManager: NSObject, SKProductsRequestDelegate {
         productManagers.remove(self)
     }
     
+    //
+
     // MARK: - Utility
     /// おまけ 価格情報を抽出
     class func priceStringFromProduct(product: SKProduct!) -> String {
@@ -54,3 +68,11 @@ class PostItsProductManager: NSObject, SKProductsRequestDelegate {
         return numberFormatter.stringFromNumber(product.price)!
     }
 }
+
+//不要
+//@objc protocol PostItsProductManagerDelegate {
+//    //プロダクト取得失敗
+//    optional func productManager(productManager: PostItsProductManager!, didFailWithError error: NSError!)
+//    
+//}
+

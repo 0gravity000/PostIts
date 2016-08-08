@@ -16,7 +16,9 @@ class ConfigurationTableViewController: UITableViewController, PostItsPurchaseMa
         //画面を閉じる
         self.dismissViewControllerAnimated(true, completion: nil)
     }
+    
     @IBOutlet weak var backgroundImageLabel: UILabel!
+    @IBOutlet weak var numberOfPostItsLabel: UILabel!
     
     @IBOutlet weak var productPurchaseButton: UIButton!
     @IBAction func pushProductPurchaseButton(sender: AnyObject) {
@@ -28,25 +30,28 @@ class ConfigurationTableViewController: UITableViewController, PostItsPurchaseMa
             (action: UIAlertAction!) -> Void in
             
             //アプリ内課金処理
-            //プロダクトID達
-            let productIdentifiers = ["jp.ne.0gravity000.PostIts.productID_LM01"]
-            //        let productIdentifiers = ["productIdentifier1","productIdentifier2"]
+            //2重処理してる???のでこっちは削除
+//            //プロダクトID達
+//            let productIdentifiers = ["jp.ne.0gravity000.PostIts.productID_LM01"]
+//            //        let productIdentifiers = ["productIdentifier1","productIdentifier2"]
+//            
+//            //プロダクト情報取得
+//            PostItsProductManager.productsWithProductIdentifiers(productIdentifiers,
+//                completion: { (products : [SKProduct]!, error : NSError?) -> Void in
+//                    for product in products {
+//                        print(product)
+////                        //価格を抽出
+////                        let priceString = PostItsProductManager.priceStringFromProduct(product)
+////                        //価格情報を使って表示を更新したり。
+//                    }
+//            })
             
             //プロダクト情報取得
-            PostItsProductManager.productsWithProductIdentifiers(productIdentifiers,
-                completion: { (products : [SKProduct]!, error : NSError?) -> Void in
-                    for product in products {
-                        print(product)
-//                        //価格を抽出
-//                        let priceString = PostItsProductManager.priceStringFromProduct(product)
-//                        //価格情報を使って表示を更新したり。
-                    }
-            })
-            
             self.startPurchase("jp.ne.0gravity000.PostIts.productID_LM01")
+//            self.startPurchase("jp.ne.0gravity000.PostIts.productID_LM99")  //debug code error用
             
-            //titleを変更する ここではダメ
-            self.productPurchaseButton.setTitle("購入済", forState: UIControlState.Normal)
+            //ButtonTitleの変更 ここではダメ
+            //purchaseManager didFinishPurchaseWithTransaction で実行する
         })
         
         //CANCEL
@@ -179,10 +184,15 @@ class ConfigurationTableViewController: UITableViewController, PostItsPurchaseMa
         
         //プロダクト情報を取得
         PostItsProductManager.productsWithProductIdentifiers([productIdentifier], completion: { (products, error) -> Void in
+            print("プロダクト取得: \(products), \(error?.localizedDescription)") //debug code
             if products.count > 0 {
                 //課金処理開始
                 PostItsPurchaseManager.sharedManager().startWithProduct(products[0])
                 
+            } else {
+                //プロダクト取得失敗
+                self.productManagerDidFailWithError(error!) //これ大丈夫？
+                //print("プロダクト取得失敗: \(products), \(error?.localizedDescription)")
             }
         })
     }
@@ -202,6 +212,9 @@ class ConfigurationTableViewController: UITableViewController, PostItsPurchaseMa
         /*
          コンテンツ解放処理
          */
+        self.productPurchaseButton.setTitle("購入済", forState: UIControlState.Normal)
+        self.numberOfPostItsLabel.text = ("無制限")
+        
         //コンテンツ解放が終了したら、この処理を実行(true: 課金処理全部完了, false 課金処理中断)
         decisionHandler(complete: true)
     }
@@ -221,7 +234,48 @@ class ConfigurationTableViewController: UITableViewController, PostItsPurchaseMa
          errorを使ってアラート表示
          */
         print("purchaseManager didFailWithError = \(error)")
+        let ac = UIAlertController(title: "エラー", message: error.localizedDescription, preferredStyle: .Alert)
+        //OK
+        let okAction = UIAlertAction(title: "OK", style: .Default, handler:{
+            // ボタンが押された時の処理
+            (action: UIAlertAction!) -> Void in
+        })
+        ac.addAction(okAction)
+        presentViewController(ac, animated: true, completion: nil)
     }
+    
+    //同様にProductManager版もいる???
+    func productManagerDidFailWithError(error: NSError!) {
+        /*
+         errorを使ってアラート表示
+         */
+        //プロダクト取得失敗
+        print("productManager didFailWithError = \(error)")
+        let ac = UIAlertController(title: "エラー", message: error.localizedDescription, preferredStyle: .Alert)
+        //OK
+        let okAction = UIAlertAction(title: "OK", style: .Default, handler:{
+            // ボタンが押された時の処理
+            (action: UIAlertAction!) -> Void in
+        })
+        ac.addAction(okAction)
+        presentViewController(ac, animated: true, completion: nil)
+    }
+//    func productManager(productManager: PostItsProductManager!, didFailWithError error: NSError!) {
+//        /*
+//         errorを使ってアラート表示
+//         */
+//        //プロダクト取得失敗
+//        print("productManager didFailWithError = \(error)")
+//        let ac = UIAlertController(title: "エラー", message: error.localizedDescription, preferredStyle: .Alert)
+//        //OK
+//        let okAction = UIAlertAction(title: "OK", style: .Default, handler:{
+//            // ボタンが押された時の処理
+//            (action: UIAlertAction!) -> Void in
+//        })
+//        ac.addAction(okAction)
+//        presentViewController(ac, animated: true, completion: nil)
+//    }
+    
     
     func purchaseManagerDidFinishRestore(purchaseManager: PostItsPurchaseManager!) {
         //リストア終了時に呼び出される(個々のトランザクションは”課金終了”で処理)

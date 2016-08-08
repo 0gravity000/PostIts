@@ -11,6 +11,7 @@ import StoreKit
 
 private let purchaseManagerSharedManager = PostItsPurchaseManager()
 
+//アイテムの購入を処理
 class PostItsPurchaseManager: NSObject,SKPaymentTransactionObserver {
 
     var delegate : PostItsPurchaseManagerDelegate?
@@ -75,7 +76,7 @@ class PostItsPurchaseManager: NSObject,SKPaymentTransactionObserver {
             }
         }
         
-        //課金処理開始
+        //課金処理開始 この場所はいいの？先に productsRequest didReceiveResponseのエラーチェックしないと
         let payment = SKMutablePayment(product: product)
         SKPaymentQueue.defaultQueue().addPayment(payment)
         self.productIdentifier = product.productIdentifier

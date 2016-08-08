@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PostIts/PostItsProductManager.swift"
-            timestampString = "491939640.007737"
+            timestampString = "492287892.20804"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
             landmarkName = "productsWithProductIdentifiers(_:completion:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PostIts/PostItsPurchaseManager.swift"
-            timestampString = "491940092.581084"
+            timestampString = "492283698.09904"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
             landmarkName = "startWithProduct(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PostIts/PostItsPurchaseManager.swift"
-            timestampString = "491940205.240787"
+            timestampString = "492283698.09904"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
             landmarkName = "paymentQueue(_:updatedTransactions:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PostIts/PostItsPurchaseManager.swift"
-            timestampString = "491940208.953089"
+            timestampString = "492283698.09904"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "125"
-            endingLineNumber = "125"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
             landmarkName = "paymentQueue(_:restoreCompletedTransactionsFailedWithError:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PostIts/PostItsPurchaseManager.swift"
-            timestampString = "491940210.257862"
+            timestampString = "492283698.09904"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
             landmarkName = "paymentQueueRestoreCompletedTransactionsFinished(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -154,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PostIts/ConfigurationTableViewController.swift"
-            timestampString = "492280195.5294"
+            timestampString = "492332534.059876"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
             landmarkName = "tableView(_:numberOfRowsInSection:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -170,61 +170,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PostIts/ConfigurationTableViewController.swift"
-            timestampString = "492280898.73648"
+            timestampString = "492332534.059876"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "178"
-            endingLineNumber = "178"
-            landmarkName = "startPurchase(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PostIts/ConfigurationTableViewController.swift"
-            timestampString = "492280901.991137"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "193"
-            endingLineNumber = "193"
+            startingLineNumber = "203"
+            endingLineNumber = "203"
             landmarkName = "startRestore()"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "PostIts.ConfigurationTableViewController.startPurchase (Swift.String) -&gt; ()"
-                  moduleName = "PostIts"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sasakiai/Documents/iphoneAppDistribute/PostIts/PostIts/ConfigurationTableViewController.swift"
-                  timestampString = "492280902.002618"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "195"
-                  endingLineNumber = "195"
-                  offsetFromSymbolStart = "136">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "PostIts.ConfigurationTableViewController.(startPurchase (Swift.String) -&gt; ()).(closure #1)"
-                  moduleName = "PostIts"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sasakiai/Documents/iphoneAppDistribute/PostIts/PostIts/ConfigurationTableViewController.swift"
-                  timestampString = "492280902.002816"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "196"
-                  endingLineNumber = "196"
-                  offsetFromSymbolStart = "20">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -234,11 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PostIts/ConfigurationTableViewController.swift"
-            timestampString = "492280911.486803"
+            timestampString = "492332534.059876"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "206"
-            endingLineNumber = "206"
+            startingLineNumber = "219"
+            endingLineNumber = "219"
             landmarkName = "purchaseManager(_:didFinishPurchaseWithTransaction:decisionHandler:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -250,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PostIts/ConfigurationTableViewController.swift"
-            timestampString = "492280913.176232"
+            timestampString = "492332534.059876"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "215"
-            endingLineNumber = "215"
+            startingLineNumber = "228"
+            endingLineNumber = "228"
             landmarkName = "purchaseManager(_:didFinishUntreatedPurchaseWithTransaction:decisionHandler:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -266,11 +218,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PostIts/ConfigurationTableViewController.swift"
-            timestampString = "492281089.242126"
+            timestampString = "492332534.059876"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "223"
-            endingLineNumber = "223"
+            startingLineNumber = "237"
+            endingLineNumber = "237"
             landmarkName = "purchaseManager(_:didFailWithError:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -282,11 +234,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PostIts/ConfigurationTableViewController.swift"
-            timestampString = "492281090.49006"
+            timestampString = "492332534.059876"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "231"
-            endingLineNumber = "231"
+            startingLineNumber = "285"
+            endingLineNumber = "285"
             landmarkName = "purchaseManagerDidFinishRestore(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -298,11 +250,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PostIts/ConfigurationTableViewController.swift"
-            timestampString = "492281091.601742"
+            timestampString = "492332534.059876"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "239"
-            endingLineNumber = "239"
+            startingLineNumber = "293"
+            endingLineNumber = "293"
             landmarkName = "purchaseManagerDidDeferred(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -314,11 +266,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PostIts/PostItsPurchaseManager.swift"
-            timestampString = "492281116.745616"
+            timestampString = "492283698.09904"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
             landmarkName = "startRestore()"
             landmarkType = "5">
          </BreakpointContent>
@@ -330,11 +282,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PostIts/PostItsPurchaseManager.swift"
-            timestampString = "492281129.16234"
+            timestampString = "492283698.09904"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "139"
-            endingLineNumber = "139"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
             landmarkName = "completeTransaction(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -346,11 +298,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PostIts/PostItsPurchaseManager.swift"
-            timestampString = "492281134.744907"
+            timestampString = "492283698.09904"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "161"
-            endingLineNumber = "161"
+            startingLineNumber = "162"
+            endingLineNumber = "162"
             landmarkName = "failedTransaction(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -362,11 +314,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PostIts/PostItsPurchaseManager.swift"
-            timestampString = "492281139.145275"
+            timestampString = "492283698.09904"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "168"
-            endingLineNumber = "168"
+            startingLineNumber = "169"
+            endingLineNumber = "169"
             landmarkName = "restoreTransaction(_:)"
             landmarkType = "5">
             <Locations>
@@ -378,11 +330,11 @@
                   moduleName = "PostIts"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/sasakiai/Documents/iphoneAppDistribute/PostIts/PostIts/PostItsPurchaseManager.swift"
-                  timestampString = "492281139.161849"
+                  timestampString = "492332535.308029"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "168"
-                  endingLineNumber = "168"
+                  startingLineNumber = "169"
+                  endingLineNumber = "169"
                   offsetFromSymbolStart = "28">
                </Location>
                <Location
@@ -393,11 +345,11 @@
                   moduleName = "PostIts"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/sasakiai/Documents/iphoneAppDistribute/PostIts/PostIts/PostItsPurchaseManager.swift"
-                  timestampString = "492281139.162078"
+                  timestampString = "492332535.308217"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "169"
-                  endingLineNumber = "169"
+                  startingLineNumber = "170"
+                  endingLineNumber = "170"
                   offsetFromSymbolStart = "24">
                </Location>
             </Locations>
@@ -410,11 +362,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PostIts/PostItsPurchaseManager.swift"
-            timestampString = "492281142.938006"
+            timestampString = "492283698.09904"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "178"
-            endingLineNumber = "178"
+            startingLineNumber = "179"
+            endingLineNumber = "179"
             landmarkName = "deferredTransaction(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -426,11 +378,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PostIts/PostItsProductManager.swift"
-            timestampString = "492281152.313396"
+            timestampString = "492287892.20804"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
             landmarkName = "productsRequest(_:didReceiveResponse:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -442,11 +394,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PostIts/PostItsProductManager.swift"
-            timestampString = "492281154.896515"
+            timestampString = "492328328.811556"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
             landmarkName = "request(_:didFailWithError:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -458,11 +410,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PostIts/PostItsProductManager.swift"
-            timestampString = "492281157.94418"
+            timestampString = "492330135.026856"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
             landmarkName = "requestDidFinish(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -474,12 +426,76 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PostIts/PostItsProductManager.swift"
-            timestampString = "492281160.641496"
+            timestampString = "492330135.026856"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
             landmarkName = "priceStringFromProduct(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PostIts/PostItsPurchaseManager.swift"
+            timestampString = "492289027.648474"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "startWithProduct(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PostIts/ConfigurationTableViewController.swift"
+            timestampString = "492332534.059876"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "190"
+            endingLineNumber = "190"
+            landmarkName = "startPurchase(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PostIts/ConfigurationTableViewController.swift"
+            timestampString = "492332534.059876"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "253"
+            endingLineNumber = "253"
+            landmarkName = "productManagerDidFailWithError(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PostIts/ConfigurationTableViewController.swift"
+            timestampString = "492332534.059876"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
+            landmarkName = "startPurchase(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

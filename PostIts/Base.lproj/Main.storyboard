@@ -151,8 +151,8 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="whiteboard" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hfb-Yd-Qtv">
-                                                    <rect key="frame" x="463" y="13" width="86" height="22"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="439" y="13" width="110" height="22"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -222,7 +222,8 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hFg-mg-p4Y">
-                                                    <rect key="frame" x="522" y="8" width="60" height="27"/>
+                                                    <rect key="frame" x="494" y="8" width="88" height="27"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                     <state key="normal" title="購入する"/>
                                                     <connections>
                                                         <action selector="pushProductPurchaseButton:" destination="ayI-xY-fAh" eventType="touchUpInside" id="NoM-ds-Mwv"/>
@@ -250,6 +251,7 @@
                     <connections>
                         <outlet property="backgroundImageLabel" destination="hfb-Yd-Qtv" id="aVb-AY-l5L"/>
                         <outlet property="doneBarButton" destination="x7r-Rb-bh3" id="eAi-7H-8CZ"/>
+                        <outlet property="numberOfPostItsLabel" destination="hdg-Xa-j5m" id="sV3-PZ-TYU"/>
                         <outlet property="productPurchaseButton" destination="hFg-mg-p4Y" id="7HF-gp-kV6"/>
                     </connections>
                 </tableViewController>
