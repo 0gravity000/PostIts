@@ -69,17 +69,26 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
     }
 
     @IBAction func pushSelectPostItBarButton(sender: AnyObject) {
-        self.modeFlag = 1
-        configureBarItemState()
+        //移動中の場合は、モード遷移しない
+        if (self.isMovingFlag != true) {
+            self.modeFlag = 1
+            configureBarItemState()
+        }
     }
     @IBAction func pushAddPostItBarButton(sender: AnyObject) {
-        self.modeFlag = 2
-        configureBarItemState()
+        //移動中の場合は、モード遷移しない
+        if (self.isMovingFlag != true) {
+            self.modeFlag = 2
+            configureBarItemState()
+        }
     }
 
     @IBAction func pushRemovePostItBarButton(sender: AnyObject) {
-        self.modeFlag = 3
-        configureBarItemState()
+        //移動中の場合は、モード遷移しない
+        if (self.isMovingFlag != true) {
+            self.modeFlag = 3
+            configureBarItemState()
+        }
     }
     
     @IBAction func pushMovePostItBarButton(sender: AnyObject) {
@@ -88,6 +97,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
     }
     
     @IBAction func pushConfigPostItBarButton(sender: AnyObject) {
+        //modal画面へ移動するので、呼ばれない
         self.modeFlag = 5
         configureBarItemState()
     }
