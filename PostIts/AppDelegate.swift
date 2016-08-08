@@ -31,12 +31,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PostItsPurchaseManagerDel
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        //アプリ内課金処理
+        //アプリ内課金処理 この場所でいい???他の場所も必要???
         // デリゲート設定
         PostItsPurchaseManager.sharedManager().delegate = self
         // オブザーバー登録
         SKPaymentQueue.defaultQueue().addTransactionObserver(PostItsPurchaseManager.sharedManager())
-        //リストア処理必要？
+        //リストア処理必要???
+        
+        //NSUserdefaultsからデータを取得
+        let defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        let storedBackgroundImg: Int = defaults.integerForKey("selectedBackgroundImg")
+        selectedBackgroundImg = storedBackgroundImg
+        
+        let storedPostItColor: Int = defaults.integerForKey("selectedPostItColor")
+        if (storedPostItColor == postItBackgroundColor.yellow.rawValue) {
+            selectedPostItColor = postItBackgroundColor.yellow
+        } else if (storedPostItColor == postItBackgroundColor.blue.rawValue) {
+            selectedPostItColor = postItBackgroundColor.blue
+        } else if (storedPostItColor == postItBackgroundColor.green.rawValue) {
+            selectedPostItColor = postItBackgroundColor.green
+        } else if (storedPostItColor == postItBackgroundColor.orange.rawValue) {
+            selectedPostItColor = postItBackgroundColor.orange
+        } else if (storedPostItColor == postItBackgroundColor.pink.rawValue) {
+            selectedPostItColor = postItBackgroundColor.pink
+        } else if (storedPostItColor == postItBackgroundColor.purple.rawValue) {
+            selectedPostItColor = postItBackgroundColor.purple
+        }
+        
         return true
     }
 
@@ -60,6 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PostItsPurchaseManagerDel
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        
     }
 
 

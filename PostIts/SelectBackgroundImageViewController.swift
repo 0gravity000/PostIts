@@ -14,6 +14,12 @@ class SelectBackgroundImageViewController: UIViewController {
     @IBAction func pushDoneBarButton(sender: AnyObject) {
         //画面を閉じる
         self.dismissViewControllerAnimated(true, completion: nil)
+
+        //このタイミングでNSUserdefaultsを使ってデータを保存する
+        let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate //AppDelegateのインスタンスを取得
+        let defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        defaults.setInteger(appDelegate.selectedBackgroundImg, forKey: "selectedBackgroundImg")
+        
     }
 
     @IBOutlet weak var backgroundImgPicker: UIPickerView!

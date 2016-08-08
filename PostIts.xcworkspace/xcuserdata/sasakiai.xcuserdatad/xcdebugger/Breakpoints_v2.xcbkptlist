@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PostIts/MainViewController.swift"
-            timestampString = "492231134.755548"
+            timestampString = "492349220.915063"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "149"
-            endingLineNumber = "149"
+            startingLineNumber = "166"
+            endingLineNumber = "166"
             landmarkName = "observeValueForKeyPath(_:ofObject:change:context:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -330,7 +330,7 @@
                   moduleName = "PostIts"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/sasakiai/Documents/iphoneAppDistribute/PostIts/PostIts/PostItsPurchaseManager.swift"
-                  timestampString = "492332535.308029"
+                  timestampString = "492349222.47166"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "169"
@@ -345,7 +345,7 @@
                   moduleName = "PostIts"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/sasakiai/Documents/iphoneAppDistribute/PostIts/PostIts/PostItsPurchaseManager.swift"
-                  timestampString = "492332535.308217"
+                  timestampString = "492349222.471814"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "170"
@@ -496,6 +496,54 @@
             startingLineNumber = "194"
             endingLineNumber = "194"
             landmarkName = "startPurchase(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PostIts/AppDelegate.swift"
+            timestampString = "492346077.904588"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "application(_:didFinishLaunchingWithOptions:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PostIts/MainViewController.swift"
+            timestampString = "492348707.814237"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "pushColorPostItBarButton(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PostIts/SelectBackgroundImageViewController.swift"
+            timestampString = "492348711.814257"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "pushDoneBarButton(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

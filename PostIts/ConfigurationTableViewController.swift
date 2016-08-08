@@ -47,7 +47,7 @@ class ConfigurationTableViewController: UITableViewController, PostItsPurchaseMa
 //            })
             
             //プロダクト情報取得
-            self.startPurchase("jp.ne.0gravity000.PostIts.productID_LM01")
+            self.startPurchase("jp.ne.0gravity000.PostIts.productID_LRK01")
 //            self.startPurchase("jp.ne.0gravity000.PostIts.productID_LM99")  //debug code error用
             
             //ButtonTitleの変更 ここではダメ

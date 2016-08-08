@@ -50,6 +50,23 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
 
     @IBAction func pushColorPostItBarButton(sender: AnyObject) {
         configurePostItBackgroundColor()
+
+        //このタイミングでNSUserdefaultsを使ってデータを保存する
+        let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate //AppDelegateのインスタンスを取得
+        let defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        if (appDelegate.selectedPostItColor == postItBackgroundColor.yellow) {
+            defaults.setInteger(postItBackgroundColor.yellow.rawValue, forKey: "selectedPostItColor")
+        } else if (appDelegate.selectedPostItColor == postItBackgroundColor.blue) {
+            defaults.setInteger(postItBackgroundColor.blue.rawValue, forKey: "selectedPostItColor")
+        } else if (appDelegate.selectedPostItColor == postItBackgroundColor.green) {
+            defaults.setInteger(postItBackgroundColor.green.rawValue, forKey: "selectedPostItColor")
+        } else if (appDelegate.selectedPostItColor == postItBackgroundColor.orange) {
+            defaults.setInteger(postItBackgroundColor.orange.rawValue, forKey: "selectedPostItColor")
+        } else if (appDelegate.selectedPostItColor == postItBackgroundColor.pink) {
+            defaults.setInteger(postItBackgroundColor.pink.rawValue, forKey: "selectedPostItColor")
+        } else if (appDelegate.selectedPostItColor == postItBackgroundColor.purple) {
+            defaults.setInteger(postItBackgroundColor.purple.rawValue, forKey: "selectedPostItColor")
+        }
     }
 
     @IBAction func pushSelectPostItBarButton(sender: AnyObject) {
@@ -98,7 +115,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
         
         //barItemButtonの初期化
         configureBarItemState()
-        self.colorPostItBarButton.tintColor = UIColor.yellowColor()
+        self.colorPostItBarButton.tintColor = configureUIColor(appDelegate.selectedPostItColor.rawValue)
         self.showListBarButton.tintColor = UIColor.blueColor()
         
         //RealmデータからPostItsTextViewを作成 初期化
