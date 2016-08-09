@@ -92,11 +92,8 @@
 		AAF91CBC1D549AEE0016E084 /* blackboard01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackboard01.png; sourceTree = "<group>"; };
 		AAF91CC41D571BEC0016E084 /* ConfigurationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationTableViewController.swift; sourceTree = "<group>"; };
 		AAF91CC61D575F770016E084 /* SelectBackgroundImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectBackgroundImageViewController.swift; sourceTree = "<group>"; };
-		AAF91CC91D5953B50016E084 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		AAF91CCD1D5955390016E084 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
-		AAF91CCF1D5955750016E084 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AAF91CD41D59D73F0016E084 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main.storyboard; sourceTree = "<group>"; };
-		AAF91CD51D59E1860016E084 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ja; path = ja.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AAF91CD61D59E5DD0016E084 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AAF91CD71D59EC730016E084 /* ja-JP */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ja-JP"; path = "ja-JP.lproj/Main.strings"; sourceTree = "<group>"; };
 		AAF91CD81D59EC730016E084 /* ja-JP */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ja-JP"; path = "ja-JP.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
@@ -363,7 +360,6 @@
 			knownRegions = (
 				en,
 				Base,
-				ja,
 				"ja-JP",
 			);
 			mainGroup = AAFB09D81D48F0E500995A10;
@@ -600,7 +596,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				AAF91CCD1D5955390016E084 /* Base */,
-				AAF91CCF1D5955750016E084 /* ja */,
 				AAF91CD61D59E5DD0016E084 /* en */,
 				AAF91CD91D59EC730016E084 /* ja-JP */,
 			);
@@ -612,7 +607,6 @@
 			children = (
 				AAFB09E91D48F0E500995A10 /* Base */,
 				AAF91CD41D59D73F0016E084 /* en */,
-				AAF91CD51D59E1860016E084 /* ja */,
 				AAF91CD71D59EC730016E084 /* ja-JP */,
 			);
 			name = Main.storyboard;
@@ -622,7 +616,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				AAFB09EE1D48F0E500995A10 /* Base */,
-				AAF91CC91D5953B50016E084 /* ja */,
 				AAF91CD81D59EC730016E084 /* ja-JP */,
 			);
 			name = LaunchScreen.storyboard;
