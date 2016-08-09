@@ -1,0 +1,51 @@
+/* 
+  Localizable.strings
+  PostIts
+
+  Created by SASAKIAI on 2016/08/09.
+  Copyright © 2016年 SASAKIAI. All rights reserved.
+*/
+
+//SelectBackgroundImageViewController
+//MainViewController
+//ConfigurationTableViewController
+//purchaseManagerSharedManager
+//PostItsProductManager
+
+
+//backgroundImg
+"backgroundImg_whiteboard" = "white board";
+"backgroundImg_blackboard" = "blackboard";
+"backgroundImg_corkboard" = "cork board";
+"backgroundImg_gridsheet" = "grid sheet";
+
+//alert
+"alertTitle_A001" = "Confirmation";
+"alertTitle_A002" = "OK";
+"alertTitle_A003" = "Cancel";
+"alertTitle_A004" = "Error";
+"alertTitle_A005" = "Continue";
+
+"alertMessage_A001-1" = "The number of free usable Post-it is ten.";
+"alertMessage_A001-2" = "If you purchase restriction releasing key, you can use Post‐its without any restriction.";
+"alertMessage_A002" = "Do you want to delete this Pots-It？";
+"alertMessage_A003" = "Do you purchase Limitation Release Key？";
+"alertMessage_A004" = "the restoration was completed.";
+"alertMessage_A005-1" = "purchase process has been stoped.";
+"alertMessage_A005-2" = "he downloading re-start for free.";
+
+//buttonTitle
+"buttonTitle_A001" = "already purchased";
+"buttonTitle_A002" = "purchase";
+
+//labelText
+"labelText_A001" = "unlimitation";
+
+//errorMessage
+"errorMessage_A001" = "the purchase becomes invalid by setting.";
+"errorMessage_A002" = "under charging process.";
+"errorMessage_A003" = "under restoration.";
+"errorMessage_A004" = "under restoration.";
+
+"errorMessage_A005" = "couldn't acquire product ID.";
+"errorMessage_A006" = "invalid product ID.";

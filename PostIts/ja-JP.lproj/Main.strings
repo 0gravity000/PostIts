@@ -1,0 +1,36 @@
+
+/* Class = "UILabel"; text = "Background Image"; ObjectID = "9xM-8b-iHt"; */
+"9xM-8b-iHt.text" = "背景イメージ";
+
+/* Class = "UIButton"; normalTitle = "restore puchase state"; ObjectID = "Akx-NH-rPl"; */
+"Akx-NH-rPl.normalTitle" = "購入状態を復元";
+
+/* Class = "UILabel"; text = "content"; ObjectID = "AyX-do-rY6"; */
+"AyX-do-rY6.text" = "内容";
+
+/* Class = "UILabel"; text = "restriction releasing key"; ObjectID = "XAm-7x-f0N"; */
+"XAm-7x-f0N.text" = "制限解除キー";
+
+/* Class = "UILabel"; text = "Background Image"; ObjectID = "aex-SA-XwF"; */
+"aex-SA-XwF.text" = "背景イメージ";
+
+/* Class = "UILabel"; text = "xxxxxx xxxxxx"; ObjectID = "eJE-pc-kRO"; */
+"eJE-pc-kRO.text" = "xxxxxx xxxxxx";
+
+/* Class = "UILabel"; text = "The number of free usable Post-it"; ObjectID = "fmV-Un-F7J"; */
+"fmV-Un-F7J.text" = "使用可能な付箋紙の数";
+
+/* Class = "UIButton"; normalTitle = "purchase"; ObjectID = "hFg-mg-p4Y"; */
+"hFg-mg-p4Y.normalTitle" = "購入する";
+
+/* Class = "UILabel"; text = "10"; ObjectID = "hdg-Xa-j5m"; */
+"hdg-Xa-j5m.text" = "10";
+
+/* Class = "UILabel"; text = "xxxxxxxxxx"; ObjectID = "hfb-Yd-Qtv"; */
+"hfb-Yd-Qtv.text" = "xxxxxxxxxx";
+
+/* Class = "UILabel"; text = "update："; ObjectID = "imc-E5-oM5"; */
+"imc-E5-oM5.text" = "更新日：";
+
+/* Class = "UITableViewSection"; footerTitle = "If you purchase restriction releasing key, you can use Post‐its without any restriction."; ObjectID = "uQd-lX-IaR"; */
+"uQd-lX-IaR.footerTitle" = "制限解除キーを購入すると、無制限に使用できます。";

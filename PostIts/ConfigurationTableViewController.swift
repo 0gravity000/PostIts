@@ -23,9 +23,13 @@ class ConfigurationTableViewController: UITableViewController, PostItsPurchaseMa
     @IBOutlet weak var productPurchaseButton: UIButton!
     @IBAction func pushProductPurchaseButton(sender: AnyObject) {
         //制限解除キーを購入
-        let ac = UIAlertController(title: "確認", message: "制限解除キーを購入しますか？", preferredStyle: .Alert)
+        let ac = UIAlertController(title: NSLocalizedString("alertTitle_A001", comment: ""),
+                                   message: NSLocalizedString("alertMessage_A003", comment: ""),
+                                   preferredStyle: .Alert)
         //OK
-        let okAction = UIAlertAction(title: "OK", style: .Default, handler:{
+        let okAction = UIAlertAction(title: NSLocalizedString("alertTitle_A002", comment: ""),
+                                     style: .Default,
+                                     handler:{
             // ボタンが押された時の処理
             (action: UIAlertAction!) -> Void in
             
@@ -55,7 +59,9 @@ class ConfigurationTableViewController: UITableViewController, PostItsPurchaseMa
         })
         
         //CANCEL
-        let cancelAction = UIAlertAction(title: "CANCEL", style: .Cancel, handler:{
+        let cancelAction = UIAlertAction(title: NSLocalizedString("alertTitle_A003", comment: ""),
+                                         style: .Cancel,
+                                         handler:{
             // ボタンが押された時の処理
             (action: UIAlertAction!) -> Void in
             print("CANCEL button tapped.")
@@ -97,13 +103,13 @@ class ConfigurationTableViewController: UITableViewController, PostItsPurchaseMa
     private func configureBackgroundImageLabelText() {
         let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate //AppDelegateのインスタンスを取得
         if (appDelegate.selectedBackgroundImg == 0) {
-            self.backgroundImageLabel.text = "whiteboad"
+            self.backgroundImageLabel.text = NSLocalizedString("backgroundImg_whiteboard", comment: "")
         } else if (appDelegate.selectedBackgroundImg == 1) {
-            self.backgroundImageLabel.text = "blackboard"
+            self.backgroundImageLabel.text = NSLocalizedString("backgroundImg_blackboard", comment: "")
         } else if (appDelegate.selectedBackgroundImg == 2) {
-            self.backgroundImageLabel.text = "corkboard"
+            self.backgroundImageLabel.text = NSLocalizedString("backgroundImg_corkboard", comment: "")
         } else if (appDelegate.selectedBackgroundImg == 3) {
-            self.backgroundImageLabel.text = "gridsheet"
+            self.backgroundImageLabel.text = NSLocalizedString("backgroundImg_gridsheet", comment: "")
         }
     }
     
@@ -112,11 +118,13 @@ class ConfigurationTableViewController: UITableViewController, PostItsPurchaseMa
     private func checkLimitationReleaseKeyStatus() {
         let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate //AppDelegateのインスタンスを取得
         if (appDelegate.isPurchasedLimitationReleaseKey == true) {
-            self.productPurchaseButton.setTitle("購入済", forState: UIControlState.Normal)
+            self.productPurchaseButton.setTitle(NSLocalizedString("buttonTitle_A001", comment: ""),
+                                                forState: UIControlState.Normal)
             self.productPurchaseButton.enabled = false
-            self.numberOfPostItsLabel.text = ("無制限")
+            self.numberOfPostItsLabel.text = (NSLocalizedString("labelText_A001", comment: ""))
         } else {
-            self.productPurchaseButton.setTitle("購入する", forState: UIControlState.Normal)
+            self.productPurchaseButton.setTitle(NSLocalizedString("buttonTitle_A002", comment: ""),
+                                                forState: UIControlState.Normal)
             self.productPurchaseButton.enabled = true
             self.numberOfPostItsLabel.text = ("10")
         }
@@ -270,9 +278,13 @@ class ConfigurationTableViewController: UITableViewController, PostItsPurchaseMa
          errorを使ってアラート表示
          */
         print("purchaseManager didFailWithError = \(error)")
-        let ac = UIAlertController(title: "エラー", message: error.localizedDescription, preferredStyle: .Alert)
+        let ac = UIAlertController(title: NSLocalizedString("alertTitle_A004", comment: ""),
+                                   message: error.localizedDescription,
+                                   preferredStyle: .Alert)
         //OK
-        let okAction = UIAlertAction(title: "OK", style: .Default, handler:{
+        let okAction = UIAlertAction(title: NSLocalizedString("alertTitle_A002", comment: ""),
+                                     style: .Default,
+                                     handler:{
             // ボタンが押された時の処理
             (action: UIAlertAction!) -> Void in
         })
@@ -287,9 +299,13 @@ class ConfigurationTableViewController: UITableViewController, PostItsPurchaseMa
          */
         //プロダクト取得失敗
         print("productManager didFailWithError = \(error)")
-        let ac = UIAlertController(title: "エラー", message: error.localizedDescription, preferredStyle: .Alert)
+        let ac = UIAlertController(title: NSLocalizedString("alertTitle_A004", comment: ""),
+                                   message: error.localizedDescription,
+                                   preferredStyle: .Alert)
         //OK
-        let okAction = UIAlertAction(title: "OK", style: .Default, handler:{
+        let okAction = UIAlertAction(title: NSLocalizedString("alertTitle_A002", comment: ""),
+                                     style: .Default,
+                                     handler:{
             // ボタンが押された時の処理
             (action: UIAlertAction!) -> Void in
         })
@@ -309,9 +325,13 @@ class ConfigurationTableViewController: UITableViewController, PostItsPurchaseMa
         //このタイミングでNSUserdefaultsを使ってデータを保存する
         checkLimitationReleaseKeyStatus()
         
-        let ac = UIAlertController(title: "確認", message: "復元が完了しました。", preferredStyle: .Alert)
+        let ac = UIAlertController(title: NSLocalizedString("alertTitle_A001", comment: ""),
+                                   message: NSLocalizedString("alertMessage_A004", comment: ""),
+                                   preferredStyle: .Alert)
         //OK
-        let okAction = UIAlertAction(title: "OK", style: .Default, handler:{
+        let okAction = UIAlertAction(title: NSLocalizedString("alertTitle_A002", comment: ""),
+                                     style: .Default,
+                                     handler:{
             // ボタンが押された時の処理
             (action: UIAlertAction!) -> Void in
         })

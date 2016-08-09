@@ -129,14 +129,10 @@
                                             <constraints>
                                                 <constraint firstItem="ISR-2E-WWE" firstAttribute="top" secondItem="xD8-wR-Sxh" secondAttribute="topMargin" constant="-8" id="0a8-EB-pPV"/>
                                                 <constraint firstItem="ISR-2E-WWE" firstAttribute="leading" secondItem="xD8-wR-Sxh" secondAttribute="leadingMargin" constant="-8" id="10x-sd-CId"/>
-                                                <constraint firstItem="ISR-2E-WWE" firstAttribute="leading" secondItem="xD8-wR-Sxh" secondAttribute="leadingMargin" constant="-8" id="5m9-PS-wiN"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="ISR-2E-WWE" secondAttribute="bottom" constant="-9" id="6Z4-1O-Jgd"/>
-                                                <constraint firstItem="ISR-2E-WWE" firstAttribute="top" secondItem="xD8-wR-Sxh" secondAttribute="topMargin" constant="-8" id="WLr-Lm-PmN"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="ISR-2E-WWE" secondAttribute="trailing" constant="-8" id="ivw-YI-hdM"/>
-                                                <constraint firstItem="ISR-2E-WWE" firstAttribute="leading" secondItem="xD8-wR-Sxh" secondAttribute="leadingMargin" constant="-8" id="lAq-Kg-xyy"/>
-                                                <constraint firstItem="ISR-2E-WWE" firstAttribute="top" secondItem="xD8-wR-Sxh" secondAttribute="topMargin" constant="-8" id="mH0-wD-Qs9"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="ISR-2E-WWE" secondAttribute="bottom" constant="-9" id="nqf-fB-bHo"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="ISR-2E-WWE" secondAttribute="trailing" constant="-8" id="vvD-Iv-Jtp"/>
+                                                <constraint firstItem="ISR-2E-WWE" firstAttribute="leading" secondItem="xD8-wR-Sxh" secondAttribute="leadingMargin" constant="-8" id="5QD-b8-drw"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="ISR-2E-WWE" secondAttribute="bottom" constant="-9" id="hPc-Gz-pCj"/>
+                                                <constraint firstItem="ISR-2E-WWE" firstAttribute="top" secondItem="xD8-wR-Sxh" secondAttribute="topMargin" constant="-8" id="xZZ-E7-dgi"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="ISR-2E-WWE" secondAttribute="trailing" constant="-8" id="y7v-gH-vKc"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="ISR-2E-WWE" secondAttribute="trailing" constant="-8" id="zdi-QN-SQf"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -159,8 +155,8 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="xxxxxxxxxx" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hfb-Yd-Qtv">
-                                                    <rect key="frame" x="439" y="13" width="110" height="22"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                    <rect key="frame" x="448" y="13" width="101" height="22"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -182,33 +178,37 @@
                             </tableViewSection>
                             <tableViewSection footerTitle="If you purchase restriction releasing key, you can use Post‐its without any restriction." id="uQd-lX-IaR">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="yKV-0D-edt">
-                                        <rect key="frame" x="0.0" y="195" width="600" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="75" id="yKV-0D-edt">
+                                        <rect key="frame" x="0.0" y="195" width="600" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yKV-0D-edt" id="NsZ-OQ-BzO">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="74"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The number of free usable Post-it" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fmV-Un-F7J">
-                                                    <rect key="frame" x="18" y="13" width="258" height="22"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The number of free usable Post-it" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fmV-Un-F7J">
+                                                    <rect key="frame" x="18" y="13" width="170" height="53"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="170" id="qRM-af-wp6"/>
+                                                        <constraint firstAttribute="height" constant="53" id="wYG-jv-6DE"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hdg-Xa-j5m">
-                                                    <rect key="frame" x="558" y="13" width="24" height="22"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                    <rect key="frame" x="560" y="26" width="22" height="22"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="hdg-Xa-j5m" secondAttribute="bottom" id="2b2-g3-T4I"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="hdg-Xa-j5m" secondAttribute="bottom" constant="18" id="2b2-g3-T4I"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="hdg-Xa-j5m" secondAttribute="trailing" constant="10" id="81L-VP-xDe"/>
-                                                <constraint firstItem="fmV-Un-F7J" firstAttribute="bottom" secondItem="NsZ-OQ-BzO" secondAttribute="bottomMargin" id="ZAN-T3-77M"/>
-                                                <constraint firstItem="hdg-Xa-j5m" firstAttribute="top" secondItem="NsZ-OQ-BzO" secondAttribute="topMargin" constant="5" id="pHP-w6-c7r"/>
-                                                <constraint firstItem="fmV-Un-F7J" firstAttribute="leading" secondItem="NsZ-OQ-BzO" secondAttribute="leadingMargin" constant="10" id="rF3-9S-mOf"/>
-                                                <constraint firstItem="fmV-Un-F7J" firstAttribute="top" secondItem="NsZ-OQ-BzO" secondAttribute="topMargin" constant="5" id="zq6-HD-UlL"/>
+                                                <constraint firstItem="fmV-Un-F7J" firstAttribute="top" secondItem="NsZ-OQ-BzO" secondAttribute="topMargin" constant="5" id="Csd-2D-7zB"/>
+                                                <constraint firstItem="fmV-Un-F7J" firstAttribute="bottom" secondItem="NsZ-OQ-BzO" secondAttribute="bottomMargin" id="EFY-pi-3wR"/>
+                                                <constraint firstItem="fmV-Un-F7J" firstAttribute="leading" secondItem="NsZ-OQ-BzO" secondAttribute="leadingMargin" constant="10" id="exI-39-vYX"/>
+                                                <constraint firstItem="hdg-Xa-j5m" firstAttribute="top" secondItem="NsZ-OQ-BzO" secondAttribute="topMargin" constant="18" id="pHP-w6-c7r"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -216,22 +216,26 @@
                             </tableViewSection>
                             <tableViewSection id="nvz-Q5-AZt">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="ycd-mB-nNc">
-                                        <rect key="frame" x="0.0" y="284" width="600" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="78" id="ycd-mB-nNc">
+                                        <rect key="frame" x="0.0" y="315" width="600" height="78"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ycd-mB-nNc" id="KVJ-EN-hLh">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="77"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="restriction releasing key" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XAm-7x-f0N">
-                                                    <rect key="frame" x="18" y="13" width="182" height="22"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="restriction releasing key" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XAm-7x-f0N">
+                                                    <rect key="frame" x="18" y="13" width="144" height="56"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="56" id="hYS-Wp-nV2"/>
+                                                        <constraint firstAttribute="width" constant="144" id="y9n-qZ-5IW"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hFg-mg-p4Y">
-                                                    <rect key="frame" x="491" y="8" width="91" height="27"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                    <rect key="frame" x="499" y="25" width="84" height="27"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <state key="normal" title="purchase"/>
                                                     <connections>
                                                         <action selector="pushProductPurchaseButton:" destination="ayI-xY-fAh" eventType="touchUpInside" id="NoM-ds-Mwv"/>
@@ -239,26 +243,26 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="hFg-mg-p4Y" firstAttribute="top" secondItem="KVJ-EN-hLh" secondAttribute="topMargin" id="Oad-kY-Lzd"/>
-                                                <constraint firstItem="XAm-7x-f0N" firstAttribute="top" secondItem="KVJ-EN-hLh" secondAttribute="topMargin" constant="5" id="cPZ-w9-9FM"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="hFg-mg-p4Y" secondAttribute="bottom" id="isp-pX-LFP"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="hFg-mg-p4Y" secondAttribute="trailing" constant="10" id="k1J-qN-Xme"/>
-                                                <constraint firstItem="XAm-7x-f0N" firstAttribute="leading" secondItem="KVJ-EN-hLh" secondAttribute="leadingMargin" constant="10" id="s5z-0c-Vrf"/>
-                                                <constraint firstItem="XAm-7x-f0N" firstAttribute="bottom" secondItem="KVJ-EN-hLh" secondAttribute="bottomMargin" id="zq5-qp-XHN"/>
+                                                <constraint firstItem="XAm-7x-f0N" firstAttribute="leading" secondItem="KVJ-EN-hLh" secondAttribute="leadingMargin" constant="10" id="2KU-eg-WuN"/>
+                                                <constraint firstItem="hFg-mg-p4Y" firstAttribute="top" secondItem="KVJ-EN-hLh" secondAttribute="topMargin" constant="17" id="Oad-kY-Lzd"/>
+                                                <constraint firstItem="XAm-7x-f0N" firstAttribute="bottom" secondItem="KVJ-EN-hLh" secondAttribute="bottomMargin" id="bJd-wT-XfW"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="hFg-mg-p4Y" secondAttribute="bottom" constant="17" id="isp-pX-LFP"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="hFg-mg-p4Y" secondAttribute="trailing" constant="9" id="k1J-qN-Xme"/>
+                                                <constraint firstItem="XAm-7x-f0N" firstAttribute="top" secondItem="KVJ-EN-hLh" secondAttribute="topMargin" constant="5" id="l27-Jf-Jll"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Ab0-mb-tsE">
-                                        <rect key="frame" x="0.0" y="328" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="393" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ab0-mb-tsE" id="RTd-kI-d5z">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Akx-NH-rPl">
-                                                    <rect key="frame" x="370" y="8" width="212" height="27"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                                    <state key="normal" title="restore puchase state"/>
+                                                    <rect key="frame" x="382" y="8" width="200" height="27"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <state key="normal" title="restore purchase state"/>
                                                     <connections>
                                                         <action selector="pushRestoreProductButton:" destination="ayI-xY-fAh" eventType="touchUpInside" id="uaO-wj-V2L"/>
                                                     </connections>

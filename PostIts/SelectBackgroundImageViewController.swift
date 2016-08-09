@@ -24,7 +24,10 @@ class SelectBackgroundImageViewController: UIViewController {
 
     @IBOutlet weak var backgroundImgPicker: UIPickerView!
     
-    var backgroundImgArray: NSArray = ["ホワイトボード","黒板","コルクボード","方眼紙"]
+    var backgroundImgArray: NSArray = [NSLocalizedString("backgroundImg_whiteboard", comment: ""),
+                                       NSLocalizedString("backgroundImg_blackboard", comment: ""),
+                                       NSLocalizedString("backgroundImg_corkboard", comment: ""),
+                                       NSLocalizedString("backgroundImg_gridsheet", comment: "")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,8 +61,8 @@ class SelectBackgroundImageViewController: UIViewController {
     
     //選択時
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        print("列: \(row)")  //debug code
-        print("値: \(backgroundImgArray[row])")  //debug code
+        //print("列: \(row)")  //debug code
+        //print("値: \(backgroundImgArray[row])")  //debug code
         
         let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate //AppDelegateのインスタンスを取得
         appDelegate.selectedBackgroundImg = row

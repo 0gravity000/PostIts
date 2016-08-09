@@ -32,14 +32,18 @@ class PostItsProductManager: NSObject, SKProductsRequestDelegate {
     func productsRequest(request: SKProductsRequest, didReceiveResponse response: SKProductsResponse) {
         var error : NSError? = nil
         if response.products.count == 0 {
-            error = NSError(domain: "ProductsRequestErrorDomain", code: 0, userInfo: [NSLocalizedDescriptionKey:"プロダクトを取得できませんでした。"])
+            error = NSError(domain: "ProductsRequestErrorDomain",
+                            code: 0,
+                            userInfo: [NSLocalizedDescriptionKey:NSLocalizedString("errorMessage_A005", comment: "")])
         }
         //completionForProductidentifiers?(response.products, error)  //1回だけ
         
         // 無効なアイテムがないかチェック アイテム ID を間違えて指定した場合など
         if response.invalidProductIdentifiers.count > 0 {
             //無効なアイテムがあった場合の処理
-            error = NSError(domain: "ProductsRequestErrorDomain", code: 1, userInfo: [NSLocalizedDescriptionKey:"無効なプロダクトIDです。"])
+            error = NSError(domain: "ProductsRequestErrorDomain",
+                            code: 1,
+                            userInfo: [NSLocalizedDescriptionKey:NSLocalizedString("errorMessage_A006", comment: "")])
         }
         completionForProductidentifiers?(response.products, error)
         
@@ -47,7 +51,9 @@ class PostItsProductManager: NSObject, SKProductsRequestDelegate {
     
     //これはいつ呼ばれる？??
     func request(request: SKRequest, didFailWithError error: NSError) {
-        let error = NSError(domain: "ProductsRequestErrorDomain", code: 0, userInfo: [NSLocalizedDescriptionKey:"プロダクトを取得できませんでした。"])
+        let error = NSError(domain: "ProductsRequestErrorDomain",
+                            code: 0,
+                            userInfo: [NSLocalizedDescriptionKey:NSLocalizedString("errorMessage_A005", comment: "")])
         completionForProductidentifiers?(nil,error)
         productManagers.remove(self)
     }

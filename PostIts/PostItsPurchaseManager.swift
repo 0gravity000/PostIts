@@ -31,17 +31,17 @@ class PostItsPurchaseManager: NSObject,SKPaymentTransactionObserver {
         
         if SKPaymentQueue.canMakePayments() == false {
             errorCount += 1
-            errorMessage = "設定で購入が無効になっています。"
+            errorMessage = NSLocalizedString("errorMessage_A001", comment: "")
         }
         
         if self.productIdentifier != nil {
             errorCount += 10
-            errorMessage = "課金処理中です。"
+            errorMessage = NSLocalizedString("errorMessage_A002", comment: "")
         }
         
         if self.isRestore == true {
             errorCount += 100
-            errorMessage = "リストア中です。"
+            errorMessage = NSLocalizedString("errorMessage_A003", comment: "")
         }
         
         //エラーがあれば終了
@@ -52,6 +52,7 @@ class PostItsPurchaseManager: NSObject,SKPaymentTransactionObserver {
         }
         
         //未処理のトランザクションがあればそれを利用
+        //未カバレッジ
         let transactions = SKPaymentQueue.defaultQueue().transactions
         if transactions.count > 0 {
             for transaction in transactions {
@@ -61,8 +62,13 @@ class PostItsPurchaseManager: NSObject,SKPaymentTransactionObserver {
                 
                 if transaction.payment.productIdentifier == product.productIdentifier {
                     if let window = UIApplication.sharedApplication().delegate?.window {
-                        let ac = UIAlertController(title: nil, message: "\(product.localizedTitle)は購入処理が中断されていました。\nこのまま無料でダウンロードできます。", preferredStyle: .Alert)
-                        let action = UIAlertAction(title: "続行", style: UIAlertActionStyle.Default, handler: {[weak self] (action : UIAlertAction!) -> Void in
+                        let ac = UIAlertController(title: nil,
+                                                   message: "\(product.localizedTitle)" + NSLocalizedString("alertMessage_A005-1", comment: "")
+                                                        + NSLocalizedString("alertMessage_A005-2", comment: ""),
+                                                   preferredStyle: .Alert)
+                        let action = UIAlertAction(title: NSLocalizedString("alertTitle_A005", comment: ""),
+                                                   style: UIAlertActionStyle.Default,
+                                                   handler: {[weak self] (action : UIAlertAction!) -> Void in
                             if let weakSelf = self {
                                 weakSelf.productIdentifier = product.productIdentifier
                                 weakSelf.completeTransaction(transaction)
@@ -88,7 +94,9 @@ class PostItsPurchaseManager: NSObject,SKPaymentTransactionObserver {
             self.isRestore = true
             SKPaymentQueue.defaultQueue().restoreCompletedTransactions()
         }else{
-            let error = NSError(domain: "PurchaseErrorDomain", code: 0, userInfo: [NSLocalizedDescriptionKey:"リストア処理中です。"])
+            let error = NSError(domain: "PurchaseErrorDomain",
+                                code: 0,
+                                userInfo: [NSLocalizedDescriptionKey:NSLocalizedString("errorMessage_A004", comment: "")])
             self.delegate?.purchaseManager?(self, didFailWithError: error)
         }
     }

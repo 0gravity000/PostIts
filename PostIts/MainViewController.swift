@@ -207,7 +207,10 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
                 if (self.sortedRealm?.count >= 10) {
                     executableFlag = false
                     //alert表示
-                    let ac = UIAlertController(title: "確認", message: "付箋紙の数は、10個までは無料で使用できます。\n制限解除キーを購入すると、無制限に使用できます。", preferredStyle: .Alert)
+                    let ac = UIAlertController(title: NSLocalizedString("alertTitle_A001", comment: ""),
+                                               message: NSLocalizedString("alertMessage_A001-1", comment: "")
+                                               + "\n" + NSLocalizedString("alertMessage_A001-2", comment: ""),
+                                               preferredStyle: .Alert)
                     //OK
                     let okAction = UIAlertAction(title: "OK", style: .Default, handler:{
                         // ボタンが押された時の処理
@@ -326,11 +329,15 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
         if (self.modeFlag == 3) { //削除モードの時
             //ここで、ViewとRealmデータ削除処理を行う
             //Alert表示
-            let alert: UIAlertController = UIAlertController(title: "確認", message: "削除してもよろしいですか？", preferredStyle:  UIAlertControllerStyle.Alert)
+            let alert: UIAlertController = UIAlertController(title: NSLocalizedString("alertTitle_A001", comment: ""),
+                                                             message: NSLocalizedString("alertMessage_A002", comment: ""),
+                                                             preferredStyle:  UIAlertControllerStyle.Alert)
             
             //Actionの設定
             // OKボタン
-            let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler:{
+            let defaultAction: UIAlertAction = UIAlertAction(title: NSLocalizedString("alertTitle_A002", comment: ""),
+                                                             style: UIAlertActionStyle.Default,
+                                                             handler:{
                 // ボタンが押された時の処理
                 (action: UIAlertAction!) -> Void in
                 //Realmデータの削除 表示フラグを落とす
@@ -381,7 +388,9 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
                 
             })
             // キャンセルボタン
-            let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.Cancel, handler:{
+            let cancelAction: UIAlertAction = UIAlertAction(title: NSLocalizedString("alertTitle_A003", comment: ""),
+                                                            style: UIAlertActionStyle.Cancel,
+                                                            handler:{
                 // ボタンが押された時の処理
                 (action: UIAlertAction!) -> Void in
                 print("Cancel")
