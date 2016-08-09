@@ -75,10 +75,4 @@ class PostItsProductManager: NSObject, SKProductsRequestDelegate {
     }
 }
 
-//不要
-//@objc protocol PostItsProductManagerDelegate {
-//    //プロダクト取得失敗
-//    optional func productManager(productManager: PostItsProductManager!, didFailWithError error: NSError!)
-//    
-//}
 

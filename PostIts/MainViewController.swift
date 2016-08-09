@@ -28,7 +28,6 @@ class PostItsModel: Object {
 
 class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDelegate, PostItsPurchaseManagerDelegate {
     
-//    var backgroundImageView: BackGroundImageView!
     var backgroundImageView = BackGroundImageView()
     var modeFlag: Int = 1  //1:edit, 2:add, 3: remove 4:move 5:config
     var isMovingFlag: Bool = false
@@ -108,8 +107,6 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-
         // scrollview の設定
         mainScrollView.delegate = self
         mainScrollView.minimumZoomScale = 0.25
@@ -162,18 +159,18 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
     
     //KVO backgroundImageView を touch した時に呼ばれる
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        print(keyPath)  //debug code
-        print(object)   //debug code
-        print(change)   //debug code
+//        print(keyPath)  //debug code
+//        print(object)   //debug code
+//        print(change)   //debug code
 
         let appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate //AppDelegateのインスタンスを取得
         //右下隅の補正処理
         var amendedBackgroundImageViewTouchPointX: CGFloat = 0.0
         var amendedBackgroundImageViewTouchPointY: CGFloat = 0.0
         //x補正
-        print(backgroundImageView.touchPoint.x) //debug code
-        print(POSTIT_WIDTH) //debug code
-        print(backgroundImageView.frame.size.width / mainScrollView.zoomScale)  //debug code
+//        print(backgroundImageView.touchPoint.x) //debug code
+//        print(POSTIT_WIDTH) //debug code
+//        print(backgroundImageView.frame.size.width / mainScrollView.zoomScale)  //debug code
         if (backgroundImageView.touchPoint.x + POSTIT_WIDTH >
             (backgroundImageView.frame.size.width / mainScrollView.zoomScale)) {
             amendedBackgroundImageViewTouchPointX = (backgroundImageView.frame.size.width / mainScrollView.zoomScale) - POSTIT_WIDTH
@@ -181,9 +178,9 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
             amendedBackgroundImageViewTouchPointX = backgroundImageView.touchPoint.x
         }
         //y補正
-        print(backgroundImageView.touchPoint.y) //debug code
-        print(POSTIT_HIGHT) //debug code
-        print(backgroundImageView.frame.size.height / mainScrollView.zoomScale) //debug code
+//        print(backgroundImageView.touchPoint.y) //debug code
+//        print(POSTIT_HIGHT) //debug code
+//        print(backgroundImageView.frame.size.height / mainScrollView.zoomScale) //debug code
         if (backgroundImageView.touchPoint.y + POSTIT_HIGHT >
             (backgroundImageView.frame.size.height / mainScrollView.zoomScale)) {
             amendedBackgroundImageViewTouchPointY = (backgroundImageView.frame.size.height / mainScrollView.zoomScale) - POSTIT_HIGHT
@@ -324,7 +321,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
     
     // テキストビューにフォーカスが移った
     func textViewShouldBeginEditing(textView: UITextView) -> Bool {
-        print("textViewShouldBeginEditing : \(textView.text)")   //debug code
+//        print("textViewShouldBeginEditing : \(textView.text)")   //debug code
         
         if (self.modeFlag == 3) { //削除モードの時
             //ここで、ViewとRealmデータ削除処理を行う
@@ -361,7 +358,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
                 
                 //Realmデータのソート creatTime 昇順 小さいものから大きいものへ 0,1,2,...
                 self.sortedRealm = self.realm.objects(PostItsModel).sorted("creatTime", ascending: true)
-                print(self.sortedRealm) //debug code
+//                print(self.sortedRealm) //debug code
 
                 //全てのRealmの TagNoを振り直す
                 let sortedPostIts = self.sortedRealm!
@@ -369,7 +366,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
                 for sortedPostIt in sortedPostIts {
                     //Realmデータを creatTime 順に TagNo を降り直す
                     let postIts = self.realm.objects(PostItsModel).filter("creatTime == %@", sortedPostIt.creatTime)
-                    print(postIts) //debug code
+//                    print(postIts) //debug code
                     for postIt in postIts {
                         try! self.realm.write {
                             postIt.tagNo = counter
@@ -427,12 +424,12 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
 
     //テキストビューが変更された
     func textViewDidChange(textView: UITextView) {
-        print("textViewDidChange : \(textView.text)")   //debug code
+//        print("textViewDidChange : \(textView.text)")   //debug code
     }
     
     // テキストビューからフォーカスが失われた
     func textViewShouldEndEditing(textView: UITextView) -> Bool {
-        print("textViewShouldEndEditing : \(textView.text)")   //debug code
+//        print("textViewShouldEndEditing : \(textView.text)")   //debug code
 
         if (self.modeFlag == 1) {   //編集モードの時
             //RealmデータのcontentとupdateTimeを更新
@@ -442,7 +439,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
                     postIt.content = textView.text
                     postIt.updateTime = NSDate()
                 }
-                print(postIt)   //debug code
+//                print(postIt)   //debug code
             }
         }
         
@@ -453,12 +450,6 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        //        if let size = mainImageView.image?.size {
-        //            // imageViewのサイズがscrollView内に収まるように調整
-        //            let wrate = mainScrollView.frame.width / size.width
-        //            let hrate = mainScrollView.frame.height / size.height
-        //            let rate = min(wrate, hrate, 1)
-        //            mainImageView.frame.size = CGSizeMake(size.width * rate, size.height * rate)
         
         // contentSizeを画像サイズに設定
         mainScrollView.contentSize = backgroundImageView.frame.size

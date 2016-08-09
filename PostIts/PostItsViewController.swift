@@ -42,7 +42,7 @@ class PostItsViewController: UIViewController, UITableViewDataSource, UITextView
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: PostItsTableViewCell = tableView.dequeueReusableCellWithIdentifier("PostItsCell", forIndexPath: indexPath) as! PostItsTableViewCell
-        print(indexPath.row)    //degug code
+//        print(indexPath.row)    //degug code
         //Realmデータのソート updateTime 降順 大きいものから小さいものへ ...2,1,0
         let sortedRealmObj = self.realmObj!.objects(PostItsModel).sorted("updateTime", ascending: false)
         //Realmデータの格納順にTableViewに表示する
@@ -63,8 +63,6 @@ class PostItsViewController: UIViewController, UITableViewDataSource, UITextView
             }
             //cell.contentLabel.text = cell.contentLabel.text! + " " + String(postIts[count].tagNo) //degug code 後から削除すること!
             cell.contentLabel.backgroundColor = configureUIColor(postIts[count].color)
-//            cell.textLabel?.text = String(postIts[count].tagNo)
-//            cell.detailTextLabel?.text = String(postIts[count].content)
         }
         return cell
     }
@@ -80,7 +78,7 @@ class PostItsViewController: UIViewController, UITableViewDataSource, UITextView
             //MainViewControllerで表示する座標をセット
             appDelegate.viewPosX = postIts[count].posX
             appDelegate.viewPosY = postIts[count].posY
-            print(postIts[count])   //debug code
+//            print(postIts[count])   //debug code
         }
         
         //画面を閉じる

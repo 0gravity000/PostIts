@@ -74,7 +74,7 @@ class ConfigurationTableViewController: UITableViewController, PostItsPurchaseMa
     @IBOutlet weak var restoreProductButton: UIButton!
     
     @IBAction func pushRestoreProductButton(sender: AnyObject) {
-        //リストア処理 ここでするのはいいか???
+        //リストア処理
         self.startRestore()
     }
     
@@ -158,61 +158,6 @@ class ConfigurationTableViewController: UITableViewController, PostItsPurchaseMa
         }
     }
 
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
     //アプリ内課金処理 -----------------------------------
     /// 課金開始
     func startPurchase(productIdentifier : String) {
@@ -221,7 +166,7 @@ class ConfigurationTableViewController: UITableViewController, PostItsPurchaseMa
         
         //プロダクト情報を取得
         PostItsProductManager.productsWithProductIdentifiers([productIdentifier], completion: { (products, error) -> Void in
-            print("プロダクト取得: \(products), \(error?.localizedDescription)") //debug code
+//            print("プロダクト取得: \(products), \(error?.localizedDescription)") //debug code
             if products.count > 0 {
                 //課金処理開始
                 PostItsPurchaseManager.sharedManager().startWithProduct(products[0])
@@ -338,7 +283,7 @@ class ConfigurationTableViewController: UITableViewController, PostItsPurchaseMa
         ac.addAction(okAction)
         presentViewController(ac, animated: true, completion: nil)
 
-        print("purchaseManagerDidFinishRestore")    //debug code
+//        print("purchaseManagerDidFinishRestore")    //debug code
     }
     
     func purchaseManagerDidDeferred(purchaseManager: PostItsPurchaseManager!) {
@@ -346,7 +291,7 @@ class ConfigurationTableViewController: UITableViewController, PostItsPurchaseMa
         /*
          インジケータなどを表示していたら非表示に
          */
-        print("purchaseManagerDidDeferred")
+//        print("purchaseManagerDidDeferred")
     }
     
 }
