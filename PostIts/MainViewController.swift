@@ -402,15 +402,17 @@ class MainViewController: UIViewController, UIScrollViewDelegate, UITextViewDele
             
             //以降テキスト編集処理を行わない
             return false
+            
         } else if (self.modeFlag == 4) {    //移動モードの時
-            self.isMovingFlag = true
-            self.movingTextView = textView
-            
-            //textViewを半透明にする
-            textView.alpha = 0.3
-            //タッチイベントを無視する
-            textView.userInteractionEnabled = false
-            
+            if (self.isMovingFlag == false) {
+                self.isMovingFlag = true
+                self.movingTextView = textView
+                
+                //textViewを半透明にする
+                textView.alpha = 0.3
+                //タッチイベントを無視する
+                textView.userInteractionEnabled = false
+            }
             //以降テキスト編集処理を行わない
             return false
         } else if (self.modeFlag == 2) {    //追加モードの時
